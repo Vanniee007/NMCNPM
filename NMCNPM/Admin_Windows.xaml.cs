@@ -32,12 +32,15 @@ namespace NMCNPM
         private void tn_laydanhsachmon()
         {
             var ds = new List<string>();
-            DataTable dt = db.sql_select("select distinct TenMon from MonHoc");
-            foreach(DataRow r in dt.Rows)
+            DataTable dt = db.sql_select("select TenLop+' / '+Nam from Lop");
+            //foreach(DataRow r in dt.Rows)
+            DataRow r;
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
+                r = dt.Rows[i];
                 ds.Add(r[0].ToString());
             }
-            Tn_gv_tb_daymon.DataContext = ds;
+            Lh_Combobox_dslop.DataContext = ds;
         }
 
         private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
@@ -319,6 +322,11 @@ namespace NMCNPM
         private void Tn_datagrid_giaovien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Lh_Load(object sender, RoutedEventArgs e)
+        {
+            tn_laydanhsachmon();
         }
     }
 }

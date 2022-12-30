@@ -26,6 +26,13 @@
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
+        <!--Định dạng cho Label-->
+        <Style x:Key="MyStyle_Label_Title"  TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
         <Style x:Key="MyStyle_Label_TT"  TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
@@ -42,6 +49,12 @@
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
 
+        
+        
+        
+        
+        
+        
         <!--Định dạng cho Border Button-->
         <Style x:Key="MyStyle_Border_them"  TargetType="Border">
             <Setter Property="Background" Value="#40d872"/>
@@ -72,6 +85,126 @@
             <Setter Property="Width" Value="90"/>
             <Setter Property="Height" Value="40"/>
         </Style>
+
+
+
+        <!--Định dạng cho Button-->
+        <Style x:Key="MyStyle_Button_Modern"  TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#c6c6c6"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Định dạng cho Button-->
+        <Style x:Key="MyStyle_Button_Them"  TargetType="Button">
+            <Setter Property="Background" Value="#40d872"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#30c561"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Định dạng cho Button-->
+        <Style x:Key="MyStyle_Button_Xoa"  TargetType="Button">
+            <Setter Property="Background" Value="#f13b1c"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e86158"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Định dạng cho Button-->
+        <Style x:Key="MyStyle_Button_Sua"  TargetType="Button">
+            <Setter Property="Background" Value="#f7e166"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e9bc32"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+
 
 
         <!--Định dạng cho Textbox-->
@@ -155,6 +288,9 @@
         </Style>
         <Style x:Key="CellRightAlign">
             <Setter Property="Control.HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="CellCenterAlign">
+            <Setter Property="Control.HorizontalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
 
@@ -375,10 +511,23 @@
 
                                 <Border Style="{StaticResource MyStyle_Border_them}">
                                     <Button x:Name="Tn_gv_bt_them"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button}"/>
-
                                 </Border>
+                                
+                                
+                                
+                                
                             </Grid>
-                            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
+
+
+                            <Grid Grid.Row="3" Grid.Column="5">
+
+                                <Button Style="{StaticResource MyStyle_Button_Sua}" Content="Thêm">
+                                </Button>
+                                
+                            </Grid>
+
+
+                                <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="39*"/>
                                     <ColumnDefinition Width="5*"/>
@@ -520,13 +669,54 @@
             </TabItem>
 
 
-            <TabItem >
+            <!--Danh sách lớp-->
+            <TabItem Loaded="Lh_Load">
                 <TabItem.Header>
                     <TextBlock Text="Lớp học"  FontSize="18" Foreground="White" FontWeight="Medium"    />
                 </TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
+                        <Label Content="Danh sách lớp" Style="{StaticResource MyStyle_Label_Title}" FontSize="24"
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
 
 
 
+                    <Grid Grid.Column="1" Grid.Row="2">
+                        <ComboBox x:Name="Lh_Combobox_dslop" ItemsSource="{Binding}" Margin="0,0,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True"/>
+                        <Button Content="Thêm" Style="{StaticResource MyStyle_Button_Them}" Margin="90,0" HorizontalAlignment="Right"/>
+                        <Button Content="Refresh" Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1" Grid.Row="3">
+                        <DataGrid x:Name="Lh_datagird_dshocsinh" Background="White">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" Binding="{Binding MaDoiTac}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                                <DataGridTextColumn Header="Họ tên" Binding="{Binding TenQuan}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding TenQuan}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                                <DataGridTextColumn Header="Giới tính" Binding="{Binding TenQuan}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding TenQuan}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding TenQuan}"  Width="*"  CellStyle="{StaticResource CellCenterAlign}" HeaderStyle="{StaticResource CellCenterAlign}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                </Grid>
             </TabItem>
             <TabItem >
                 <TabItem.Header>
@@ -746,28 +936,21 @@
         </TabControl>
 
         <!--Button đăng xuất-->
-        <Button x:Name="btn_dangxuat" Margin="85,17" 
+        <Button x:Name="btn_dangxuat" Margin="85,19" 
                 ToolTip="Đăng xuất"
                 HorizontalAlignment="Right" VerticalAlignment="Top" 
                 Click="Btn_dangxuat_Click_1"
                 BorderThickness="0"
-                Background="Transparent"
+                Height="30" Width="30"
+                Style="{StaticResource MyStyle_Button_Modern}"
                 >
-            <Image Source="icon/logout.png" Margin="0,6,5,5" Height="20" Width="20" HorizontalAlignment="Left"/>
+            <Image Source="icon/logout.png" Height="20" Width="20" HorizontalAlignment="Left"/>
         </Button>
         <!--Phóng to thu nhỏ tắt cửa sổ-->
         <StackPanel Margin="8,25" Background="Transparent" Height="18" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-            <Button Background="Transparent" HorizontalAlignment="Left" BorderThickness="0" Click="bt_mini_click">
-
-                <Border CornerRadius="10" Background="#ffc100" Height="15" Width="15"     />
-            </Button>
-            <Button Background="Transparent" BorderThickness="0" Click="bt_max_click">
-                <Border CornerRadius="10" Background="#0ad12c" Margin="5,0" Height="15" Width="15"/>
-
-            </Button>
-            <Button Background="Transparent" HorizontalAlignment="Right" BorderThickness="0" Click="bt_close_click">
-                <Border CornerRadius="10" Background="#ff5846" Height="15" Width="15"         />
-            </Button>
+            <Button Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_mini_click"/>
+            <Button Style="{StaticResource MyStyle_Button_Them}" Margin="5,0" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_max_click"/>
+            <Button Style="{StaticResource MyStyle_Button_Xoa}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_close_click"/>
         </StackPanel>
     </Grid>
 </Window>
