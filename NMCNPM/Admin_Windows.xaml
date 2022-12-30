@@ -304,7 +304,7 @@
 
                     </TabItem>
 
-                    <TabItem Header="Giáo viên" >
+                    <TabItem Header="Giáo viên" Loaded="tn_giaovien_TabItem_Loaded">
                         <Grid Style="{StaticResource MyStyle_GridBackground}" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -318,7 +318,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                                 <RowDefinition Height="0.6*"/>
-                                <RowDefinition Height="330"/>
+                                <RowDefinition Height="360"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="2" Grid.Column="1">
@@ -348,8 +348,22 @@
                                     <ComboBoxItem Content="Nam"/>
                                     <ComboBoxItem Content="Nữ" />
                                 </ComboBox>
-                                <ListBox x:Name="Tn_gv_lb_daylop"  Margin="0,240,0,0"  SelectionMode="Multiple">
-                                </ListBox>
+
+                            </Grid>
+
+                            <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2">
+
+                                <DataGrid x:Name="Tn_datagrid_giaovien" 
+                                  AutoGenerateColumns="False"
+                                  SelectionChanged="Tn_datagrid_giaovien_SelectionChanged"
+                                  CanUserAddRows="False"   Margin="0,240,0,0"
+                                  HorizontalContentAlignment="Center" HorizontalAlignment="Center">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Tên lớp" Binding="{Binding TenLop}" Width="0.8*"/>
+                                        <DataGridTextColumn Header="Năm" Binding="{Binding Nam}" />
+                                        <DataGridCheckBoxColumn CanUserSort="False"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="5">
                                 <PasswordBox x:Name="Tn_gv_pb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
@@ -360,7 +374,7 @@
                                 <ComboBox x:Name="Tn_gv_tb_daymon" ItemsSource="{Binding}" Margin="0,240,0,0" Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"  />
 
                                 <Border Style="{StaticResource MyStyle_Border_them}">
-                                    <Button x:Name="Tn_gv_bt_thema"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button}"/>
+                                    <Button x:Name="Tn_gv_bt_them"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button}"/>
 
                                 </Border>
                             </Grid>

@@ -28,26 +28,16 @@ namespace NMCNPM
         public Admin_Windows()
         {
             InitializeComponent(); 
-            bindcombobox();
         }
-        public List<string> DSLop { get; set; }
-        private void bindcombobox()
+        private void tn_laydanhsachmon()
         {
-            var Selected____List = new List<string>();
-            DataTable dt = db.sql_select("select HoTen from dbo.GiaoVien");
-            //int count = dt.Rows.Count;
-            DataRow r;
-            for (int i=0;i<dt.Rows.Count;i++)
+            var ds = new List<string>();
+            DataTable dt = db.sql_select("select distinct TenMon from MonHoc");
+            foreach(DataRow r in dt.Rows)
             {
-                r = dt.Rows[i];
-                //MessageBox.Show(r[0].ToString());
-                Selected____List.Add(r[0].ToString());
-
-
+                ds.Add(r[0].ToString());
             }
-            //DSLop = Selected____List;
-            //DataContext = Selected____List;
-            Tn_gv_lb_daylop.DataContext   = Selected____List;
+            Tn_gv_tb_daymon.DataContext = ds;
         }
 
         private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
@@ -127,16 +117,38 @@ namespace NMCNPM
             }
         }
 
+        private void tn_laydanhsachlopdachon()
+        {
+            /// Lấy list index dòng đã chọn
+            var SelectedList = new List<string>();
+            for (int i = 0; i < Tn_datagrid_giaovien.Items.Count; i++)
+            {
+                var item = Tn_datagrid_giaovien.Items[i];
+                var mycheckbox = Tn_datagrid_giaovien.Columns[2].GetCellContent(item) as CheckBox;
+                if ((bool)mycheckbox.IsChecked)
+                {
+                    TextBlock x = Tn_datagrid_giaovien.Columns[0].GetCellContent(Tn_datagrid_giaovien.Items[i]) as TextBlock;
+                    TextBlock y = Tn_datagrid_giaovien.Columns[1].GetCellContent(Tn_datagrid_giaovien.Items[i]) as TextBlock;
+                    SelectedList.Add(x.Text);
+                    MessageBox.Show(x.Text+"|"+y.Text);
+                }
+            }
+            //return SelectedList;
+        }
         private void Tn_gv_them_click(object sender, RoutedEventArgs e)
         {
             try
             {
-                foreach (var item in Tn_gv_lb_daylop.SelectedItems)
-                {
-                    // Lấy giá trị của item
-                    var value = item.ToString();
-                }
-                
+
+                tn_laydanhsachlopdachon();
+
+
+                //foreach (var item in Tn_gv_lb_daylop.SelectedItems)
+                //{
+                //    // Lấy giá trị của item
+                //    var value = item.ToString();
+                //}
+
             }
             catch { }
         }
@@ -288,6 +300,25 @@ namespace NMCNPM
         private void bt_close_click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void tn_giaovien_TabItem_Loaded(object sender, RoutedEventArgs e)
+        {
+            tn_laydanhsachmon(); 
+            tn_load_datagrid_giaovien();
+        }
+
+        private void tn_load_datagrid_giaovien()
+        {
+            try
+            {
+                Tn_datagrid_giaovien.ItemsSource = db.sql_select("select TenLop, Nam from Lop").DefaultView;
+            }
+            catch { }
+        }
+        private void Tn_datagrid_giaovien_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
