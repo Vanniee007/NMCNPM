@@ -262,5 +262,32 @@ namespace NMCNPM
         {
             TT_tb_taikhoan.Text = username;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bt_mini_click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState =  WindowState.Minimized;
+        }
+
+        private void bt_max_click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Normal)
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
+            }
+        }
+
+        private void bt_close_click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

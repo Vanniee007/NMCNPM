@@ -108,5 +108,16 @@
   <ItemGroup>
     <Resource Include="icon\logout.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon\close.png" />
+    <Resource Include="icon\mini.png" />
+    <Resource Include="icon\resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon\user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
