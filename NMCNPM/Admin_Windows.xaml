@@ -799,7 +799,7 @@
                         </ComboBox>
                         <ComboBox x:Name="Bd_cb_mon" ItemsSource="{Binding}" Margin="560,30,0,0"  Width="130" Style="{StaticResource MyStyle_ComboBox_TT}"
                                   AllowDrop="True"/>
-                        <Button Content="Xem" Width="100" Style="{StaticResource MyStyle_Button_Them}" Margin="0,-5,158,0" HorizontalAlignment="Right" Click="Bd_timkiem_click"/>
+                        <Button Content="Xem" Width="100" Style="{StaticResource MyStyle_Button_Them}" Margin="740,-5,0,0" HorizontalAlignment="Left" Click="Bd_timkiem_click"/>
                         <Button Content="Refresh" Width="100" Style="{StaticResource MyStyle_Button_Sua}" Margin="0,-5,20,0" HorizontalAlignment="Right" Click="Bd_refresh_click"/>
 
                     </Grid>
@@ -893,7 +893,7 @@
                         </Style>
                     </TabControl.Resources>
 
-                    <TabItem Header="Tổng kết theo môn">
+                    <TabItem Header="Tổng kết theo môn" Loaded="Tk_lop_loaded">
                         <Grid Background="WhiteSmoke">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.5*"/>
@@ -930,7 +930,7 @@
                                     <ComboBoxItem Content="1"/>
                                     <ComboBoxItem Content="2" />
                                 </ComboBox>
-                                <Button Content="Xem" Width="120" Style="{StaticResource MyStyle_Button_Them}" Margin="0,-5,320,0" HorizontalAlignment="Right" Click="Tk_mon_timkiem_click"/>
+                                <Button Content="Xem" Width="120" Style="{StaticResource MyStyle_Button_Them}" Margin="590,-5,0,0" HorizontalAlignment="Left" Click="Tk_mon_timkiem_click"/>
                                 <Button Content="Refresh" Width="120" Style="{StaticResource MyStyle_Button_Sua}" Margin="0,-5,20,0" HorizontalAlignment="Right" Click="Tk_mon_refresh_click"/>
 
                             </Grid>
@@ -992,7 +992,85 @@
                     </TabItem>
 
                     <TabItem Header="Tổng kết theo lớp" >
-                       
+                        <Grid Background="WhiteSmoke">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="800"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="White">
+
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" >
+                                <Label Content="Bảng tổng kết môn học" Style="{StaticResource MyStyle_Label_Title}" FontSize="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button x:Name="Tk_lop_bt_in" Content="In" Width="100" Style="{StaticResource MyStyle_Button_In}" Margin="0,0,20,0" HorizontalAlignment="Right" Click="Tk_lop_in_click"/>
+
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
+                                <Label Content="Năm học" Margin="20,5,0,0"  Style="{StaticResource MyStyle_Label}" FontSize="14"  />
+                                <Label Content="Lớp" Margin="240,5,0,0"  Style="{StaticResource MyStyle_Label}" FontSize="14"  />
+                                <Label Content="Kì" Margin="460,5,0,0"  Style="{StaticResource MyStyle_Label}" FontSize="14"  />
+
+                                <ComboBox x:Name="Tk_lop_cb_namhoc"  ItemsSource="{Binding}" Margin="20,30,0,0"  Width="150" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True" SelectionChanged="Tk_lop_cb_namhoc_changed"/>
+                                <ComboBox x:Name="Tk_lop_cb_lop"  ItemsSource="{Binding}" Margin="240,30,0,0"  Width="150" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True" />
+                                <ComboBox x:Name="Tk_lop_cb_kihoc"  Margin="460,30,0,0"  Width="150" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True">
+                                    <ComboBoxItem Content="1"/>
+                                    <ComboBoxItem Content="2" />
+                                    <ComboBoxItem Content="Cả năm" />
+
+                                </ComboBox>
+                                <Button Content="Xem" Width="100" Style="{StaticResource MyStyle_Button_Them}" Margin="690,-5,0,0" HorizontalAlignment="Left" Click="Tk_lop_timkiem_click"/>
+                                <Button Content="Refresh" Width="100" Style="{StaticResource MyStyle_Button_Sua}" Margin="0,-5,20,0" HorizontalAlignment="Right" Click="Tk_lop_refresh_click"/>
+
+                            </Grid>
+
+                            <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" >
+                                <DataGrid x:Name="Tk_lop_datagird" 
+                                  Margin="20,20,20,20"
+                                  AutoGenerateColumns="False"
+                                 
+                                  Background="White"
+                                  IsReadOnly="True">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã học sinh" Binding="{Binding MaHocSinh}"  Width="*" />
+                                        <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}"  Width="*"  />
+
+                                        <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh}"  Width="*"  />
+                                        <DataGridTextColumn Header="Điểm trung bình" Binding="{Binding DTB}"  Width="*"  />
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="39*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="264*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="Tk_lop_lb_errorout"  
+                               Content="" 
+                               Margin="0,0,0,4.6"
+                               Style="{StaticResource MyStyle_Label}" 
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Bottom" Grid.Column="2"/>
+                            </Grid>
+
+                        </Grid>
+
                     </TabItem>
                  
                 </TabControl>

@@ -374,7 +374,6 @@ namespace NMCNPM
         private void Kh_nh_datagrid_Loaded(object sender, RoutedEventArgs e)
         {
             get_datagrid_kh_nh();
-            ExportToCsv("select* from NamHoc", Kh_nh_datagrid,"D:\\file.csv");
         }
 
         private void Kh_nh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1106,6 +1105,8 @@ namespace NMCNPM
         /*======================================TỔNG KẾT========================================
          * ======================================================================================
          * ======================================================================================*/
+        /*==========================================TỔNG KẾT- THEO MÔN=========================================*/
+
         private void get_namhoc_tk_mon()
         {
             var ds = new List<string>();
@@ -1218,5 +1219,153 @@ namespace NMCNPM
                 Tk_mon_lb_errorout.Background = Brushes.IndianRed;
             }
         }
+
+
+
+
+        /*==========================================TỔNG KẾT- THEO LỚP=========================================*/
+
+        private void get_namhoc_tk_lop()
+        {
+            var ds = new List<string>();
+            DataTable dt1 = db.sql_select("select distinct Nam from NamHoc");
+            DataRow r;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                r = dt1.Rows[i];
+                ds.Add(r[0].ToString());
+            }
+            Tk_lop_cb_namhoc.DataContext = ds;
+        }
+        private void Tk_lop_cb_namhoc_changed(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string nam = Tk_lop_cb_namhoc.SelectedItem.ToString();
+                get_lophoc_tk_lop(nam);
+            }
+            catch
+            {
+
+            }
+        }
+        private void get_lophoc_tk_lop(string nam)
+        {
+            try
+            {
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct TenLop from Lop where Nam='" + nam + "'");
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Tk_lop_cb_lop.DataContext = ds;
+
+            }
+            catch { }
+
+        }
+        private void Tk_lop_loaded(object sender, RoutedEventArgs e)
+        {
+            get_namhoc_tk_lop();
+        }
+
+        private void Tk_lop_timkiem_click(object sender, RoutedEventArgs e)
+        {
+            get_tk_lop_datagrid();
+        }
+
+        private void Tk_lop_refresh_click(object sender, RoutedEventArgs e)
+        {
+            get_tk_lop_datagrid();
+        }
+
+        private void Tk_lop_in_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if ( Tk_lop_datagird.Items.Count == 0){
+                    Tk_lop_lb_errorout.Content = "Bảng rỗng !!!";
+                    Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    return;
+                }
+                else
+                {
+                    string duongdan = "D:/BangTongKetLop_" + Tk_lop_cb_namhoc.Text + "_" + Tk_lop_cb_lop.Text + "_"+Tk_lop_cb_kihoc.Text+ ".csv";
+                    if (MessageBox.Show("Bạn có muốn in vào " + duongdan + "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    {
+                        //do no stuff
+                        return;
+                    }
+                    else
+                    {
+                        ExportToCsv("Exec QTV_LayBangTongKetLop '" + Tk_lop_cb_namhoc.Text + "','" + Tk_lop_cb_lop.Text + "',N'" + Tk_lop_cb_kihoc.Text + "'", Tk_lop_datagird, duongdan);
+                        Tk_lop_lb_errorout.Content = "In thành công.";
+                        Tk_lop_lb_errorout.Background = Brushes.LightGreen;
+                    }
+                }
+               
+            }
+            catch
+            {
+                Tk_lop_lb_errorout.Content = "In thất bại!!!";
+                Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+            }
+        }
+        private void get_tk_lop_datagrid()
+        {
+            try
+            {
+                string query = "Exec QTV_LayBangTongKetLop '" + Tk_lop_cb_namhoc.Text + "','" + Tk_lop_cb_lop.Text + "',N'" + Tk_lop_cb_kihoc.Text + "'";
+                DataTable dt = db.sql_select(query);
+                if (dt.Rows.Count == 0)
+                {
+                    Tk_lop_lb_errorout.Content = "Bảng rỗng :(";
+                    Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Tk_lop_lb_errorout.Content = "Vui lòng chọn năm học!!!";
+                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Tk_lop_lb_errorout.Content = "Lỗi giao tác!!!";
+                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    }
+
+                    else if (loi == "-2")
+                    {
+                        Tk_lop_lb_errorout.Content = "Vui lòng chọn lớp học!!!";
+                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-2")
+                    {
+                        Tk_lop_lb_errorout.Content = "Vui lòng chọn kì học!!!";
+                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Tk_lop_lb_errorout.Content = "Tìm kiếm thành công.";
+                        Tk_lop_lb_errorout.Background = Brushes.LightGreen;
+                        Tk_lop_datagird.ItemsSource = dt.DefaultView;
+
+                    }
+                }
+            }
+            catch
+            { }
+        }
+       
+
+       
+
+
+        
     }
 }
