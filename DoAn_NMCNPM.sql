@@ -132,14 +132,40 @@ insert into GiaoVien values(2,N'Anh Tú','1-1-1978',N'Nam','abd@gmail.com','0123
 insert into GiaoVien values(3,N'Anh Phạm','1-1-1978',N'Nam','abe@gmail.com','0123454789',N'Phus Tho',N'Văn','gv03')
 
 insert into QuanTri values(1,N'Anh Phạm','1-1-1978',N'Nam','abw@gmail.com','0123454789',N'Phus Tho','admin')
-insert into QuanTri values(2,N'Anh Phạm','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Phus Tho','admin01')
-insert into QuanTri values(3,N'Anh Phạm','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Phus Tho','admin02')
+insert into QuanTri values(2,N'Anh Phạm','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Phus Tho','admin1')
+insert into QuanTri values(3,N'Anh Phạm','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Phus Tho','admin2')
 
 insert into HocSinh values(1,N'Anh Phạm Quy','1-1-2000',N'Nam','hs01@gmail.com','0123454789',N'Phus Tho','hs01')
 insert into HocSinh values(2,N'Mai Quyết ','1-1-2000',N'Nam','hs02@gmail.com','0123454789',N'Bình Dương','hs02')
 insert into HocSinh values(3,N'Trương Anh Ngọc','1-1-2000',N'Nam','hs03@gmail.com','0123454789',N'Bình Dương','hs03')
 insert into HocSinh values(4,N'Lê Thị Vy','1-1-2000',N'Nữ','hs04@gmail.com','0123454789',N'Bình Dương','hs04')
-go
+
+insert into NamHoc values('2021-2022',16,20)
+insert into NamHoc values('2020-2021',16,20)
+insert into NamHoc values('2019-2020',16,20)
+
+insert into MonHoc values(N'Toán','2019-2020',5.0)
+insert into MonHoc values(N'Văn','2019-2020',5.0)
+insert into MonHoc values(N'Anh','2019-2020',5.0)
+
+insert into Lop values('10A2','2021-2022',50)
+insert into Lop values('10A2','2020-2021',50)
+insert into Lop values('11A2','2021-2022',50)
+insert into Lop values('11A1','2021-2022',50)
+select* from Lop
+
+insert into Diem_HocSinh_MonHoc values(1,N'Toán','2019-2020',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(1,N'Toán','2019-2020',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',1,9,8,7)
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',2,9,9,6)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',1,9,8,7)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',2,9,9,6)
+
+
+insert into DanhSachLopHoc values('10A2','2020-2021',1)
+insert into DanhSachLopHoc values('10A2','2020-2021',2)
+insert into DanhSachLopHoc values('10A2','2020-2021',3)
+insert into DanhSachLopHoc values('11A1','2021-2022',1)
 ---------------------------QUẢN TRỊ VIÊN---------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
@@ -185,51 +211,6 @@ begin
 end
 Exec QTV_LayThongTin 'admin'
 	
-go
---DoiMatKhau
-create --alter
-proc DoiMatKhau
-	@username varchar(20),
-	@matkhaucu varchar(50),
-	@matkhaumoi varchar(50),
-	@matkhaumoi2 varchar(50)
-as
-begin tran
-	begin try
-		if @matkhaucu!=(select pass from TaiKhoan where @username=username)
-		begin
-			print N'Mật khẩu cũ không chính xác'
-			rollback tran
-			select -1
-			return
-		end
-		if @matkhaumoi=''
-		begin
-			print N'Mật khẩu mới rỗng'
-			rollback tran
-			select -2
-			return
-		end
-		if @matkhaumoi!=@matkhaumoi2
-		begin
-			print N'Mật khẩu nhập lại không giống'
-			rollback tran
-			select -3
-			return
-		end
-		update TaiKhoan
-		set pass=@matkhaumoi
-		where username=@username
-	end try
-	begin catch
-		print N'Lỗi hệ thống!'
-		ROLLBACK TRAN
-		select -10
-		return
-	END CATCH
-COMMIT TRAN
-select 0
-GO
 
 create --alter
 proc QTV_CapNhatThongTinCaNhan
@@ -264,7 +245,7 @@ COMMIT TRAN
 select 0
 GO
 Exec QTV_CapNhatThongTin '1',N'Anh Phạm Tieens','1/4/1978','Nam','abw@gmail.com','123454789','Phus Tho'
-go
+
 --DoiMatKhau
 create --alter
 proc DoiMatKhau
@@ -407,14 +388,467 @@ GO
 	
 Exec QTV_ThemQuanTriVien 'admin10','123',N'Lê Min Tian','12/15/2022','Nam','@gmail.com','12345','1234'
 
+
+-----------------------------------------------QUẢN TRỊ VIÊN---KHÓA HỌC
+create --alter
+proc QTV_ThemNamHoc
+@Nam varchar(12),
+@TuoiToiThieu int,
+@TuoiToIDa int
+as
+begin tran
+	begin try
+		if @Nam='' 
+		begin
+			print N'Có thông tin rỗng'
+			rollback tran
+			select -1
+			return
+		end
+		if exists(select Nam from NamHoc where Nam=@Nam)
+		begin
+			print N'Năm học đã tồn tại'
+			rollback tran
+			select -2
+			return
+		end
+		if @TuoiToiDa>20 or @TuoiToiThieu<15 or @TuoiToiDa<@TuoiToiThieu
+		begin
+			print N'Tuổi bạn nhập không hợp lệ'
+			rollback tran
+			select -3
+			return
+		end
+		insert into NamHoc values(@Nam,@TuoiToiThieu,@TuoiToiDa)
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_ThemLopHoc
+@TenLop varchar(10),
+@Nam varchar(12),
+@SiSo int
+as
+begin tran
+	begin try
+		if @Nam='' or @TenLop=''  
+		begin
+			print N'Có thông tin rỗng'
+			rollback tran
+			select -1
+			return
+		end
+		if exists(select Nam from Lop where Nam=@Nam and TenLop=@TenLop)
+		begin
+			print N'Lớp học đã tồn tại'
+			rollback tran
+			select -2
+			return
+		end
+		if @SiSo<0 or @SiSO>40
+		begin
+			print N'Sĩ số tối đa bạn nhập không hợp lệ'
+			rollback tran
+			select -3
+			return
+		end
+		insert into Lop values(@TenLop,@Nam,@SiSo)
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+
+create --alter
+proc QTV_ThemMonHoc
+@TenMon nvarchar(20),
+@Nam varchar(12),
+@DiemDat int
+as
+begin tran
+	begin try
+		if @Nam='' or @TenMon=''  
+		begin
+			print N'Có thông tin rỗng'
+			rollback tran
+			select -1
+			return
+		end
+		if exists(select Nam from MonHoc where Nam=@Nam and TenMon=@TenMon)
+		begin
+			print N'Môn học đã tồn tại'
+			rollback tran
+			select -2
+			return
+		end
+		if @DiemDat<0 or @DiemDat>10
+		begin
+			print N'Điểm đạt bạn nhập không hợp lệ'
+			rollback tran
+			select -3
+			return
+		end
+		insert into MonHoc values(@TenMon,@Nam,@DiemDat)
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_ThemDiemChoHocSinh
+	@MaHocSinh int,
+	@TenMon nvarchar(20),
+	@Nam varchar(12)
+as
+begin tran
+	begin try
+		insert into Diem_HocSinh_MonHoc values(@MaHocSinh,@TenMon,@Nam,1,0.0,0.0,0.0)
+		insert into Diem_HocSinh_MonHoc values(@MaHocSinh,@TenMon,@Nam,2,0.0,0.0,0.0)
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_SuaNamHoc
+	@Nam varchar(12),
+	@TuoiToiThieu int,
+	@TuoiToiDa int
+as
+begin tran
+	begin try
+		if @TuoiToiThieu<15 or @TuoiToiDa>20 or @TuoiToiThieu>@TuoiToiDa
+		begin
+			print N'Tuổi bạn nhập không hợp lệ'
+			rollback tran
+			select -1
+			return
+		end
+		update NamHoc
+		set TuoiToiThieu=@TuoiToiThieu, TuoiToiDa=@TuoiToiDa
+		where Nam=@Nam
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+		
+
+create --alter
+proc QTV_SuaLopHoc
+	@TenLop varchar(10),
+	@Nam varchar(12),
+	@SiSo int
+as
+begin tran
+	begin try
+		if @SiSo<0 or @SiSo>40 
+		begin
+			print N'Si so bạn nhập không hợp lệ'
+			rollback tran
+			select -1
+			return
+		end
+		if @SiSo<(select count(*) from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop)
+		begin
+			print N'Si so hien tai cua lop lon hon so ban nhap'
+			rollback tran
+			select -2
+			return
+		end
+		update Lop
+		set SiSo=@SiSo
+		where Nam=@Nam and TenLop=@TenLop
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+		
+
+
+create --alter
+proc QTV_SuaMonHoc
+	@TenMon nvarchar(20),
+	@Nam varchar(12),
+	@DiemDat float
+as
+begin tran
+	begin try
+		if @DiemDat<0 or @DiemDat>10
+		begin
+			print N'DIEM bạn nhập không hợp lệ'
+			rollback tran
+			select -1
+			return
+		end
+		update MonHoc
+		set DiemDat=@DiemDat
+		where Nam=@Nam and TenMon=@TenMon
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_XoaNamHoc
+	@Nam varchar(12)
+as
+begin tran
+	begin try
+		if exists(select Nam from MonHoc where Nam=@Nam) or exists(select Nam from Lop where Nam=@Nam)
+		begin
+			print N'Không thể xóa'
+			rollback tran
+			select -1
+			return
+		end
+		delete from NamHoc where Nam=@Nam
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_XoaLopHoc
+	@TenLop varchar(10),
+	@Nam varchar(12)
+as
+begin tran
+	begin try
+		if exists(select Nam from DanhSachLopHoc where TenLop=@TenLop and Nam=@Nam) or exists(select Nam from GiaoVien_LopHoc where TenLop=@TenLop and Nam=@Nam)
+		begin
+			print N'Không thể xóa'
+			rollback tran
+			select -1
+			return
+		end
+		delete from Lop where TenLop=@TenLop and Nam=@Nam
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_XoaMonHoc
+	@TenMon nvarchar(20),
+	@Nam varchar(12)
+as
+begin tran
+	begin try
+		if exists(select Nam from Diem_HocSinh_MonHoc where TenMon=@TenMon and Nam=@Nam) 
+		begin
+			print N'Không thể xóa'
+			rollback tran
+			select -1
+			return
+		end
+		delete from MonHoc where TenMon=@TenMon and Nam=@Nam
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+create --alter
+proc QTV_LayBangDiem
+@Nam varchar(12),
+@TenLop varchar(10),
+@Ki int,
+@TenMon nvarchar(20)
+as
+begin tran
+	begin try
+		if @Nam=''
+		begin
+			print N'Năm rỗng'
+			rollback tran
+			select -1
+			return
+		end
+		if @TenLop=''
+		begin
+			print N'Tên lớp rỗng'
+			rollback tran
+			select -2
+			return
+		end
+		if @Ki=''
+		begin
+			print N'Kì rỗng'
+			rollback tran
+			select -3
+			return
+		end
+		if @TenMon=''
+		begin
+			print N'Tên môn rỗng'
+			rollback tran
+			select -4
+			return
+		end
+		
+		select MaHS as 'MaHocSinh',HoTen,Diem15,Diem1Tiet,DiemCuoiKi
+		from (select* from Diem_HocSinh_MonHoc where Nam=@Nam and TenMon=@TenMon and @Ki=KiHoc) as D,
+		(select MaHocSinh from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop) as M,HocSinh hs
+		where D.MaHocSinh=M.MaHocSinh and hs.MaHS=M.MaHocSinh
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+
+
+
+
+	
+select* from Diem_HocSinh_MonHoc
+go
+select * from Diem_HocSinh_MonHoc
+where Nam='2019-2020' and KiHoc=1
+
+select TenMon,count(MaHocSinh) as 'SiSo',(select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and '2019-2020' =d.Nam and d.KiHoc = 1  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon) ) as 'SoNguoiDat'
+			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
+			
+from Diem_HocSinh_MonHoc a
+where Nam='2019-2020' and KiHoc=1
+group by TenMon
+go
+
+
+create --alter
+proc QTV_TongKetMon
+@Nam varchar(12),
+@KiHoc int
+as 
+begin tran 
+	begin try
+		if @nam=''
+		begin 
+			print N'Vui lòng chọn năm'
+			rollback tran
+			select -1
+			return
+		end
+		if @KiHoc=''
+		begin 
+			print N'Vui lòng chọn năm'
+			rollback tran
+			select -2
+			return
+		end
+
+		select TenMon,count(MaHocSinh) as 'SiSo',(select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and @Nam =d.Nam and d.KiHoc = @KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=@Nam) ) as 'SoNguoiDat'
+			,((select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and @Nam =d.Nam and d.KiHoc = @KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon  and Nam=@Nam) ) /count(MaHocSinh))*100 as 'TiLeDat'
+			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
+		from Diem_HocSinh_MonHoc a
+		where Nam=@Nam and KiHoc=@KiHoc
+		group by TenMon
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+Exec QTV_TongKetMon '2019-2020',1
 	
 
 
+			
 
-
-
-
-	
-
-
-	
+create --alter
+proc QTV_TatCaTongKetMon
+as
+begin tran 
+	begin try
+		select Nam,KiHoc,TenMon,count(MaHocSinh) as 'SiSo',
+			(select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) ) as 'SoNguoiDat'
+			,((select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) ) /count(MaHocSinh))*100 as 'TiLeDat'
+			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
+		from Diem_HocSinh_MonHoc a
+	group by Nam,KiHoc,TenMon
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
