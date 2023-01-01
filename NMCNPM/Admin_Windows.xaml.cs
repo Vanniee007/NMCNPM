@@ -28,12 +28,12 @@ namespace NMCNPM
         //public  { get; set; }
         public Admin_Windows()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
-        private void Lh_laydanhsachnamhoc()
+        private void tn_laydanhsachmon()
         {
             var ds = new List<string>();
-            DataTable dt = db.sql_select("select distinct Nam from Lop");
+            DataTable dt = db.sql_select("select TenLop+' / '+Nam from Lop");
             //foreach(DataRow r in dt.Rows)
             DataRow r;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -41,24 +41,7 @@ namespace NMCNPM
                 r = dt.Rows[i];
                 ds.Add(r[0].ToString());
             }
-            Lh_Combobox_dsnam.DataContext = ds;
-        }
-        private void Lh_laydanhsachlophoc()
-        {
-            try
-            {
-                var ds = new List<string>();
-                DataTable dt = db.sql_select("select TenLop from Lop where Nam = '"+Lh_Combobox_dsnam.SelectedItem.ToString()+"'");
-                //foreach(DataRow r in dt.Rows)
-                DataRow r;
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    r = dt.Rows[i];
-                    ds.Add(r[0].ToString());
-                }
-                Lh_Combobox_dslop.DataContext = ds;
-            }
-            catch { }
+            Lh_Combobox_dslop.DataContext = ds;
         }
 
         private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
@@ -325,7 +308,7 @@ namespace NMCNPM
 
         private void tn_giaovien_TabItem_Loaded(object sender, RoutedEventArgs e)
         {
-            Lh_laydanhsachlophoc(); 
+            tn_laydanhsachmon(); 
             tn_load_datagrid_giaovien();
         }
 
@@ -344,252 +327,8 @@ namespace NMCNPM
 
         private void Lh_Load(object sender, RoutedEventArgs e)
         {
-            Lh_laydanhsachnamhoc();
+            tn_laydanhsachmon();
         }
-
-        private void Lh_load_datagrid()
-        {
-            try
-            {
-                string query = "qtv_danhsachhslop '"+ Lh_Combobox_dsnam.SelectedItem.ToString()+"','"+ Lh_Combobox_dslop.SelectedItem.ToString()+"'";
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select(query).DefaultView;
-                Lh_button_them.IsEnabled = false;
-            }
-            catch { }
-        }
-        private void Tk_load_datagrid()
-        {
-            try
-            {
-                string role = "";
-                role = Tk_Combobox_role.SelectedItem.ToString();
-                switch (role)
-                {
-                    case "Quản trị":
-                        role = "1";
-                        Tk_column_monday.Visibility = Visibility.Hidden;
-                        break;
-                    case "Giáo viên":
-                        role = "2";
-                        Tk_column_monday.Visibility = Visibility.Visible;
-                        break;
-                    case "Học sinh":
-                        role = "3";
-                        Tk_column_monday.Visibility = Visibility.Hidden;
-                        break;
-                }
-                
-                string query = "qtv_danhsachtaikhoan '"+ Tk_tb_search.Text+"','"+ role+"'";
-                Tk_datagird.ItemsSource = db.sql_select(query).DefaultView;
-                //Lh_button_them.IsEnabled = false;
-            }
-            catch { }
-        }
-        private void Lh_load_datagrid_refresh()
-        {
-            try
-            {
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("select * from HocSinh").DefaultView;
-            }
-            catch { }
-        }
-        private void Lh_datagird_dshocsinh_Loaded(object sender, RoutedEventArgs e)
-        {
-            Lh_load_datagrid_refresh();
-        }
-
-        private void Lh_button_refresh_Click(object sender, RoutedEventArgs e)
-        {
-            Lh_load_datagrid_refresh();
-            //Lh_Combobox_dslop.Text = "";
-            Lh_button_them.IsEnabled = true;
-
-        }
-
-        private void Lh_Combobox_dslop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Lh_load_datagrid();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Lh_laydanhsach_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        List<string> Lh_LayHocSinhDaChon()
-        {
-            /// Lấy list index dòng đã chọn
-            var SelectedList = new List<string>();
-            for (int i = 0; i < Lh_datagird_dshocsinh.Items.Count; i++)
-            {
-                var item = Lh_datagird_dshocsinh.Items[i];
-                //var mycheckbox_ = Lh_datagird_dshocsinh.Columns[0].S
-                var mycheckbox = Lh_datagird_dshocsinh.Columns[7].GetCellContent(item) as CheckBox;
-                if ((bool)mycheckbox.IsChecked)
-                {
-                    TextBlock x = Lh_datagird_dshocsinh.Columns[0].GetCellContent(Lh_datagird_dshocsinh.Items[i]) as TextBlock;
-                    SelectedList.Add(x.Text);
-                }
-            }
-            return SelectedList;
-        }
-        private void Lh_HienMaLoi(int MaLoi)
-        {
-
-        }
-        private void Lh_button_them_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (Lh_LayHocSinhDaChon().Count() > 0)
-                {
-                    var dshocsinh = Lh_LayHocSinhDaChon();
-                    int ketqua;
-                    int success =0, fail=0;
-                    foreach (string MaHS in dshocsinh)
-                    {
-                        ketqua = (int)db.sql_select("exec qtv_themHSvaoLop '"+Lh_Combobox_dsnam.SelectedItem.ToString()+"','"+ Lh_Combobox_dslop.SelectedItem.ToString()+"','"+MaHS+"'").Rows[0][0];
-                        if (ketqua ==0)
-                        {
-                            success++;
-                        }
-                        else
-                        {
-                            fail++;
-                        }
-
-                    }
-                    Lh_load_datagrid();
-                    Lh_lb_errorout.Content = "Đã thêm "+success.ToString()+" dòng, "+fail.ToString()+" lỗi";
-                    if (success==0)
-                        Lh_lb_errorout.Background=Brushes.IndianRed;
-                    else 
-                        Lh_lb_errorout.Background=Brushes.LightGreen;
-                }
-            }
-            catch { }
-        }
-
-        private void Lh_button_xoa_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (Lh_LayHocSinhDaChon().Count() > 0)
-                {
-                    var dshocsinh = Lh_LayHocSinhDaChon();
-                    int ketqua;
-                    int success = 0, fail = 0;
-                    foreach (string MaHS in dshocsinh)
-                    {
-                        ketqua = (int)db.sql_select("exec qtv_xoaHSkhoiLop '"+Lh_Combobox_dsnam.SelectedItem.ToString()+"','"+ Lh_Combobox_dslop.SelectedItem.ToString()+"','"+MaHS+"'").Rows[0][0];
-                        if (ketqua ==0)
-                        {
-                            success++;
-                        }
-                        else
-                        {
-                            fail++;
-                        }
-
-                    }
-                    Lh_load_datagrid();
-                    Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" lỗi";
-                    if (success==0)
-                        Lh_lb_errorout.Background=Brushes.IndianRed;
-                    else
-                        Lh_lb_errorout.Background=Brushes.LightGreen;
-                }
-            }
-            catch { }
-        }
-        private void Tc_timkiem()
-        {
-            try
-            {
-                Tc_datagrid_searchresult.ItemsSource = db.sql_select("qtv_tracuu N'" + Tc_tb_search.Text + "'").DefaultView;
-            }
-            catch { }
-        }
-        private void Lh_timkiem()
-        {
-            try
-            {
-                string Nam="", Lop="";
-                try
-                {
-                    Nam = Lh_Combobox_dsnam.SelectedItem.ToString();
-                    Lop = Lh_Combobox_dslop.SelectedItem.ToString();
-                }
-                catch { }
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("qtv_tracuudanhsachlop N'" + Lh_tb_search.Text + "','"+ Nam +"','"+ Lop +"'").DefaultView;
-            }
-            catch { }
-        }
-
-        private void Tc_tb_search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            if (!string.IsNullOrEmpty(Tc_tb_search.Text) && Tc_tb_search.Text.Length > 0)
-            {
-                Tc_lb_search.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Tc_lb_search.Visibility = Visibility.Visible;
-            }
-            Tc_timkiem();
-
-        }
-
-        private void Tc_datagrid_searchresult_Loaded(object sender, RoutedEventArgs e)
-        {
-            Tc_timkiem();
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }    
-        }
-
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (this.WindowState == System.Windows.WindowState.Normal)
-                {
-                    this.WindowState = System.Windows.WindowState.Maximized;
-                }
-                else
-                {
-                    this.WindowState = System.Windows.WindowState.Normal;
-                }
-            }
-        }
-
-
-        private void Bd_button_refresh_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Bd_button_them_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Bd_button_xoa_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Bd_Combobox_dslop_SelectionChanged(object sender, SelectionChangedEventArgs e)
         /*======================================KHÓA HỌC========================================
          * ======================================================================================
          * ======================================================================================*/
@@ -959,34 +698,6 @@ namespace NMCNPM
 
         }
 
-        private void Bd_datagird_dshocsinh_Loaded(object sender, RoutedEventArgs e)
-        {
-            Bd_Combobox_dslop.Text = "Chọn lớp học";
-        }
-
-        private void Lh_Combobox_dsnam_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                Lh_laydanhsachlophoc();
-                string query = "qtv_danhsachhslop '"+ Lh_Combobox_dsnam.SelectedItem.ToString()+"','"+ Lh_Combobox_dslop.SelectedItem.ToString()+"'";
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select(query).DefaultView;
-                Lh_button_them.IsEnabled = false;
-            }
-            catch { }
-        }
-
-        private void Tk_Combobox_dsnam_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Tk_Combobox_dslop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Tk_button_xoa_Click(object sender, RoutedEventArgs e)
         private void Kh_lh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -1182,84 +893,6 @@ namespace NMCNPM
         private void Kh_mh_datagrid_Loaded(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void Tk_button_them_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if(Tk_Combobox_role.Text == "")
-                {
-                    Tk_lb_errorout.Content = "Chọn role cần thêm";
-                    Tk_lb_errorout.Background = Brushes.IndianRed;
-                    return;
-                }
-                DataRowView rowview = (DataRowView)Tk_datagird.SelectedItem;
-                Admin_themTaiKhoan ad = new Admin_themTaiKhoan(Tk_Combobox_role.Text.ToLower(),0, "Thêm");
-                ad.ShowDialog();
-            }
-            catch { }
-        }
-
-        private void Tk_button_sua_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                DataRowView rowview = (DataRowView)Tk_datagird.SelectedItem;
-                Admin_themTaiKhoan ad = new Admin_themTaiKhoan(Tk_Combobox_role.Text.ToLower(), (int)rowview[0], "Sửa");
-                //Admin_themTaiKhoan ad = new Admin_themTaiKhoan("gia", (int)rowview[0], "Sửa");
-                ad.ShowDialog();
-            }
-            catch
-            {
-                Tk_lb_errorout.Content = "Chọn dòng cần sửa";
-                Tk_lb_errorout.Background = Brushes.IndianRed;
-            }
-        }
-
-
-        private void Lh_tb_search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            if (!string.IsNullOrEmpty(Lh_tb_search.Text) && Lh_tb_search.Text.Length > 0)
-            {
-                Lh_lb_search.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Lh_lb_search.Visibility = Visibility.Visible;
-            }
-            Lh_timkiem();
-        }
-
-        private void Tk_tb_search_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            if (!string.IsNullOrEmpty(Tk_tb_search.Text) && Tk_tb_search.Text.Length > 0)
-            {
-                Tk_lb_search.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Tk_lb_search.Visibility = Visibility.Visible;
-            }
-            Tk_load_datagrid();
-        }
-
-        private void Tk_datagird_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            var ds = new List<string>(); 
-            ds.Add("Quản trị");
-            ds.Add("Giáo viên");
-            ds.Add("Học sinh");
-            Tk_Combobox_role.DataContext = ds;
-            Tk_load_datagrid();
-        }
-
-        private void Tk_Combobox_role_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Tk_load_datagrid();
         }
 
         private void Kh_mh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

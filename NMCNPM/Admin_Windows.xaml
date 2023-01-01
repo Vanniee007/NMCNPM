@@ -13,10 +13,7 @@
         Height="354"
         Width="1103"
         WindowStyle="None"
-        Title="Quản trị"
-        AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip"
-        >
+        Title="Quản trị">
 
     <Window.Resources>
         <Style x:Key="MyStyle_GridBackground"  TargetType="Grid">
@@ -323,558 +320,434 @@
         </Style>
     </Window.Resources>
 
-    <Border CornerRadius="50" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
-        <Grid>
-            <TabControl Margin="0,0,0,0" BorderBrush ="Gainsboro" TabStripPlacement="Top"  FontSize="16">
-                <!--Định dạng memu-->
-                <TabControl.Resources >
-                    <Style TargetType="TabItem" >
-                        <Setter Property="Template" >
-                            <Setter.Value>
-                                <ControlTemplate TargetType="TabItem"  >
-                                    <Border Name="Border" BorderThickness="0"  BorderBrush="Gainsboro" CornerRadius="4" Margin="2,3,4,3">
-                                        <ContentPresenter x:Name="ContentSite"
+    <Grid>
+        
+        
+        <TabControl Margin="0,0,0,0" BorderBrush ="Gainsboro" TabStripPlacement="Top"  FontSize="16">
+            <!--Định dạng memu-->
+            <TabControl.Resources >
+                <Style TargetType="TabItem" >
+                    <Setter Property="Template" >
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem"  >
+                                <Border Name="Border" BorderThickness="0"  BorderBrush="Gainsboro" CornerRadius="4" Margin="2,3,4,3">
+                                    <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="15,15, 15, -10"
                                         Height="50" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Background" Value="Navy" />
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="False">
-                                            <Setter TargetName="Border" Property="Background" Value="#6695ed" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TabControl.Resources>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="Navy" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#6695ed" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
 
-                <TabItem Loaded="Tt_loaded">
-                    <TabItem.Header>
-                        <!--<TextBlock Text="Tang chủ"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->
-                        <Image Source="icon/home.png" Height="40" Width="40" Margin="0,-25,0,0"/>
-                    </TabItem.Header>
-                    <Grid  Style="{StaticResource MyStyle_GridBackground}" >
+            <TabItem Loaded="Tt_loaded">
+                <TabItem.Header>
+                    <!--<TextBlock Text="Tang chủ"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->
+                    <Image Source="icon/home.png" Height="40" Width="40" Margin="0,-25,0,0"/>
+                </TabItem.Header>
+                <Grid  Style="{StaticResource MyStyle_GridBackground}" >
 
-                    </Grid>
-                    <!--Hết item Thông tin-->
-                </TabItem>
-
-
+                </Grid>
+                <!--Hết item Thông tin-->
+            </TabItem>
 
 
-                <TabItem>
-                    <TabItem.Header>
-                        <TextBlock Text="Tiếp nhận"  FontSize="18" Foreground="White" FontWeight="Medium"    />
-                    </TabItem.Header>
 
-                    <TabControl Margin="10" BorderBrush ="Gainsboro">
-                        <TabControl.Resources>
-                            <Style TargetType="TabItem">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="TabItem">
-                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
-                                                <ContentPresenter x:Name="ContentSite"
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Tiếp nhận"  FontSize="18" Foreground="White" FontWeight="Medium"    />
+                </TabItem.Header>
+
+                <TabControl Margin="10" BorderBrush ="Gainsboro">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                            <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
-                                                </Trigger>
-                                                <Trigger Property="IsSelected" Value="False">
-                                                    <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TabControl.Resources>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
 
-                        <TabItem Header="Admin">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="0.6*"/>
-                                    <RowDefinition Height="330"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="2" Grid.Column="1">
-                                    <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                    <TabItem Header="Admin">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="330"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
 
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="4">
-                                    <Label Content="Password"  FontSize="18"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="4">
+                                <Label Content="Password"  FontSize="18"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
 
-                                    <Label Content="Email"  FontSize="18"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="SĐT"  FontSize="18"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Địa chỉ"  FontSize="18"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                </Grid>
+                                <Label Content="Email"  FontSize="18"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="SĐT"  FontSize="18"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Địa chỉ"  FontSize="18"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                            </Grid>
 
-                                <Grid Grid.Row="2" Grid.Column="2">
-                                    <TextBox x:Name="Tn_ad_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <TextBox x:Name="Tn_ad_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <DatePicker  x:Name="Tn_ad_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
-                                    <ComboBox x:Name="Tn_ad_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                            <Grid Grid.Row="2" Grid.Column="2">
+                                <TextBox x:Name="Tn_ad_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <TextBox x:Name="Tn_ad_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <DatePicker  x:Name="Tn_ad_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
+                                <ComboBox x:Name="Tn_ad_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
                                   AllowDrop="True">
-                                        <ComboBoxItem Content="Nam"/>
-                                        <ComboBoxItem Content="Nữ" />
-                                    </ComboBox>
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="5">
-                                    <PasswordBox x:Name="Tn_ad_tb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="5">
+                                <PasswordBox x:Name="Tn_ad_tb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
 
-                                    <TextBox x:Name="Tn_ad_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_ad_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_ad_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <Button x:Name="Tn_ad_bt_them"   Content="Thêm" HorizontalAlignment="Right" Margin="0,210,-0.4,0" VerticalAlignment="Bottom" Width="90" Height="32" FontSize="16" Click="Tn_ad_them_click"/>
-                                </Grid>
-                                <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="39*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="264*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label x:Name="Tn_ad_lb_errorout"  
+                                <TextBox x:Name="Tn_ad_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_ad_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_ad_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <Button x:Name="Tn_ad_bt_them"   Content="Thêm" HorizontalAlignment="Right" Margin="0,210,-0.4,0" VerticalAlignment="Bottom" Width="90" Height="32" FontSize="16" Click="Tn_ad_them_click"/>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="39*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="264*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="Tn_ad_lb_errorout"  
                                Content="" 
                                Margin="0,0,0,4.6"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom" Grid.Column="2"/>
-                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </TabItem>
+
+                    <TabItem Header="Giáo viên" Loaded="tn_giaovien_TabItem_Loaded">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="360"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Dạy lớp" Margin="0,240,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="4">
+                                <Label Content="Password"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+
+                                <Label Content="Email"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="SĐT"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Địa chỉ"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Dạy môn"   Margin="0,240,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+
                             </Grid>
 
-                        </TabItem>
-
-                        <TabItem Header="Giáo viên" Loaded="tn_giaovien_TabItem_Loaded">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="0.6*"/>
-                                    <RowDefinition Height="360"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="2" Grid.Column="1">
-                                    <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Dạy lớp" Margin="0,240,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="4">
-                                    <Label Content="Password"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                    <Label Content="Email"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="SĐT"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Địa chỉ"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Dạy môn"   Margin="0,240,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                </Grid>
-
-                                <Grid Grid.Row="2" Grid.Column="2">
-                                    <TextBox x:Name="Tn_gv_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <TextBox x:Name="Tn_gv_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <DatePicker  x:Name="Tn_gv_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
-                                    <ComboBox x:Name="Tn_gv_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                            <Grid Grid.Row="2" Grid.Column="2">
+                                <TextBox x:Name="Tn_gv_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <TextBox x:Name="Tn_gv_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <DatePicker  x:Name="Tn_gv_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
+                                <ComboBox x:Name="Tn_gv_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
                                   AllowDrop="True">
-                                        <ComboBoxItem Content="Nam"/>
-                                        <ComboBoxItem Content="Nữ" />
-                                    </ComboBox>
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ" />
+                                </ComboBox>
 
-                                </Grid>
+                            </Grid>
 
-                                <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2">
+                            <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2">
 
-                                    <DataGrid x:Name="Tn_datagrid_giaovien" 
+                                <DataGrid x:Name="Tn_datagrid_giaovien" 
                                   AutoGenerateColumns="False"
                                   SelectionChanged="Tn_datagrid_giaovien_SelectionChanged"
                                   CanUserAddRows="False"   Margin="0,240,0,0"
                                   HorizontalContentAlignment="Center" HorizontalAlignment="Center">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Tên lớp" Binding="{Binding TenLop}" Width="0.8*"/>
-                                            <DataGridTextColumn Header="Năm" Binding="{Binding Nam}" />
-                                            <DataGridCheckBoxColumn CanUserSort="False"/>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="5">
-                                    <PasswordBox x:Name="Tn_gv_pb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Tên lớp" Binding="{Binding TenLop}" Width="0.8*"/>
+                                        <DataGridTextColumn Header="Năm" Binding="{Binding Nam}" />
+                                        <DataGridCheckBoxColumn CanUserSort="False"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="5">
+                                <PasswordBox x:Name="Tn_gv_pb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
 
-                                    <TextBox x:Name="Tn_gv_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_gv_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_gv_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <ComboBox x:Name="Tn_gv_tb_daymon" ItemsSource="{Binding}" Margin="0,240,0,0" Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"  />
+                                <TextBox x:Name="Tn_gv_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_gv_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_gv_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <ComboBox x:Name="Tn_gv_tb_daymon" ItemsSource="{Binding}" Margin="0,240,0,0" Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"  />
 
-                                    <Border Style="{StaticResource MyStyle_Border_them}">
-                                        <Button x:Name="Tn_gv_bt_them"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button}"/>
-                                    </Border>
+                                <Border Style="{StaticResource MyStyle_Border_them}">
+                                    <Button x:Name="Tn_gv_bt_them"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button}"/>
+                                </Border>
+                                
+                                
+                                
+                                
+                            </Grid>
 
 
+                            <Grid Grid.Row="3" Grid.Column="5">
 
-
-                                </Grid>
-
-
-                                <Grid Grid.Row="3" Grid.Column="5">
-
-                                    <Button Style="{StaticResource MyStyle_Button_Sua}" Content="Thêm">
-                                    </Button>
-
-                                </Grid>
+                                <Button Style="{StaticResource MyStyle_Button_Sua}" Content="Thêm">
+                                </Button>
+                                
+                            </Grid>
 
 
                                 <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="39*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="264*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label x:Name="Tn_gv_lb_errorout"  
-                               Content="" 
-                               Margin="0,0,0,4.6"
-                               Style="{StaticResource MyStyle_Label}" 
-                               HorizontalAlignment="Right" 
-                               VerticalAlignment="Bottom" Grid.Column="2"/>
-                                </Grid>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Học sinh">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="39*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="264*"/>
                                 </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="0.6*"/>
-                                    <RowDefinition Height="330"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="2" Grid.Column="1">
-                                    <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="4">
-                                    <Label Content="Password"  FontSize="18"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                    <Label Content="Email"  FontSize="18"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="SĐT"  FontSize="18"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Địa chỉ"  FontSize="18"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                </Grid>
-
-                                <Grid Grid.Row="2" Grid.Column="2">
-                                    <TextBox x:Name="Tn_hs_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <TextBox x:Name="Tn_hs_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <DatePicker  x:Name="Tn_hs_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
-                                    <ComboBox x:Name="Tn_hs_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
-                                  AllowDrop="True">
-                                        <ComboBoxItem Content="Nam"/>
-                                        <ComboBoxItem Content="Nữ" />
-                                    </ComboBox>
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="5">
-                                    <PasswordBox x:Name="Tn_hs_tb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
-
-                                    <TextBox x:Name="Tn_hs_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_hs_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="Tn_hs_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-
-
-                                    <Border Style="{StaticResource MyStyle_Border_them}">
-                                        <Button x:Name="Tn_hs_bt_them" Content="Thêm"  Click="Tn_hs_them_click" Style="{StaticResource MyStyle_Button}">
-                                        </Button>
-                                    </Border>
-                                </Grid>
-                                <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="39*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="264*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label x:Name="Tn_hs_lb_errorout"  
+                                <Label x:Name="Tn_gv_lb_errorout"  
                                Content="" 
                                Margin="0,0,0,4.6"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom" Grid.Column="2"/>
-                                </Grid>
                             </Grid>
-
-                        </TabItem>
-                    </TabControl>
-                </TabItem>
-
-
-                <TabItem >
-                    <TabItem.Header>
-                        <TextBlock Text="Tài khoản"  FontSize="18" Foreground="White" FontWeight="Medium"    />
-                    </TabItem.Header>
-
-                    <Grid Background="WhiteSmoke">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="10"/>
-                        </Grid.RowDefinitions>
-
-
-                        <Grid Grid.Column="1" Grid.Row="1">
-
-                            <Border Height="50" Width="400" BorderBrush="LightGray" HorizontalAlignment="Left" BorderThickness="1" Background="White">
-                                <Grid VerticalAlignment="Center">
-                                    <TextBlock x:Name="Tk_lb_search" Text="Tìm kiếm...." Background="Transparent" VerticalAlignment="Center" Margin="20,0"/>
-                                    <TextBox x:Name="Tk_tb_search" 
-                                         TextChanged="Tk_tb_search_TextChanged"  Background="Transparent" Margin="20,0" BorderThickness="0"/>
-
-                                </Grid>
-                            </Border>
                         </Grid>
-                        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
-                            <Label Content="Danh sách lớp" Style="{StaticResource MyStyle_Label_Title}" FontSize="24"
-                               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <Label x:Name="Tk_lb_errorout" 
-                               Content=""
-                               HorizontalAlignment="Right" 
-                               Style="{StaticResource MyStyle_Label}"
-                               VerticalAlignment="Top" />
-                        </Grid>
-
-
-
-                        <Grid Grid.Column="1" Grid.Row="2">
-                            <ComboBox x:Name="Tk_Combobox_role" ItemsSource="{Binding}" Margin="0,0,0,0"  Width="180" Style="{StaticResource MyStyle_ComboBox_TT}"
-                                  AllowDrop="True" SelectionChanged="Tk_Combobox_role_SelectionChanged"/>
-                            <Button Content="Xoá" Style="{StaticResource MyStyle_Button_Xoa}" Margin="180,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Click="Tk_button_xoa_Click"/>
-                            <Button Content="Sửa" Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Right" Margin="90,0" VerticalAlignment="Top" 
-                                Click="Tk_button_sua_Click"/>
-                            <Button x:Name="Tk_button_them" Content="Thêm" Style="{StaticResource MyStyle_Button_Them}"  HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Click="Tk_button_them_Click"/>
-                        </Grid>
-
-                        <Grid Grid.Column="1" Grid.Row="3">
-                            <DataGrid x:Name="Tk_datagird" 
-                                  Loaded="Tk_datagird_Loaded"
-                                      IsReadOnly="True"
-                                  AutoGenerateColumns="False"
-                                  Background="White" CanUserAddRows="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã" Binding="{Binding MaHS}"/>
-                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}"  Width="4*"  />
-                                    <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh,StringFormat=\{0:dd/MM/yyyy\}}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}"  Width="1*"  />
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"  Width="4*"  />
-                                    <DataGridTextColumn Header="SĐT" Binding="{Binding SDT}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}"  Width="4*"  />
-                                    <DataGridTextColumn x:Name="Tk_column_monday" Header="Môn dạy" Binding="{Binding MonDay}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Username" Binding="{Binding username}"  Width="2*"  />
-                                    <DataGridCheckBoxColumn CanUserSort="False"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-
-                    </Grid>
-
-                </TabItem>
-
-
-                <!--Danh sách lớp-->
-                <TabItem Loaded="Lh_Load">
-                    <TabItem.Header>
-                        <TextBlock Text="Lớp học"  FontSize="18" Foreground="White" FontWeight="Medium"    />
-                    </TabItem.Header>
-                    <Grid Background="WhiteSmoke">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="10"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Column="1" Grid.Row="1">
-
-                            <Border Height="50" Width="400" BorderBrush="LightGray" HorizontalAlignment="Left" BorderThickness="1" Background="White">
-                                <Grid VerticalAlignment="Center">
-                                    <TextBlock x:Name="Lh_lb_search" Text="Tìm kiếm...." Background="Transparent" VerticalAlignment="Center" Margin="20,0"/>
-                                    <TextBox x:Name="Lh_tb_search" 
-                                         TextChanged="Lh_tb_search_TextChanged"  Background="Transparent" Margin="20,0" BorderThickness="0"/>
-
-                                </Grid>
-                            </Border>
-                        </Grid>
-
-                        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
-                            <Label Content="Danh sách lớp" Style="{StaticResource MyStyle_Label_Title}" FontSize="24"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Label x:Name="Lh_lb_errorout" 
-                               Content=""
-                               HorizontalAlignment="Right" 
-                               Style="{StaticResource MyStyle_Label}"
-                               VerticalAlignment="Top" />
-                        </Grid>
-
-
-
-                        <Grid Grid.Column="1" Grid.Row="2">
-                            <ComboBox x:Name="Lh_Combobox_dsnam" ItemsSource="{Binding}" Margin="0,0,0,0"  Width="180" Style="{StaticResource MyStyle_ComboBox_TT}"
-                                  AllowDrop="True" SelectionChanged="Lh_Combobox_dsnam_SelectionChanged" />
-                            <ComboBox x:Name="Lh_Combobox_dslop" ItemsSource="{Binding}" Margin="200,0,0,0"  Width="120" Style="{StaticResource MyStyle_ComboBox_TT}"
-                                AllowDrop="True" SelectionChanged="Lh_Combobox_dslop_SelectionChanged" />
-                            <Button Content="Xoá" Style="{StaticResource MyStyle_Button_Xoa}" Margin="180,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Click="Lh_button_xoa_Click"/>
-                            <Button x:Name="Lh_button_them" Content="Thêm" Style="{StaticResource MyStyle_Button_Them}" Margin="90,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Click="Lh_button_them_Click"/>
-                            <Button Content="Refresh" Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Right"  VerticalAlignment="Top" 
-                                Click="Lh_button_refresh_Click"/>
-                        </Grid>
-
-                        <Grid Grid.Column="1" Grid.Row="3">
-                            <DataGrid x:Name="Lh_datagird_dshocsinh" 
-                                  Loaded="Lh_datagird_dshocsinh_Loaded"
-                                  AutoGenerateColumns="False"
-                                  Background="White" CanUserAddRows="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Mã học sinh" Binding="{Binding MaHS}"   />
-                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}"  Width="4*"  />
-                                    <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh,StringFormat=\{0:dd/MM/yyyy\}}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}"  Width="1*"  />
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"  Width="4*"  />
-                                    <DataGridTextColumn Header="SĐT" Binding="{Binding SDT}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}"  Width="4*"  />
-                                    <DataGridCheckBoxColumn CanUserSort="False"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-
-                    </Grid>
-                </TabItem>
-                <TabItem >
-                    <TabItem.Header>
-                        <TextBlock Text="Tra cứu"  FontSize="18" Foreground="White" FontWeight="Medium"    />
-                    </TabItem.Header>
-                    <Grid Background="WhiteSmoke"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="10"/>
-                        </Grid.RowDefinitions>
-
-
-                        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
-                            <Label Content="Danh sách lớp" Style="{StaticResource MyStyle_Label_Title}" FontSize="24"
-                               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-                            <Label x:Name="Tc_lb_errorout" 
-                               Content=""
-                               HorizontalAlignment="Right" 
-                               Style="{StaticResource MyStyle_Label}"
-                               VerticalAlignment="Top" />
-                        </Grid>
-                        <Grid Grid.Column="1" Grid.Row="2">
-
-                            <Border Height="50" BorderBrush="LightGray" BorderThickness="1" Background="White">
-                                <Grid VerticalAlignment="Center">
-                                    <TextBlock x:Name="Tc_lb_search" Text="Tìm kiếm...." Background="Transparent" VerticalAlignment="Center" Margin="20,0"/>
-                                    <TextBox x:Name="Tc_tb_search" 
-                                         TextChanged="Tc_tb_search_TextChanged"  Background="Transparent" Margin="20,0" BorderThickness="0"/>
-
-                                </Grid>
-                            </Border>
-
-                        </Grid>
-                        <Grid Grid.Column="1" Grid.Row="3">
-                            <DataGrid x:Name="Tc_datagrid_searchresult" Background="White" Loaded="Tc_datagrid_searchresult_Loaded"  
-                                  AutoGenerateColumns="False"
-                                  CanUserAddRows="False" IsReadOnly="True">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Role" Binding="{Binding ChucDanh}"  />
-                                    <DataGridTextColumn Header="Mã" Binding="{Binding MaHS}"/>
-                                    <DataGridTextColumn Header="Họ tên" Binding="{Binding HoTen}"  Width="4*"  />
-                                    <DataGridTextColumn Header="Ngày sinh" Binding="{Binding NgaySinh,StringFormat=\{0:dd/MM/yyyy\}}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Giới tính" Binding="{Binding GioiTinh}"  Width="1*"  />
-                                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"  Width="4*"  />
-                                    <DataGridTextColumn Header="SĐT" Binding="{Binding SDT}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}"  Width="4*"  />
-                                    <DataGridTextColumn Header="Môn dạy" Binding="{Binding MonDay}"  Width="2*"  />
-                                    <DataGridTextColumn Header="Username" Binding="{Binding username}"  Width="2*"  />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                        <Grid Grid.Column="1" Grid.Row="3">
+                    </TabItem>
+                    <TabItem Header="Học sinh">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="250"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="330"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Label Content="Username"  Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Họ tên"  Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Ngày sinh" Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Giới tính" Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
 
                             </Grid>
+                            <Grid Grid.Row="2" Grid.Column="4">
+                                <Label Content="Password"  FontSize="18"   Margin="0,0,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+
+                                <Label Content="Email"  FontSize="18"   Margin="0,60,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="SĐT"  FontSize="18"   Margin="0,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Địa chỉ"  FontSize="18"   Margin="0,180,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="2">
+                                <TextBox x:Name="Tn_hs_tb_username" Width="220" Margin="0,0,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <TextBox x:Name="Tn_hs_tb_hoten"  Width="220" Margin="0,60,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <DatePicker  x:Name="Tn_hs_tb_ngaysinh" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
+                                <ComboBox x:Name="Tn_hs_cb_gioitinh" Margin="0,180,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True">
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="5">
+                                <PasswordBox x:Name="Tn_hs_tb_password" Margin="0,0,0,0" Width="220" Style="{StaticResource MyStyle_PasswordBox_TT}" HorizontalAlignment="Center"/>
+
+                                <TextBox x:Name="Tn_hs_tb_email" Margin="0,60,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_hs_tb_sodienthoai" Margin="0,120,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Tn_hs_tb_diachi" Margin="0,180,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+
+
+                                <Border Style="{StaticResource MyStyle_Border_them}">
+                                    <Button x:Name="Tn_hs_bt_them" Content="Thêm"  Click="Tn_hs_them_click" Style="{StaticResource MyStyle_Button}">
+                                    </Button>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="39*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="264*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="Tn_hs_lb_errorout"  
+                               Content="" 
+                               Margin="0,0,0,4.6"
+                               Style="{StaticResource MyStyle_Label}" 
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Bottom" Grid.Column="2"/>
+                            </Grid>
                         </Grid>
+
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+
+            <TabItem >
+                <TabItem.Header>
+                    <TextBlock Text="Tài khoản"  FontSize="18" Foreground="White" FontWeight="Medium"    />
+                </TabItem.Header>
+                <TabControl Margin="10,10,10,0" BorderBrush ="Gainsboro">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
+
+                    <TabItem Header="Năm học" >
+                        <Grid Style="{StaticResource MyStyle_GridBackground}">
+
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Lớp học">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+
+                        </Grid>
+
+
+                    </TabItem>
+                    <TabItem Header="Môn học">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}">
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+
+            <!--Danh sách lớp-->
+            <TabItem Loaded="Lh_Load">
+                <TabItem.Header>
+                    <TextBlock Text="Lớp học"  FontSize="18" Foreground="White" FontWeight="Medium"    />
+                </TabItem.Header>
+                <Grid Background="WhiteSmoke">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" >
+                        <Label Content="Danh sách lớp" Style="{StaticResource MyStyle_Label_Title}" FontSize="24"
+                               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                     </Grid>
 
+
+
+                    <Grid Grid.Column="1" Grid.Row="2">
+                        <ComboBox x:Name="Lh_Combobox_dslop" ItemsSource="{Binding}" Margin="0,0,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                                  AllowDrop="True"/>
+                        <Button Content="Thêm" Style="{StaticResource MyStyle_Button_Them}" Margin="90,0" HorizontalAlignment="Right"/>
+                        <Button Content="Refresh" Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Grid Grid.Column="1" Grid.Row="3">
+                        <DataGrid x:Name="Lh_datagird_dshocsinh" Background="White">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" Binding="{Binding MaDoiTac}"  Width="*"  />
+                                <DataGridTextColumn Header="Họ tên" Binding="{Binding TenQuan}"  Width="*"  />
+                                <DataGridTextColumn Header="Ngày sinh" Binding="{Binding TenQuan}"  Width="*"  />
+                                <DataGridTextColumn Header="Giới tính" Binding="{Binding TenQuan}"  Width="*"  />
+                                <DataGridTextColumn Header="Email" Binding="{Binding TenQuan}"  Width="*"  />
+                                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding TenQuan}"  Width="*"  />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem >
+                <TabItem.Header>
+                    <TextBlock Text="Tra cứu"  FontSize="18" Foreground="White" FontWeight="Medium"    />
+                </TabItem.Header>
 
 
 <!--Bắt đầu bảng điểm-->
@@ -1123,7 +996,8 @@
                     </TabItem>
                  
                 </TabControl>
-                    </Grid>
+
+            </TabItem>
 
             <TabItem >
                 <TabItem.Header>
@@ -1229,7 +1103,9 @@
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom" Grid.Column="2"/>
                             </Grid>
-                </TabItem>
+
+                        </Grid>
+                    </TabItem>
 
                     <TabItem Header="Lớp học" Loaded="Kh_lh_loaded">
                         <Grid Style="{StaticResource MyStyle_GridBackground}" Background="WhiteSmoke">
@@ -1418,183 +1294,130 @@
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
-                                                </Trigger>
-                                                <Trigger Property="IsSelected" Value="False">
-                                                    <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TabControl.Resources>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
 
-                        <TabItem Header="Năm học" >
-                            <Grid Style="{StaticResource MyStyle_GridBackground}">
+                    <TabItem Header="Thông tin cá nhân">
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="330"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Label Content="MaQT"  Margin="0,30,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Họ tên"  Margin="0,90,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Ngày sinh" Margin="0,150,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Giới tính" Margin="0,210,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
 
                             </Grid>
-                        </TabItem>
-
-                        <TabItem Header="Lớp học">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
-
+                            <Grid Grid.Row="2" Grid.Column="4">
+                                <Label Content="Email"  FontSize="18"   Margin="0,30,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="SĐT"  FontSize="18"   Margin="0,90,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Địa chỉ"  FontSize="18"   Margin="0,150,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
                             </Grid>
 
-
-                        </TabItem>
-                        <TabItem Header="Môn học">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}">
-                            </Grid>
-                        </TabItem>
-                    </TabControl>
-                </TabItem>
-                <TabItem Loaded="Tt_loaded">
-                    <TabItem.Header >
-                        <StackPanel Orientation="Horizontal"  ToolTip="Thông tin">
-                            <Image Source="icon/user.png" Height="40" Width="40" Margin="0,-25,0,0"/>
-                            <!--<TextBlock Text="Thông tin"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TabControl Margin="10" BorderBrush ="Gainsboro">
-                        <TabControl.Resources>
-                            <Style TargetType="TabItem">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="TabItem">
-                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
-                                                <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,2"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Border" Property="Background" Value="#9ac5e5" />
-                                                </Trigger>
-                                                <Trigger Property="IsSelected" Value="False">
-                                                    <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TabControl.Resources>
-
-                        <TabItem Header="Thông tin cá nhân">
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="220"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="0.6*"/>
-                                    <RowDefinition Height="330"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="2" Grid.Column="1">
-                                    <Label Content="MaQT"  Margin="0,30,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Họ tên"  Margin="0,90,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Ngày sinh" Margin="0,150,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Giới tính" Margin="0,210,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="4">
-                                    <Label Content="Email"  FontSize="18"   Margin="0,30,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="SĐT"  FontSize="18"   Margin="0,90,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Địa chỉ"  FontSize="18"   Margin="0,150,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                </Grid>
-
-                                <Grid Grid.Row="2" Grid.Column="2">
-                                    <TextBox x:Name="TT_tb_maqt" Width="220" Margin="0,30,0,0" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" />
-                                    <TextBox x:Name="TT_tb_hoten"  Width="220" Margin="0,90,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
-                                    <DatePicker  x:Name="TT_tb_ngaysinh" Margin="0,150,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
-                                    <ComboBox x:Name="TT_cb_gioitinh" Margin="0,210,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
+                            <Grid Grid.Row="2" Grid.Column="2">
+                                <TextBox x:Name="TT_tb_maqt" Width="220" Margin="0,30,0,0" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}" />
+                                <TextBox x:Name="TT_tb_hoten"  Width="220" Margin="0,90,0,0" Style="{StaticResource MyStyle_TextBox_TT}" />
+                                <DatePicker  x:Name="TT_tb_ngaysinh" Margin="0,150,0,0" Width="220" Style="{StaticResource MyStyle_DatePicker_TT}" />
+                                <ComboBox x:Name="TT_cb_gioitinh" Margin="0,210,0,0"  Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"
                                   AllowDrop="True">
-                                        <ComboBoxItem Content="Nam"/>
-                                        <ComboBoxItem Content="Nữ" />
-                                    </ComboBox>
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="5">
-                                    <TextBox x:Name="TT_tb_email" Margin="0,30,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="TT_tb_sodienthoai" Margin="0,90,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <TextBox x:Name="TT_tb_diachi" Margin="0,150,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                                    <Button x:Name="TT_bt_capnhat"   Content="Cập nhật" HorizontalAlignment="Right" Margin="0,210,-0.4,0" VerticalAlignment="Bottom" Width="90" Height="32" FontSize="16" Click="Tt_capnhatthongtincanhan_click"/>
-                                </Grid>
-                                <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="39*"/>
-                                        <ColumnDefinition Width="5*"/>
-                                        <ColumnDefinition Width="264*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label x:Name="Tt_lb_thongtincanhan_errorout"  
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid Grid.Row="2" Grid.Column="5">
+                                <TextBox x:Name="TT_tb_email" Margin="0,30,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="TT_tb_sodienthoai" Margin="0,90,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="TT_tb_diachi" Margin="0,150,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
+                                <Button x:Name="TT_bt_capnhat"   Content="Cập nhật" HorizontalAlignment="Right" Margin="0,210,-0.4,0" VerticalAlignment="Bottom" Width="90" Height="32" FontSize="16" Click="Tt_capnhatthongtincanhan_click"/>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="39*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="264*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="Tt_lb_thongtincanhan_errorout"  
                                Content="" 
                                Margin="0,0,0,4.6"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom" Grid.Column="2"/>
-                                </Grid>
-
                             </Grid>
 
+                        </Grid>
 
-                        </TabItem>
 
-                        <TabItem Header="Đổi mật khẩu" Loaded="Tt_doimatkhau_loaded" >
-                            <Grid Style="{StaticResource MyStyle_GridBackground}" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="160"/>
-                                    <ColumnDefinition Width="250"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition Height="0.6*"/>
-                                    <RowDefinition Height="300"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="2" Grid.Column="1">
-                                    <Label Content="Tên đăng nhập"  Margin="0,20,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Mật khẩu cũ"  Margin="0,80,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Mật khẩu"  Margin="0,140,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Nhập lại mật khẩu" Margin="0,200,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                </Grid>
-                                <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3">
-                                    <Label x:Name="Tt_lb_doimatkhau_errorout"  
+                    </TabItem>
+
+                    <TabItem Header="Đổi mật khẩu" Loaded="Tt_doimatkhau_loaded" >
+                        <Grid Style="{StaticResource MyStyle_GridBackground}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="0.6*"/>
+                                <RowDefinition Height="300"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="2" Grid.Column="1">
+                                <Label Content="Tên đăng nhập"  Margin="0,20,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Mật khẩu cũ"  Margin="0,80,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Mật khẩu"  Margin="0,140,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                <Label Content="Nhập lại mật khẩu" Margin="0,200,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                            </Grid>
+                            <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3">
+                                <Label x:Name="Tt_lb_doimatkhau_errorout"  
                                Content="" 
                                Margin="0,0,0,5"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Bottom"/>
-                                </Grid>
-                                <Grid Grid.Row="2" Grid.Column="2">
-                                    <TextBox x:Name="TT_tb_taikhoan" IsReadOnly="True" Margin="0,20,0,0" Width="250" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}"/>
-                                    <PasswordBox x:Name="TT_tb_matkhaucu" Margin="0,80,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
-                                    <PasswordBox x:Name="TT_tb_matkhaumoi"  Margin="0,140,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
-                                    <PasswordBox x:Name="TT_tb_matkhaumoi_2"  Margin="0,200,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
-                                    <Button x:Name="TT_bt_capnhatmatkhau" ToolTip="Bam vao la cap nhat day nha :))" Click="Tt_capnhatmatkhau_click" Content="Cập nhật" Grid.Column="2" HorizontalAlignment="Right" Margin="18,1,0,0" Grid.Row="2" VerticalAlignment="Bottom" Width="90" Height="30" FontSize="16"/>
-                                </Grid>
                             </Grid>
-                        </TabItem>
-                    </TabControl>
-                    <!--Hết item Thông tin-->
-                </TabItem>
-            </TabControl>
+                            <Grid Grid.Row="2" Grid.Column="2">
+                                <TextBox x:Name="TT_tb_taikhoan" IsReadOnly="True" Margin="0,20,0,0" Width="250" Style="{StaticResource MyStyle_ReadOnlyTextbox_TT}"/>
+                                <PasswordBox x:Name="TT_tb_matkhaucu" Margin="0,80,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
+                                <PasswordBox x:Name="TT_tb_matkhaumoi"  Margin="0,140,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
+                                <PasswordBox x:Name="TT_tb_matkhaumoi_2"  Margin="0,200,0,0" Width="250" Style="{StaticResource MyStyle_PasswordBox_TT}"/>
+                                <Button x:Name="TT_bt_capnhatmatkhau" ToolTip="Bam vao la cap nhat day nha :))" Click="Tt_capnhatmatkhau_click" Content="Cập nhật" Grid.Column="2" HorizontalAlignment="Right" Margin="18,1,0,0" Grid.Row="2" VerticalAlignment="Bottom" Width="90" Height="30" FontSize="16"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+                <!--Hết item Thông tin-->
+            </TabItem>
+        </TabControl>
 
-            <!--Button đăng xuất-->
-            <Button x:Name="btn_dangxuat" Margin="85,19" 
+        <!--Button đăng xuất-->
+        <Button x:Name="btn_dangxuat" Margin="85,19" 
                 ToolTip="Đăng xuất"
                 HorizontalAlignment="Right" VerticalAlignment="Top" 
                 Click="Btn_dangxuat_Click_1"
@@ -1602,15 +1425,13 @@
                 Height="30" Width="30"
                 Style="{StaticResource MyStyle_Button_Modern}"
                 >
-                <Image Source="icon/logout.png" Height="20" Width="20" HorizontalAlignment="Left"/>
-            </Button>
-            <!--Phóng to thu nhỏ tắt cửa sổ-->
-            <StackPanel Margin="8,25" Background="Transparent" Height="18" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-                <Button Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_mini_click"/>
-                <Button Style="{StaticResource MyStyle_Button_Them}" Margin="5,0" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_max_click"/>
-                <Button Style="{StaticResource MyStyle_Button_Xoa}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_close_click"/>
-            </StackPanel>
-        </Grid>
-
-    </Border>
+            <Image Source="icon/logout.png" Height="20" Width="20" HorizontalAlignment="Left"/>
+        </Button>
+        <!--Phóng to thu nhỏ tắt cửa sổ-->
+        <StackPanel Margin="8,25" Background="Transparent" Height="18" Width="70" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_mini_click"/>
+            <Button Style="{StaticResource MyStyle_Button_Them}" Margin="5,0" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_max_click"/>
+            <Button Style="{StaticResource MyStyle_Button_Xoa}" HorizontalAlignment="Left" Height="15" Width="15" Click="bt_close_click"/>
+        </StackPanel>
+    </Grid>
 </Window>
