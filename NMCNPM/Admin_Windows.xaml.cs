@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -327,6 +328,895 @@ namespace NMCNPM
         private void Lh_Load(object sender, RoutedEventArgs e)
         {
             tn_laydanhsachmon();
+        }
+        /*======================================KHÓA HỌC========================================
+         * ======================================================================================
+         * ======================================================================================*/
+
+        /*======================================KH_Năm học========================================*/
+        private void ExportToCsv(string query, DataGrid dataGrid,string filePath)
+        {
+            DataTable dataTable = db.sql_select(query);
+
+            using (StreamWriter streamWriter = new StreamWriter(filePath, false, Encoding.UTF8))
+            {
+                // Lấy danh sách các cột trong bảng
+                var columns = dataGrid.Columns;
+                // Tạo một mảng chứa tên của từng cột
+                string[] header = columns.Select(column => column.Header.ToString()).ToArray();
+                // Ghi tên cột vào file CSV
+                streamWriter.WriteLine(string.Join(",", header));
+
+                // Duyệt qua từng dòng dữ liệu trong DataTable
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    // Tạo một mảng chứa dữ liệu của từng cột trong dòng
+                    string[] fields = row.ItemArray.Select(field => field.ToString()).ToArray();
+                    // Ghi dòng dữ liệu vào file CSV
+                    streamWriter.WriteLine(string.Join(",", fields));
+                }
+            }
+        }
+
+
+
+
+        private void get_datagrid_kh_nh()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("select * from NamHoc");
+                Kh_nh_datagrid.ItemsSource = dt.DefaultView;
+            }
+            catch
+            { }
+        }
+        private void Kh_nh_datagrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            get_datagrid_kh_nh();
+            ExportToCsv("select* from NamHoc", Kh_nh_datagrid,"D:\\file.csv");
+        }
+
+        private void Kh_nh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (Kh_nh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_nh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        Kh_nh_tb_namhoc.Text = rowview["Nam"].ToString();
+                        Kh_nh_tb_tuoitoithieu.Text = rowview["TuoiToiThieu"].ToString();
+                        Kh_nh_tb_tuoitoida.Text = rowview["TuoiToiDa"].ToString();
+                      
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_nh_btn_them_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "Exec QTV_ThemNamHoc '" + Kh_nh_tb_namhoc.Text + "'," +
+               "'" + Kh_nh_tb_tuoitoithieu.Text + "' ," +"'" + Kh_nh_tb_tuoitoida.Text + "'";
+                DataTable dt = db.sql_select(query);
+                string loi = dt.Rows[0][0].ToString();
+                if (loi == "-1")
+                {
+                    Kh_nh_errorout.Content = "Có trường thông tin bị trống!!!";
+                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Kh_nh_errorout.Content = "Lỗi giao tác!!!";
+                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-2")
+                {
+                    Kh_nh_errorout.Content = "Năm học đã tồn tại!!!";
+                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-3")
+                {
+                    Kh_nh_errorout.Content = "Tuổi bạn nhập không hợp lệ!!!";
+                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    Kh_nh_errorout.Content = "Thêm năm học thành công.";
+                    Kh_nh_errorout.Background = Brushes.LightGreen;
+                    get_datagrid_kh_nh();
+
+
+                }
+            }
+            catch{}
+        }
+
+        private void Kh_nh_btn_sua_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_nh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_nh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_SuaNamHoc  '" + rowview["Nam"].ToString() + "','" + Kh_nh_tb_tuoitoithieu.Text + "', '" + Kh_nh_tb_tuoitoida.Text + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_nh_errorout.Content = "Tuổi bạn nhập không hợp lệ!!!";
+                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_nh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                        }
+                      
+                        else
+                        {
+                            Kh_nh_errorout.Content = "Sửa thành công.";
+                            Kh_nh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_nh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_nh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_nh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_nh_btn_xoa_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_nh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_nh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_XoaNamHoc  '" + rowview["Nam"].ToString() + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_nh_errorout.Content = "Không thể xóa!!!";
+                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_nh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else
+                        {
+                            Kh_nh_errorout.Content = "Xóa thành công.";
+                            Kh_nh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_nh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_nh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_nh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        /*======================================KH_Lớp học========================================*/
+        private void get_namhoc_kh_lh()
+        {
+            var ds = new List<string>();
+            DataTable dt1 = db.sql_select("select distinct Nam from NamHoc");
+            DataRow r;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                r = dt1.Rows[i];
+                ds.Add(r[0].ToString());
+            }
+            Kh_lh_cb_nam.DataContext = ds;
+        }
+        private void get_datagrid_kh_lh()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("select * from Lop");
+                Kh_lh_datagrid.ItemsSource = dt.DefaultView;
+               
+            }
+            catch
+            { }
+        }
+        private void Kh_lh_loaded(object sender, RoutedEventArgs e)
+        {
+            get_datagrid_kh_lh();
+            get_namhoc_kh_lh();
+        }
+
+        private void Kh_lh_btn_them_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "Exec QTV_ThemLopHoc '" + Kh_lh_tb_tenlop.Text + "','" + Kh_lh_cb_nam.Text + "'," +
+               "'" + Kh_lh_tb_siso.Text + "' ";
+                DataTable dt = db.sql_select(query);
+                string loi = dt.Rows[0][0].ToString();
+                if (loi == "-1")
+                {
+                    Kh_lh_errorout.Content = "Có trường thông tin bị trống!!!";
+                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Kh_lh_errorout.Content = "Lỗi giao tác!!!";
+                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-2")
+                {
+                    Kh_lh_errorout.Content = "Lớp học đã tồn tại!!!";
+                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-3")
+                {
+                    Kh_lh_errorout.Content = "Sĩ số tối đa không hợp lệ!!!";
+                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    Kh_lh_errorout.Content = "Thêm lớp học thành công.";
+                    Kh_lh_errorout.Background = Brushes.LightGreen;
+                    get_datagrid_kh_lh();
+
+
+                }
+
+            }
+            catch { }
+        }
+
+        private void Kh_lh_btn_sua_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_lh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_lh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_SuaLopHoc  '" + rowview["TenLop"].ToString() + "','" + rowview["Nam"].ToString() + "', '" + Kh_lh_tb_siso.Text + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_lh_errorout.Content = "Sĩ số tối đa không hợp lệ!!!";
+                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_lh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-2")
+                        {
+                            Kh_lh_errorout.Content = "Sĩ số hiện lớp hiện tại lớn hơn bạn nhập!!!";
+                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                        }
+
+                        else
+                        {
+                            Kh_lh_errorout.Content = "Sửa thành công.";
+                            Kh_lh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_lh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_lh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_lh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_lh_btn_xoa_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_lh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_lh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_XoaLopHoc  '" + rowview["TenLop"].ToString() + "','" + rowview["Nam"].ToString() + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_lh_errorout.Content = "Không thể xóa!!!";
+                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_lh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                        }
+                      
+                        else
+                        {
+                            Kh_lh_errorout.Content = "Xóa thành công.";
+                            Kh_lh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_lh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_lh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_lh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_lh_datagrid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Kh_lh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (Kh_lh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_lh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        Kh_lh_tb_tenlop.Text = rowview["TenLop"].ToString();
+                        Kh_lh_cb_nam.Text = rowview["Nam"].ToString();
+                        Kh_lh_tb_siso.Text = rowview["SiSo"].ToString();
+
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        /*======================================KH_Môn học========================================*/
+        private void get_namhoc_mh_lh()
+        {
+            var ds = new List<string>();
+            DataTable dt1 = db.sql_select("select distinct Nam from NamHoc");
+            DataRow r;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                r = dt1.Rows[i];
+                ds.Add(r[0].ToString());
+            }
+            Kh_mh_cb_nam.DataContext = ds;
+        }
+        private void get_datagrid_kh_mh()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("select * from MonHoc");
+                Kh_mh_datagrid.ItemsSource = dt.DefaultView;
+
+            }
+            catch
+            { }
+        }
+        private void Kh_mh_loaded(object sender, RoutedEventArgs e)
+        {
+            get_datagrid_kh_mh();
+            get_namhoc_mh_lh();
+        }
+
+        private void Kh_mh_btn_them_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "Exec QTV_ThemMonHoc N'" + Kh_mh_cb_tenmon.Text + "','" + Kh_mh_cb_nam.Text + "'," +
+               "'" + Kh_mh_tb_diemdat.Text + "' ";
+                DataTable dt = db.sql_select(query);
+                string loi = dt.Rows[0][0].ToString();
+                if (loi == "-1")
+                {
+                    Kh_mh_errorout.Content = "Có trường thông tin bị trống!!!";
+                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Kh_mh_errorout.Content = "Lỗi giao tác!!!";
+                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-2")
+                {
+                    Kh_mh_errorout.Content = "Môn học đã tồn tại!!!";
+                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-3")
+                {
+                    Kh_mh_errorout.Content = "Điểm đạt bạn nhập không hợp lệ!!!";
+                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    Kh_mh_errorout.Content = "Thêm môn học thành công.";
+                    Kh_mh_errorout.Background = Brushes.LightGreen;
+
+                    List<string> dshocsinh = new List<string>();
+                    DataTable dt1 = db.sql_select("select MaHocSinh from DanhSachLopHoc where Nam='" + Kh_mh_cb_nam.Text+"'" );
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        dshocsinh.Add(dt1.Rows[i][0].ToString());
+                    }
+                    get_datagrid_kh_mh();
+                    foreach (var i in dshocsinh)
+                    {
+                        query = "Exec QTV_ThemDiemChoHocSinh '" + i + "',N'" + Kh_mh_cb_tenmon.Text + "','" + Kh_mh_cb_nam.Text + "'";
+                        dt1 = db.sql_select(query);
+                    }
+                }
+
+            }
+            catch { }
+        }
+       
+        private void Kh_mh_btn_sua_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_mh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_mh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_SuaMonHoc  '" + rowview["TenMon"].ToString() + "','" + rowview["Nam"].ToString() + "', '" + Kh_mh_tb_diemdat.Text + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_mh_errorout.Content = "Điểm đạt không hợp lệ!!!";
+                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_mh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                        }
+                       
+                        else
+                        {
+                            Kh_mh_errorout.Content = "Sửa thành công.";
+                            Kh_mh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_mh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_mh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_mh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_mh_btn_xoa_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Kh_mh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_mh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        string query = "Exec QTV_XoaMonHoc  '" + rowview["TenMon"].ToString() + "','" + rowview["Nam"].ToString() + "'";
+                        DataTable dt = db.sql_select(query);
+                        string loi = dt.Rows[0][0].ToString();
+                        if (loi == "-1")
+                        {
+                            Kh_mh_errorout.Content = "Không thể xóa!!!";
+                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                        }
+                        else if (loi == "-10")
+                        {
+                            Kh_mh_errorout.Content = "Lỗi giao tác!!!";
+                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                        }
+
+                        else
+                        {
+                            Kh_mh_errorout.Content = "Xóa thành công.";
+                            Kh_mh_errorout.Background = Brushes.LightGreen;
+                            get_datagrid_kh_mh();
+                        }
+
+                    }
+                    else
+                    {
+                        Kh_mh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
+                        Kh_mh_errorout.Background = Brushes.IndianRed;
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Kh_mh_datagrid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Kh_mh_datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (Kh_mh_datagrid.SelectedIndex.ToString() != null)
+                {
+                    DataRowView rowview = (DataRowView)Kh_mh_datagrid.SelectedItem;
+                    if (rowview != null)
+                    {
+                        Kh_mh_cb_tenmon.Text = rowview["TenMon"].ToString();
+                        Kh_mh_cb_nam.Text = rowview["Nam"].ToString();
+                        Kh_mh_tb_diemdat.Text = rowview["DiemDat"].ToString();
+
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        /*======================================BẢNG ĐIỂM========================================
+         * ======================================================================================
+         * ======================================================================================*/
+        private void get_namhoc_bd()
+        {
+            var ds = new List<string>();
+            DataTable dt1 = db.sql_select("select distinct Nam from NamHoc");
+            DataRow r;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                r = dt1.Rows[i];
+                ds.Add(r[0].ToString());
+            }
+            Bd_cb_namhoc.DataContext = ds;
+        }
+        private void Bd_loaded(object sender, RoutedEventArgs e)
+        {
+            get_namhoc_bd();
+            get_Bd_datagrid();
+        }
+
+        private void get_Bd_datagrid()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("select * from Diem_HocSinh_MonHoc");
+                Bd_datagird_tonghop.ItemsSource = dt.DefaultView;
+                Bd_datagird_tonghop.Visibility = Visibility.Visible;
+                Bd_timkiem_datagird.Visibility = Visibility.Hidden;
+                Bd_bt_in.Visibility = Visibility.Hidden;
+
+            }
+            catch
+            { }
+        }
+        private void Bd_datagrid_loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+        private void get_monhoc_bd(string nam)
+        {
+            try
+            {
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct TenMon from MonHoc where Nam='" + nam + "'");
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Bd_cb_mon.DataContext = ds;
+
+            }
+            catch { }
+           
+        }
+        private void get_lophoc_bd(string nam)
+        {
+            try
+            {
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct TenLop from Lop where Nam='" + nam + "'");
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Bd_cb_lop.DataContext = ds;
+
+            }
+            catch { }
+           
+        }
+
+      
+        private void Bd_cb_namhoc_changed(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string nam = Bd_cb_namhoc.SelectedItem.ToString();
+                get_lophoc_bd(nam);
+                get_monhoc_bd(nam);
+            }
+            catch
+            {
+
+            }
+           
+        }
+
+        private void Bd_timkiem_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "Exec QTV_LayBangDiem '" + Bd_cb_namhoc.Text + "','" + Bd_cb_lop.Text + "'," +
+              "'" + Bd_cb_kihoc.Text + "',N'"+Bd_cb_mon.Text+"' ";
+                DataTable dt = db.sql_select(query);
+                if (dt.Rows.Count == 0)
+                {
+                    Bd_errorout.Content = "Bảng điểm rỗng!!!";
+                    Bd_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn năm học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Bd_errorout.Content = "Lỗi giao tác!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-2")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn lớp học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-3")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn kì học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-4")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn môn học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Bd_errorout.Content = "Tìm kiếm thành công.";
+                        Bd_errorout.Background = Brushes.LightGreen;
+                        Bd_timkiem_datagird.ItemsSource = dt.DefaultView;
+                        Bd_datagird_tonghop.Visibility = Visibility.Hidden;
+                        Bd_timkiem_datagird.Visibility = Visibility.Visible;
+                        Bd_bt_in.Visibility = Visibility.Visible;
+
+                    }
+                }
+               
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Bd_timkiem_datagird_loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bd_refresh_click(object sender, RoutedEventArgs e)
+        {
+            get_Bd_datagrid();
+        }
+
+        private void Bd_in_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string duongdan = "D:/BangDiem_" + Bd_cb_namhoc.Text + "_" + Bd_cb_lop.Text + "_" + Bd_cb_kihoc.Text + "_" + Bd_cb_mon.Text + ".csv";
+                if (MessageBox.Show("Bạn có muốn in vào " + duongdan + "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                    return;
+                }
+                else
+                {
+                    ExportToCsv("Exec QTV_LayBangDiem '" + Bd_cb_namhoc.Text + "','" + Bd_cb_lop.Text + "'," +
+                  "'" + Bd_cb_kihoc.Text + "',N'" + Bd_cb_mon.Text + "' ", Bd_timkiem_datagird, duongdan);
+                    Bd_errorout.Content = "In thành công.";
+                    Bd_errorout.Background = Brushes.LightGreen;
+                }
+            }
+            catch
+            {
+                Bd_errorout.Content = "In thất bại!!!";
+                Bd_errorout.Background = Brushes.IndianRed;
+            }
+          
+        }
+        /*======================================TỔNG KẾT========================================
+         * ======================================================================================
+         * ======================================================================================*/
+        private void get_namhoc_tk_mon()
+        {
+            var ds = new List<string>();
+            DataTable dt1 = db.sql_select("select distinct Nam from NamHoc");
+            DataRow r;
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                r = dt1.Rows[i];
+                ds.Add(r[0].ToString());
+            }
+            Tk_mon_cb_namhoc.DataContext = ds;
+        }
+        private void get_Tk_mon_datagrid()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("Exec QTV_TatCaTongKetMon");
+                Tk_mon_datagird.ItemsSource = dt.DefaultView;
+                Tk_mon_datagird.Visibility = Visibility.Visible;
+                Tk_mon_timkiem_datagird.Visibility = Visibility.Hidden;
+                Tk_mon_bt_in.Visibility = Visibility.Hidden;
+
+            }
+            catch
+            { }
+
+        }
+        
+
+        private void Tongket_loaded(object sender, RoutedEventArgs e)
+        {
+            get_namhoc_tk_mon();
+            get_Tk_mon_datagrid();
+        }
+
+        private void Tk_mon_timkiem_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "Exec QTV_TongKetMon '" + Tk_mon_cb_namhoc.Text + "','" + Tk_mon_cb_kihoc.Text + "'";
+                DataTable dt = db.sql_select(query);
+                if (dt.Rows.Count == 0)
+                {
+                    Tk_mon_lb_errorout.Content = "Bảng tổng kết môn rỗng!!!";
+                    Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Tk_mon_lb_errorout.Content = "Vui lòng chọn năm học!!!";
+                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Tk_mon_lb_errorout.Content = "Lỗi giao tác!!!";
+                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                   
+                    else if (loi == "-2")
+                    {
+                        Tk_mon_lb_errorout.Content = "Vui lòng chọn kì học!!!";
+                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Tk_mon_lb_errorout.Content = "Tìm kiếm thành công.";
+                        Tk_mon_lb_errorout.Background = Brushes.LightGreen;
+                        Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
+                        Tk_mon_datagird.Visibility = Visibility.Hidden;
+                        Tk_mon_timkiem_datagird.Visibility = Visibility.Visible;
+                        Tk_mon_bt_in.Visibility = Visibility.Visible;
+
+                    }
+                }
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Tk_mon_refresh_click(object sender, RoutedEventArgs e)
+        {
+            get_Tk_mon_datagrid();
+        }
+
+        private void Tk_mon_in_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string duongdan = "D:/BangTongKetMon_" + Tk_mon_cb_namhoc.Text + "_" + Tk_mon_cb_kihoc.Text + ".csv";
+                if (MessageBox.Show("Bạn có muốn in vào "+duongdan+ "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                    return;
+                }
+                else
+                {
+                    ExportToCsv("Exec QTV_TongKetMon '" + Tk_mon_cb_namhoc.Text + "','" + Tk_mon_cb_kihoc.Text + "'", Tk_mon_timkiem_datagird, duongdan);
+                    Tk_mon_lb_errorout.Content = "In thành công.";
+                    Tk_mon_lb_errorout.Background = Brushes.LightGreen;
+                }
+            }
+            catch
+            {
+                Tk_mon_lb_errorout.Content = "In thất bại!!!";
+                Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+            }
         }
     }
 }

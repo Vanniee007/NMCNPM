@@ -10,7 +10,7 @@ namespace NMCNPM
 {
     class DBConnect
     {
-        static string chuoiKetNoi = "Data Source=.;Initial Catalog=NMCNPM;Integrated Security=True";
+        static string chuoiKetNoi = "Data Source=LAPTOP-5OL2FINF\\SQLEXPRESS;Initial Catalog=NMCNPM;Integrated Security=True";
         public SqlConnection traCon = new SqlConnection(chuoiKetNoi);
         public DataTable sql_select(string query)
         {
