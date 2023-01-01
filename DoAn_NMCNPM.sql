@@ -146,26 +146,62 @@ insert into NamHoc values('2019-2020',16,20)
 
 insert into MonHoc values(N'Toán','2019-2020',5.0)
 insert into MonHoc values(N'Văn','2019-2020',5.0)
-insert into MonHoc values(N'Anh','2019-2020',5.0)
+insert into MonHoc values(N'Sinh','2019-2020',5.0)
 
-insert into Lop values('10A2','2021-2022',50)
-insert into Lop values('10A2','2020-2021',50)
-insert into Lop values('11A2','2021-2022',50)
-insert into Lop values('11A1','2021-2022',50)
-select* from Lop
+insert into Lop values('10A1','2019-2020',40)
+insert into Lop values('10A2','2019-2020',40)
+insert into Lop values('11A2','2019-2020',40)
+insert into Lop values('11A1','2019-2020',40)
+
+
+insert into Lop values('10A1','2021-2022',40)
+insert into Lop values('10A1','2020-2021',40)
+insert into Lop values('11A1','2021-2022',40)
+insert into Lop values('11A2','2021-2022',40)
+
+insert into DanhSachLopHoc values('10A1','2019-2020',1)
+insert into DanhSachLopHoc values('10A1','2019-2020',2)
+insert into DanhSachLopHoc values('10A1','2019-2020',3)
+insert into DanhSachLopHoc values('10A1','2019-2020',4)
+
 
 insert into Diem_HocSinh_MonHoc values(1,N'Toán','2019-2020',1,9,9,10)
 insert into Diem_HocSinh_MonHoc values(1,N'Toán','2019-2020',2,9,9,10)
-insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',1,9,8,7)
-insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',2,9,9,6)
-insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',1,9,8,7)
-insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',2,9,9,6)
+insert into Diem_HocSinh_MonHoc values(1,N'Văn','2019-2020',1,9,8,8)
+insert into Diem_HocSinh_MonHoc values(1,N'Văn','2019-2020',2,9,9,7)
+insert into Diem_HocSinh_MonHoc values(1,N'Sinh','2019-2020',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(1,N'Sinh','2019-2020',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2019-2020',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',1,9,8,8)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2019-2020',2,9,9,7)
+insert into Diem_HocSinh_MonHoc values(2,N'Sinh','2019-2020',1,1,3,5)
+insert into Diem_HocSinh_MonHoc values(2,N'Sinh','2019-2020',2,4.99,4.9,4.8)
+
+insert into Diem_HocSinh_MonHoc values(3,N'Toán','2019-2020',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(3,N'Toán','2019-2020',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(3,N'Văn','2019-2020',1,1.5,1,4)
+insert into Diem_HocSinh_MonHoc values(3,N'Văn','2019-2020',2,3,5,4)
+insert into Diem_HocSinh_MonHoc values(3,N'Sinh','2019-2020',1,1,9,6)
+insert into Diem_HocSinh_MonHoc values(3,N'Sinh','2019-2020',2,7.5,9,5)
+
+insert into Diem_HocSinh_MonHoc values(4,N'Toán','2019-2020',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(4,N'Toán','2019-2020',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(4,N'Văn','2019-2020',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(4,N'Văn','2019-2020',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',2,7.5,9,10)
 
 
-insert into DanhSachLopHoc values('10A2','2020-2021',1)
-insert into DanhSachLopHoc values('10A2','2020-2021',2)
-insert into DanhSachLopHoc values('10A2','2020-2021',3)
-insert into DanhSachLopHoc values('11A1','2021-2022',1)
+
+
+delete from Diem_HocSinh_MonHoc 
+go
+delete  from DanhSachLopHoc
+delete from Lop
+delete from MonHoc
+
 ---------------------------QUẢN TRỊ VIÊN---------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
@@ -765,21 +801,15 @@ GO
 
 
 	
-select* from Diem_HocSinh_MonHoc
-go
-select * from Diem_HocSinh_MonHoc
-where Nam='2019-2020' and KiHoc=1
 
-select TenMon,count(MaHocSinh) as 'SiSo',(select count(D.MaHocSinh)
-			from Diem_HocSinh_MonHoc D
-			where D.TenMon =a.TenMon  and '2019-2020' =d.Nam and d.KiHoc = 1  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon) ) as 'SoNguoiDat'
-			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
-			
-from Diem_HocSinh_MonHoc a
-where Nam='2019-2020' and KiHoc=1
-group by TenMon
-go
 
+create function lamtron(@num float)
+returns varchar(7)
+as
+begin
+	return replace(cast(round(@num*1000,0)/1000 as varchar),'00000000','')
+end
+go
 
 create --alter
 proc QTV_TongKetMon
@@ -803,12 +833,13 @@ begin tran
 			return
 		end
 
-		select TenMon,count(MaHocSinh) as 'SiSo',(select count(D.MaHocSinh)
+		select TenMon,count(MaHocSinh) as 'SiSo',
+			(select count(D.MaHocSinh)
 			from Diem_HocSinh_MonHoc D
 			where D.TenMon =a.TenMon  and @Nam =d.Nam and d.KiHoc = @KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=@Nam) ) as 'SoNguoiDat'
-			,((select count(D.MaHocSinh)
+			,dbo.lamtron(((select count(D.MaHocSinh)
 			from Diem_HocSinh_MonHoc D
-			where D.TenMon =a.TenMon  and @Nam =d.Nam and d.KiHoc = @KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon  and Nam=@Nam) ) /count(MaHocSinh))*100 as 'TiLeDat'
+			where D.TenMon =a.TenMon  and @Nam =d.Nam and d.KiHoc = @KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon  and Nam=@Nam) )*1.0 /count(MaHocSinh)*1.0)*100) as 'TiLeDat'
 			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
 		from Diem_HocSinh_MonHoc a
 		where Nam=@Nam and KiHoc=@KiHoc
@@ -822,7 +853,7 @@ begin tran
 	END CATCH
 COMMIT TRAN
 GO
-Exec QTV_TongKetMon '2019-2020',1
+
 	
 
 
@@ -837,9 +868,9 @@ begin tran
 			(select count(D.MaHocSinh)
 			from Diem_HocSinh_MonHoc D
 			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) ) as 'SoNguoiDat'
-			,((select count(D.MaHocSinh)
+			,dbo.lamtron(((select count(D.MaHocSinh)
 			from Diem_HocSinh_MonHoc D
-			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) ) /count(MaHocSinh))*100 as 'TiLeDat'
+			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) )*1.0 /count(MaHocSinh)*1.0)*100) as 'TiLeDat'
 			,avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
 		from Diem_HocSinh_MonHoc a
 	group by Nam,KiHoc,TenMon
@@ -852,3 +883,65 @@ begin tran
 	END CATCH
 COMMIT TRAN
 GO
+--Với mỗi lớp, tìm điểm trung bình của từng học sinh lớp đó theo 1 kì nhập vào
+create --alter 
+proc QTV_LayBangTongKetLop
+@nam varchar(12),
+@TenLop varchar(10),
+@KiHoc nvarchar(20)
+as
+begin tran 
+	begin try
+		if @nam=''
+		begin 
+			print N'Năm học trống'
+			rollback tran
+			select -1
+			return
+		end
+		if @TenLop=''
+		begin 
+			print N'Lớp học trống'
+			rollback tran
+			select -1
+			return
+		end
+		if @KiHoc=''
+		begin 
+			print N'Kì học trống'
+			rollback tran
+			select -1
+			return
+		end
+		if @KiHoc='1' or @KiHoc='2'
+		begin 
+			select Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh, avg(D.Diem15*0.1+D.Diem1Tiet*0.3+DiemCuoiKi*0.6) as 'DTB'
+			from 
+				(select* from DanhSachLopHoc  where TenLop=@TenLop and  Nam=@nam) Ds ,
+				(select* from Diem_HocSinh_MonHoc where Nam=@nam) D,HocSinh Hs
+			where Ds.MaHocSinh=D.MaHocSinh and KiHoc=@KiHoc and Hs.MaHS=Ds.MaHocSinh
+			group by Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh
+		end
+		else 
+		begin
+			select Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh, avg(D.Diem15*0.1+D.Diem1Tiet*0.3+DiemCuoiKi*0.6) as 'DTB'
+			from 
+				(select* from DanhSachLopHoc  where TenLop=@TenLop and  Nam=@nam) Ds ,
+				(select* from Diem_HocSinh_MonHoc where Nam=@nam) D,HocSinh Hs
+			where Ds.MaHocSinh=D.MaHocSinh and Hs.MaHS=Ds.MaHocSinh
+			group by Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh
+		end
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+
+		
+
+
+
