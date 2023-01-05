@@ -55,9 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Admin_Windows.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Admin_themTaiKhoan.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin_Windows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="HocSinh_Windows.xaml">
       <SubType>Designer</SubType>
@@ -67,9 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Admin_Windows.xaml.cs">
-      <DependentUpon>Admin_Windows.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Admin_themTaiKhoan.xaml.cs" />
+    <Compile Include="Admin_Windows.xaml.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -132,8 +132,8 @@ insert into GiaoVien values(2,N'Anh Tú','1-1-1978',N'Nam','abd@gmail.com','0123
 insert into GiaoVien values(3,N'Anh Phạm','1-1-1978',N'Nam','abe@gmail.com','0123454789',N'Phus Tho',N'Văn','gv03')
 
 insert into QuanTri values(1,N'Anh Phạm','1-1-1978',N'Nam','abw@gmail.com','0123454789',N'Phus Tho','admin')
-insert into QuanTri values(2,N'Anh Phạm','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Phus Tho','admin1')
-insert into QuanTri values(3,N'Anh Phạm','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Phus Tho','admin2')
+insert into QuanTri values(2,N'Anh Phạm','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Phus Tho','admin01')
+insert into QuanTri values(3,N'Anh Phạm','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Phus Tho','admin02')
 
 insert into HocSinh values(1,N'Anh Phạm Quy','1-1-2000',N'Nam','hs01@gmail.com','0123454789',N'Phus Tho','hs01')
 insert into HocSinh values(2,N'Mai Quyết ','1-1-2000',N'Nam','hs02@gmail.com','0123454789',N'Bình Dương','hs02')
@@ -194,13 +194,15 @@ insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',1,1,9,10)
 insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',2,7.5,9,10)
 
 
-
+/*
 
 delete from Diem_HocSinh_MonHoc 
 go
 delete  from DanhSachLopHoc
 delete from Lop
-delete from MonHoc
+delete from MonHoc*/
+
+go
 
 ---------------------------QUẢN TRỊ VIÊN---------------------------
 ---------------------------------------------------------------------------------
@@ -245,8 +247,10 @@ as
 begin 
 	select* from QuanTri where username=@username
 end
+go
 Exec QTV_LayThongTin 'admin'
 	
+go
 
 create --alter
 proc QTV_CapNhatThongTinCaNhan
@@ -280,8 +284,8 @@ begin tran
 COMMIT TRAN
 select 0
 GO
-Exec QTV_CapNhatThongTin '1',N'Anh Phạm Tieens','1/4/1978','Nam','abw@gmail.com','123454789','Phus Tho'
-
+--Exec QTV_CapNhatThongTin '1',N'Anh Phạm Tieens','1/4/1978','Nam','abw@gmail.com','123454789','Phus Tho'
+go
 --DoiMatKhau
 create --alter
 proc DoiMatKhau
@@ -424,7 +428,7 @@ GO
 	
 Exec QTV_ThemQuanTriVien 'admin10','123',N'Lê Min Tian','12/15/2022','Nam','@gmail.com','12345','1234'
 
-
+go
 -----------------------------------------------QUẢN TRỊ VIÊN---KHÓA HỌC
 create --alter
 proc QTV_ThemNamHoc

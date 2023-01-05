@@ -164,15 +164,20 @@ namespace NMCNPM
         }
         private void get_namhoc_bd()
         {
-            var ds = new List<string>();
-            DataTable dt1 = db.sql_select("select distinct Nam from Diem_HocSinh_MonHoc where MaHocSinh =" + mahs.ToString());
-            DataRow r;
-            for (int i = 0; i < dt1.Rows.Count; i++)
+            try
             {
-                r = dt1.Rows[i];
-                ds.Add(r[0].ToString());
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct Nam from Diem_HocSinh_MonHoc where MaHocSinh =" + mahs.ToString());
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Bd_cb_namhoc.DataContext = ds;
+
             }
-            Bd_cb_namhoc.DataContext = ds;
+            catch { }
         }
         private void Bd_timkiem_datagird_loaded(object sender, RoutedEventArgs e)
         {
