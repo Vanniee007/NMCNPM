@@ -132,5 +132,8 @@
   <ItemGroup>
     <Resource Include="icon\print.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Vang querry mới.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
