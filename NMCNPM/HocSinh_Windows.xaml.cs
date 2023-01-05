@@ -133,26 +133,78 @@ namespace NMCNPM
         }
         private void Tt_capnhatthongtincanhan_click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn cập nhật thông tin???", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                    return;
+                }
+                else
+                {
 
+                    //do yes stuff            
+                    string query = "Exec HocSinh_CapNhatThongTinCaNhan '" + mahs + "',N'" + TT_tb_hoten.Text + "','" + TT_tb_ngaysinh.Text + "','" + TT_cb_gioitinh.Text + "'" +
+                        ",'" + TT_tb_email.Text + "','" + TT_tb_sodienthoai.Text + "','" + TT_tb_diachi.Text + "'";
+                    DataTable dt = db.sql_select(query);
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Thông tin bị trống!!!";
+                        Tt_lb_thongtincanhan_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Lỗi giao tác!!!";
+                        Tt_lb_thongtincanhan_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Cập nhật thành công.";
+                        Tt_lb_thongtincanhan_errorout.Background = Brushes.LightGreen;
+
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
         /*======================================BẢNG ĐIỂM========================================
  * ======================================================================================
  * ======================================================================================*/
-        private void Bd_loaded(object sender, RoutedEventArgs e)
-        {
-            get_namhoc_bd();
-            //get_Bd_datagrid();
-        }
-
-        private void get_Bd_datagrid()
+        private void get_namhoc_bd()
         {
             try
             {
-                DataTable dt = db.sql_select("select * from Diem_HocSinh_MonHoc");
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct Nam from Diem_HocSinh_MonHoc where MaHocSinh ='" + mahs + "'");
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Bd_cb_namhoc.DataContext = ds;
+            }
+            catch { }
+           
+        }
+        private void Bd_loaded(object sender, RoutedEventArgs e)
+        {
+            get_namhoc_bd();
+            get_Bd_datagrid_tonghop();
+        }
+
+        private void get_Bd_datagrid_tonghop()
+        {
+            try
+            {
+                DataTable dt = db.sql_select("Exec Student_BangDiem_TongHop '"+mahs+"'");
                 Bd_datagird_tonghop.ItemsSource = dt.DefaultView;
                 Bd_datagird_tonghop.Visibility = Visibility.Visible;
-                //Bd_timkiem_datagird.Visibility = Visibility.Hidden;
-                Bd_bt_in.Visibility = Visibility.Hidden;
+                Bd_datagird.Visibility = Visibility.Hidden;
 
             }
             catch
@@ -162,107 +214,62 @@ namespace NMCNPM
         {
 
         }
-        private void get_namhoc_bd()
-        {
-            var ds = new List<string>();
-            DataTable dt1 = db.sql_select("select distinct Nam from Diem_HocSinh_MonHoc where MaHocSinh =" + mahs.ToString());
-            DataRow r;
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                r = dt1.Rows[i];
-                ds.Add(r[0].ToString());
-            }
-            Bd_cb_namhoc.DataContext = ds;
-        }
+       
         private void Bd_timkiem_datagird_loaded(object sender, RoutedEventArgs e)
         {
 
         }
         private void Bd_in_click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    string duongdan = "D:/" + Bd_cb_namhoc.Text + "_" + Bd_cb_lop.Text + "_" + Bd_cb_kihoc.Text + "_" + Bd_cb_mon.Text + ".csv";
-            //    ExportToCsv("Exec QTV_LayBangDiem '" + Bd_cb_namhoc.Text + "','" + Bd_cb_lop.Text + "'," +
-            //  "'" + Bd_cb_kihoc.Text + "',N'" + Bd_cb_mon.Text + "' ", Bd_timkiem_datagird, duongdan);
-            //    Bd_errorout.Content = "In thành công.";
-            //    Bd_errorout.Background = Brushes.LightGreen;
-            //}
-            //catch
-            //{
-            //    Bd_errorout.Content = "In thất bại!!!";
-            //    Bd_errorout.Background = Brushes.IndianRed;
-            //}
+           
         }
-        private void Bd_cb_namhoc_changed(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                try
-                {
-                    string query = "exec Student_BangDiem '" + mahs.ToString() + "','" + Bd_cb_namhoc.Text + "','" + Bd_cb_kihoc.Text + "'";
-                    DataTable dt = db.sql_select(query);
-                    Bd_datagird_tonghop.ItemsSource = dt.DefaultView;
-                }
-                catch { }
-            }
-            catch
-            {
-
-            }
-
-        }
+     
         private void Bd_timkiem_click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string query = "exec Student_BangDiem '" + mahs.ToString() + "','" + Bd_cb_namhoc.Text + "','" + Bd_cb_kihoc.Text + "'";
+                string query = "exec Student_BangDiem '" + mahs + "','" + Bd_cb_namhoc.Text + "','" + Bd_cb_kihoc.Text + "'";
                 DataTable dt = db.sql_select(query);
-                Bd_datagird_tonghop.ItemsSource = dt.DefaultView;
-                //if (dt.Rows.Count == 0)
-                //{
-                //    Bd_errorout.Content = "Bảng điểm rỗng!!!";
-                //    Bd_errorout.Background = Brushes.IndianRed;
-                //}
-                //else
-                //{
-                //    string loi = dt.Rows[0][0].ToString();
-                //    if (loi == "-1")
-                //    {
-                //        Bd_errorout.Content = "Vui lòng chọn năm học!!!";
-                //        Bd_errorout.Background = Brushes.IndianRed;
-                //    }
-                //    else if (loi == "-10")
-                //    {
-                //        Bd_errorout.Content = "Lỗi giao tác!!!";
-                //        Bd_errorout.Background = Brushes.IndianRed;
-                //    }
-                //    else if (loi == "-2")
-                //    {
-                //        Bd_errorout.Content = "Vui lòng chọn lớp học!!!";
-                //        Bd_errorout.Background = Brushes.IndianRed;
-                //    }
-                //    else if (loi == "-3")
-                //    {
-                //        Bd_errorout.Content = "Vui lòng chọn kì học!!!";
-                //        Bd_errorout.Background = Brushes.IndianRed;
-                //    }
-                //    else if (loi == "-4")
-                //    {
-                //        Bd_errorout.Content = "Vui lòng chọn môn học!!!";
-                //        Bd_errorout.Background = Brushes.IndianRed;
-                //    }
-                //else
-                //    {
-                //        Bd_errorout.Content = "Tìm kiếm thành công.";
-                //        Bd_errorout.Background = Brushes.LightGreen;
-                //        Bd_timkiem_datagird.ItemsSource = dt.DefaultView;
-                //        Bd_datagird_tonghop.Visibility = Visibility.Hidden;
-                //        Bd_timkiem_datagird.Visibility = Visibility.Visible;
-                //        Bd_bt_in.Visibility = Visibility.Visible;
+                if (dt.Rows.Count == 0)
+                {
+                    Bd_errorout.Content = "Bảng điểm rỗng!!!";
+                    Bd_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn năm học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Bd_errorout.Content = "Lỗi giao tác!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else if (loi == "-2")
+                    {
+                        Bd_errorout.Content = "Vui lòng chọn kì học!!!";
+                        Bd_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Bd_errorout.Content = "Tìm kiếm thành công.";
+                        Bd_errorout.Background = Brushes.LightGreen;
+                        Bd_datagird.ItemsSource = dt.DefaultView;
+                        Bd_datagird_tonghop.Visibility = Visibility.Hidden;
+                        Bd_datagird.Visibility = Visibility.Visible;
+                        float diemTongKet = 0;
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            diemTongKet += float.Parse(dt.Rows[i]["DiemTongKetMon"].ToString());
+                        }
+                        diemTongKet /= dt.Rows.Count;
+                        Bd_diemtongket.Content = "Điểm tổng kết : " + diemTongKet.ToString();
 
-                //    }
-                //}
+                    }
+                }
 
             }
             catch
@@ -271,15 +278,87 @@ namespace NMCNPM
             }
         }
 
-        private void Bd_cb_kihoc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       
+        private void Bd_datagrid_tonghop_loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Bd_refresh_click(object sender, RoutedEventArgs e)
+        {
+            get_Bd_datagrid_tonghop();
+            Bd_diemtongket.Content = "";
+        }
+
+        /*======================================DANH SÁCH LỚP========================================
+* ======================================================================================
+* ======================================================================================*/
+        private void get_namhoc_dslop()
         {
             try
             {
-                string query = "exec Student_BangDiem '" + mahs.ToString() + "','" + Bd_cb_namhoc.Text + "','" + Bd_cb_kihoc.Text + "'";
-                DataTable dt = db.sql_select(query);
-                Bd_datagird_tonghop.ItemsSource = dt.DefaultView;
+                var ds = new List<string>();
+                DataTable dt1 = db.sql_select("select distinct Nam from Diem_HocSinh_MonHoc where MaHocSinh ='" + mahs + "'");
+                DataRow r;
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    r = dt1.Rows[i];
+                    ds.Add(r[0].ToString());
+                }
+                Dslop_cb_namhoc.DataContext = ds;
             }
             catch { }
+
         }
+        private void Dslop_loaded(object sender, RoutedEventArgs e)
+        {
+            get_namhoc_dslop();
+        }
+        private void Dslop_timkiem_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "exec HocSinh_DanhSachLop '" + mahs + "','" + Dslop_cb_namhoc.Text + "'";
+                DataTable dt = db.sql_select(query);
+                string loi = dt.Rows[0][0].ToString();
+                if (loi == "-1")
+                {
+                    Dslop_errorout.Content = "Vui lòng chọn năm học!!!";
+                    Dslop_errorout.Background = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Dslop_errorout.Content = "Lỗi giao tác!!!";
+                    Dslop_errorout.Background = Brushes.IndianRed;
+                }
+                else
+                {
+                    if (dt.Rows.Count == 0)
+                    {
+                        Dslop_errorout.Content = "Bảng điểm rỗng!!!";
+                        Dslop_errorout.Background = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Dslop_errorout.Content = "Tìm kiếm thành công.";
+                        Dslop_errorout.Background = Brushes.LightGreen;
+                        Dslop_datagrid.ItemsSource = dt.DefaultView;
+                        Dslop_lb.Content = "Danh sách lớp: " + dt.Rows[0]["TenLop"].ToString() + " " + dt.Rows[0]["Nam"].ToString();
+                    }
+                 
+
+
+                }
+              
+               
+
+            }
+            catch
+            {
+
+            }
+        }
+
+       
     }
 }

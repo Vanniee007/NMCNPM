@@ -941,6 +941,135 @@ begin tran
 COMMIT TRAN
 GO
 
+---------------------------------------HỌC SINH------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+------------------------------------------
+
+create --alter
+proc HocSinh_CapNhatThongTinCaNhan
+	@MaHS int,
+	@HoTen nvarchar(50),
+	@NgaySinh date,
+	@GioiTinh nvarchar(10),
+	@Email varchar(50), 
+	@SDT bigint, 
+	@DiaChi nvarchar(50)
+as
+begin tran
+	begin try
+		if @HoTen='' or  @NgaySinh='' or @GioiTinh='' or @Email='' or @SDT='' or @DiaChi=''
+		begin
+			print N'Có trường thông tin trống'
+			rollback tran
+			select -1
+			return
+		end
+		update HocSinh
+		set HoTen=@HoTen,NgaySinh=@NgaySinh,GioiTinh=@GioiTinh,Email=@Email,SDT=@SDT,DiaChi=@DiaChi
+		where MaHS=@MaHS
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+
+create proc HocSinh_LayThongTin
+@username varchar(20)
+as
+begin 
+	select* from HocSinh where username=@username
+end
+go
+
+
+
+create --alter
+proc Student_BangDiem
+	@mahs int,
+	@Nam varchar(12),
+	@KiHoc int
+as
+begin tran
+	begin try
+		if @Nam=''
+		begin
+			print N'Chua nhap nam'
+			rollback tran
+			select -1
+			return
+		end
+		if @KiHoc=''
+		begin
+			print N'Chua nhap ki'
+			rollback tran
+			select -2
+			return
+		end
+		select TenMon,Diem15,Diem1Tiet,DiemCuoiKi,(Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6) as 'DiemTongKetMon'
+		from Diem_HocSinh_MonHoc 
+		where @Nam=Nam and @KiHoc =KiHoc and @mahs=MaHocSinh
+		Group by TenMon,Diem15,Diem1Tiet,DiemCuoiKi
+		
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+create proc Student_BangDiem_TongHop
+	@mahs int
+as
+begin 
+	select * from Diem_HocSinh_MonHoc where @mahs=MaHocSinh
+end
+go
+
+create --alter
+proc HocSinh_DanhSachLop
+	@mahs int,
+	@Nam varchar(12)
+as
+begin tran
+	begin try
+		if @Nam=''
+		begin 
+			print N'chọn năm'
+			rollback tran
+			select -1
+			return
+		end
+		select Nam,TenLop,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi from 
+		DanhSachLopHoc,HocSinh
+		where Nam=@Nam and
+		TenLop=(select TenLop from DanhSachLopHoc where MaHocSinh=@mahs and Nam=@Nam) and MaHocSinh=MaHS
+		end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+Exec HocSinh_DanhSachLop 1,'2019-2020'
+
+
+select TenMon,Diem15,Diem1Tiet,DiemCuoiKi,(Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6) as 'DiemTongKetMon'
+from Diem_HocSinh_MonHoc 
+where @Nam=Nam and @KiHoc =KiHoc and @mahs=MaHocSinh
+Group by TenMon,Diem15,Diem1Tiet,DiemCuoiKi
+		
 		
 
 
