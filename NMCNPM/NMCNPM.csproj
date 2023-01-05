@@ -81,6 +81,7 @@
     <Compile Include="HocSinh_Windows.xaml.cs">
       <DependentUpon>HocSinh_Windows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputValidation.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

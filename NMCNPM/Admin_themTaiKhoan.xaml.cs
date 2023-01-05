@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
+
 namespace NMCNPM
 {
     /// <summary>
@@ -21,6 +23,7 @@ namespace NMCNPM
     public partial class Admin_themTaiKhoan : Window
     {
         DBConnect db = new DBConnect();
+        InputValidation validation = new InputValidation();
         string Role, LoaiTruyVan;
         int Ma;
         public Admin_themTaiKhoan(string role_, int Ma_, string LoaiTruyVan_)
@@ -206,6 +209,50 @@ namespace NMCNPM
                         MaRole = "3";
                         break;
                 }
+
+                //Check điều kiện trước khi thêm      
+                if (Tn_gv_tb_username.Text== "" || Tn_gv_pb_password.Password == "" || Tn_gv_tb_hoten.Text == "" ||
+                   Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy") == "" || Tn_gv_cb_gioitinh.Text== "" ||
+                   Tn_gv_tb_email.Text == "" || Tn_gv_tb_sodienthoai.Text == "" ||
+                   Tn_gv_tb_diachi.Text == "")
+                {
+                    Lh_lb_errorout.Content = "Có trường rỗng";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (!validation.ValidUsername(Tn_gv_tb_username.Text))
+                {
+                    Lh_lb_errorout.Content = "Tên đăng nhập không hợp lệ. Tên đăng nhập phải có từ 3 đến 15 ký tự, không chứa ký tự đặc biệt";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (!validation.ValidPassword(Tn_gv_pb_password.Password))
+                {
+                    Lh_lb_errorout.Content = "Mật khẩu không hợp lệ. Mật khẩu phải có từ 5 đến 255 ký tự, không chứa khoảng trắng";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (!validation.ValidDate(Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy")))
+                {
+                    Lh_lb_errorout.Content = "Ngày sinh không hợp lệ";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (!validation.ValidEmail(Tn_gv_tb_email.Text))
+                {
+                    Lh_lb_errorout.Content = "Email không hợp lệ";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (!validation.ValidPhoneNumber(Tn_gv_tb_sodienthoai.Text))
+                {
+                    Lh_lb_errorout.Content = "Số điện thoại không hợp lệ";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+
+
+
                 querry = "qtv_"+truyvan+"taikhoan '"+ MaRole  +"','"  +Tn_gv_tb_username.Text +"','"+
                     Tn_gv_pb_password.Password  +"',N'"+ Tn_gv_tb_hoten.Text +"','"+
                     Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy") +"','"+Tn_gv_cb_gioitinh.Text         +"','"+
