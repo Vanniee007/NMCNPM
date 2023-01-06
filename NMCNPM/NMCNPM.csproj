@@ -63,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GiaoVien_Windows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HocSinh_Windows.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +82,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBConnect.cs" />
+    <Compile Include="GiaoVien_Windows.xaml.cs">
+      <DependentUpon>GiaoVien_Windows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HocSinh_Windows.xaml.cs">
       <DependentUpon>HocSinh_Windows.xaml</DependentUpon>
     </Compile>

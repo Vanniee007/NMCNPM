@@ -136,7 +136,6 @@ namespace NMCNPM
 
         private void Tk_button_xoa_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 if (Lh_LayTaiKhoanDaChon().Count() > 0)
@@ -155,10 +154,9 @@ namespace NMCNPM
                         {
                             fail++;
                         }
-
                     }
                     if (fail == 0)
-                        Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng";
+                        Tk_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng";
                     else
                         Tk_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
                     if (success==0)
@@ -1696,8 +1694,22 @@ namespace NMCNPM
 
         private void TT_shortcut_Click(object sender, RoutedEventArgs e)
         {
-            Tabitem_TT.Focus();
-            //TT_shortcut.Background = Brushes.Navy;
+            TT_tabitem.Focus();
+            TT_shortcut.Background = Brushes.Navy;
+        }
+
+        private void TT_button_background()
+        {
+            if (TT_tabitem.IsFocused)
+            {
+                TT_shortcut.Background =Brushes.Navy;
+            }
+            else
+                TT_shortcut.Background =Brushes.Transparent;
+        }
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TT_button_background();
         }
     }
 }
