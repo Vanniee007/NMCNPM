@@ -306,15 +306,17 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="360*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
             <Label x:Name="Lh_lb_errorout" 
-                   Grid.Column="3"
+                   Grid.Column="1"
                    Grid.Row="4"
-                   Grid.ColumnSpan="3"
+                   FontWeight="Medium"
+                   Grid.ColumnSpan="6"
+                   HorizontalContentAlignment="Center"
                                Content=""
-                               HorizontalAlignment="Right" 
+                               HorizontalAlignment="Left" 
                                Style="{StaticResource MyStyle_Label}"
                                VerticalAlignment="Top" />
             <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
@@ -364,10 +366,10 @@
 
             </Grid>
 
-            <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="2">
+            <Grid Grid.Column="2" Grid.Row="2" >
                 <DataGrid x:Name="datagrid_lopday" FontSize="16" 
                                   AutoGenerateColumns="False"
-                                  CanUserAddRows="False"   Margin="-85,200,0,20"
+                                  CanUserAddRows="False"   Margin="-85,200,0,5"
                                   HorizontalContentAlignment="Center" HorizontalAlignment="Center">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Tên lớp" Binding="{Binding TenLop}" Width="0.8*"/>

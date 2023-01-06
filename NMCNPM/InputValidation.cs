@@ -9,8 +9,7 @@ namespace NMCNPM
 		public  bool ValidEmail(string email)
 		{
 			// ShowMessage: Email không hợp lệ
-
-			const string regex = @"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+			const string regex = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
 			bool isMatch = Regex.IsMatch(email, regex);
 			if (isMatch) { return true; }
 			else { return false; }
@@ -44,7 +43,7 @@ namespace NMCNPM
 			// Mật khẩu tối thiểu 8 ký tự, tối đa 15 ký tự, có ít nhất 1 ký tự viết hoa, 1 ký tự viết thường, 1 ký tự số, 1 ký tự đặc biệt
 			// const string regex = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$";
 			// ShowMessage: Mật khẩu không hợp lệ. Mật khẩu phải có từ 5 đến 255 ký tự, không chứa khoảng trắng
-			const string regex = @"^\S{5,255}$";
+			const string regex = @"^[a-zA-Z0-9!@#$%^&*]{5,50}$";
 			bool isMatch = Regex.IsMatch(password, regex);
 			if (isMatch) { return true; }
 			else { return false; }

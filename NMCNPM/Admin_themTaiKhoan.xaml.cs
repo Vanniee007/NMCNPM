@@ -222,19 +222,21 @@ namespace NMCNPM
                 }
                 if (!validation.ValidUsername(Tn_gv_tb_username.Text))
                 {
-                    Lh_lb_errorout.Content = "Tên đăng nhập không hợp lệ. Tên đăng nhập phải có từ 3 đến 15 ký tự, không chứa ký tự đặc biệt";
+                    Lh_lb_errorout.Content = "Tên đăng nhập không hợp lệ.\nTên đăng nhập phải có từ 3 đến 20 ký tự, không chứa ký tự đặc biệt";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     return;
                 }
                 if (!validation.ValidPassword(Tn_gv_pb_password.Password))
                 {
-                    Lh_lb_errorout.Content = "Mật khẩu không hợp lệ. Mật khẩu phải có từ 5 đến 255 ký tự, không chứa khoảng trắng";
+                    Lh_lb_errorout.Content = "Mật khẩu không hợp lệ.\nMật khẩu phải có từ 5 đến 50 ký tự, không chứa khoảng trắng";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     return;
                 }
-                if (!validation.ValidDate(Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy")))
+                int birthday = Int32.Parse(Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("yyyy"));
+                int thisyear = Int32.Parse(DateTime.Now.ToString("yyyy"));
+                if (thisyear - birthday < 15 || 20 < thisyear - birthday )
                 {
-                    Lh_lb_errorout.Content = "Ngày sinh không hợp lệ";
+                    Lh_lb_errorout.Content = "Độ tuổi phải từ 15 đến 20";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     return;
                 }
