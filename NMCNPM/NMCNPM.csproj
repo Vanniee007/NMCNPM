@@ -64,8 +64,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="HocSinh_Windows.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

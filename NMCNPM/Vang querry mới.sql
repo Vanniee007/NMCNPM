@@ -21,7 +21,7 @@ begin tran
 			select 1
 			return
 		end
-		if 0 = (select dbo.qtv_CheckThemHSvaoLop(@mahs,@TenLop))
+		if 0 < (select dbo.qtv_CheckThemHSvaoLop(@Nam,@TenLop,@mahs))
 		begin
 			rollback tran
 			select 2
@@ -56,18 +56,22 @@ begin tran
 commit tran
 go
 create -- alter 
-function qtv_CheckThemHSvaoLop (@mahs int, @tenlop varchar(10))
+function qtv_CheckThemHSvaoLop (@Nam varchar(12),@TenLop varchar(10), @mahs int)
 returns tinyint
 as
-begin
+begin 
 	declare @LopHienTai int
-	set @LopHienTai =  (select max(SUBSTRING(TenLop, 1, 2)) from DanhSachLopHoc where MaHocSinh = @mahs)
-	if (@LopHienTai is null and (SUBSTRING(@tenlop, 1, 2) = 10))
+	if exists (select * from DanhSachLopHoc where MaHocSinh = @mahs and Nam = @Nam)
 		return 1
-	if @LopHienTai + 1 = (SUBSTRING(@tenlop, 1, 2))
+	set @LopHienTai =  (select max(SUBSTRING(TenLop, 1, 2)) from DanhSachLopHoc where MaHocSinh = @mahs)
+	--if (@LopHienTai is null and (SUBSTRING(@tenlop, 1, 2) = 10))
+	--	return 1
+	--if @LopHienTai + 1 = (SUBSTRING(@tenlop, 1, 2))
+	--	return 1
+	if @LopHienTai < (SUBSTRING(@tenlop, 1, 2))
 		return 1
 	return 0
-end
+end 
 go
 
 

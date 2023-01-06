@@ -80,19 +80,19 @@ namespace NMCNPM
             catch { }
             return SelectedList;
         }
-        private void laydanhsachmonhoc()
-        {
-            var ds = new List<string>();
-            DataTable dt = db.sql_select("select distinct TenMon from MonHoc");
-            //foreach(DataRow r in dt.Rows)
-            DataRow r;
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                r = dt.Rows[i];
-                ds.Add(r[0].ToString());
-            }
-            Tn_gv_tb_daymon.DataContext = ds;
-        }
+        //private void laydanhsachmonhoc()
+        //{
+        //    var ds = new List<string>();
+        //    DataTable dt = db.sql_select("select distinct TenMon from MonHoc");
+        //    //foreach(DataRow r in dt.Rows)
+        //    DataRow r;
+        //    for (int i = 0; i < dt.Rows.Count; i++)
+        //    {
+        //        r = dt.Rows[i];
+        //        ds.Add(r[0].ToString());
+        //    }
+        //    Tn_gv_tb_daymon.DataContext = ds;
+        //}
         private void load_datagrid(string MaGV)
         {
             try
@@ -116,7 +116,7 @@ namespace NMCNPM
                 }
                 else 
                 {
-                    laydanhsachmonhoc(); 
+                    //laydanhsachmonhoc(); 
                     load_datagrid(Ma.ToString());
                 }
 

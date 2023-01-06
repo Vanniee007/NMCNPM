@@ -383,7 +383,18 @@
                 <TextBox x:Name="Tn_gv_tb_email" Margin="0,50,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
                 <TextBox x:Name="Tn_gv_tb_sodienthoai" Margin="0,100,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
                 <TextBox x:Name="Tn_gv_tb_diachi" Margin="0,150,0,0" Width="220" Style="{StaticResource MyStyle_TextBox_TT}" HorizontalAlignment="Center"/>
-                <ComboBox x:Name="Tn_gv_tb_daymon" ItemsSource="{Binding}" Margin="0,200,0,0" Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"  />
+                <ComboBox x:Name="Tn_gv_tb_daymon" Margin="0,200,0,0" Width="220" Style="{StaticResource MyStyle_ComboBox_TT}"  >
+
+                    <ComboBoxItem Content="Toán"/>
+                    <ComboBoxItem Content="Lí" />
+                    <ComboBoxItem Content="Hóa" />
+                    <ComboBoxItem Content="Sinh" />
+                    <ComboBoxItem Content="Sử" />
+                    <ComboBoxItem Content="Địa" />
+                    <ComboBoxItem Content="Văn" />
+                    <ComboBoxItem Content="Đạo đức" />
+                    <ComboBoxItem Content="Thể dục" />
+                </ComboBox>
                 <Button x:Name="Tn_gv_bt_them"   Content="Thêm"  Click="Tn_gv_them_click" Style="{StaticResource MyStyle_Button_Them}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,300,0,0"/>
 
             </Grid>

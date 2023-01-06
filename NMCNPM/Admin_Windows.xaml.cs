@@ -157,7 +157,10 @@ namespace NMCNPM
                         }
 
                     }
-                    Tk_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
+                    if (fail == 0)
+                        Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng";
+                    else
+                        Tk_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
                     if (success==0)
                         Tk_lb_errorout.Foreground=Brushes.IndianRed;
                     else
@@ -375,7 +378,10 @@ namespace NMCNPM
 
                     }
                     Lh_load_datagrid();
-                    Lh_lb_errorout.Content = "Đã thêm "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
+                    if (fail == 0)
+                        Lh_lb_errorout.Content = "Đã thêm "+success.ToString()+" dòng";
+                    else
+                        Lh_lb_errorout.Content = "Đã thêm "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể thêm";
                     if (success==0)
                         Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     else 
@@ -408,7 +414,11 @@ namespace NMCNPM
 
                     }
                     Lh_load_datagrid();
-                    Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
+                    if (fail == 0)
+                        Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng";
+                    else
+
+                        Lh_lb_errorout.Content = "Đã xoá "+success.ToString()+" dòng, "+fail.ToString()+" dòng không thể xoá";
                     if (success==0)
                         Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     else
@@ -606,27 +616,27 @@ namespace NMCNPM
                 if (loi == "-1")
                 {
                     Kh_nh_errorout.Content = "Có trường thông tin bị trống!!!";
-                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                    Kh_nh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-10")
                 {
                     Kh_nh_errorout.Content = "Lỗi giao tác!!!";
-                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                    Kh_nh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-2")
                 {
                     Kh_nh_errorout.Content = "Năm học đã tồn tại!!!";
-                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                    Kh_nh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-3")
                 {
                     Kh_nh_errorout.Content = "Tuổi bạn nhập không hợp lệ!!!";
-                    Kh_nh_errorout.Background = Brushes.IndianRed;
+                    Kh_nh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
                     Kh_nh_errorout.Content = "Thêm năm học thành công.";
-                    Kh_nh_errorout.Background = Brushes.LightGreen;
+                    Kh_nh_errorout.Foreground = Brushes.MediumSeaGreen;
                     get_datagrid_kh_nh();
 
 
@@ -650,18 +660,18 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_nh_errorout.Content = "Tuổi bạn nhập không hợp lệ!!!";
-                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                            Kh_nh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_nh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                            Kh_nh_errorout.Foreground = Brushes.IndianRed;
                         }
 
                         else
                         {
                             Kh_nh_errorout.Content = "Sửa thành công.";
-                            Kh_nh_errorout.Background = Brushes.LightGreen;
+                            Kh_nh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_nh();
                         }
 
@@ -669,7 +679,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_nh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_nh_errorout.Background = Brushes.IndianRed;
+                        Kh_nh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -695,17 +705,17 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_nh_errorout.Content = "Không thể xóa!!!";
-                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                            Kh_nh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_nh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_nh_errorout.Background = Brushes.IndianRed;
+                            Kh_nh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else
                         {
                             Kh_nh_errorout.Content = "Xóa thành công.";
-                            Kh_nh_errorout.Background = Brushes.LightGreen;
+                            Kh_nh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_nh();
                         }
 
@@ -713,7 +723,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_nh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_nh_errorout.Background = Brushes.IndianRed;
+                        Kh_nh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -764,27 +774,27 @@ namespace NMCNPM
                 if (loi == "-1")
                 {
                     Kh_lh_errorout.Content = "Có trường thông tin bị trống!!!";
-                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                    Kh_lh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-10")
                 {
                     Kh_lh_errorout.Content = "Lỗi giao tác!!!";
-                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                    Kh_lh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-2")
                 {
                     Kh_lh_errorout.Content = "Lớp học đã tồn tại!!!";
-                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                    Kh_lh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-3")
                 {
                     Kh_lh_errorout.Content = "Sĩ số tối đa không hợp lệ!!!";
-                    Kh_lh_errorout.Background = Brushes.IndianRed;
+                    Kh_lh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
                     Kh_lh_errorout.Content = "Thêm lớp học thành công.";
-                    Kh_lh_errorout.Background = Brushes.LightGreen;
+                    Kh_lh_errorout.Foreground = Brushes.MediumSeaGreen;
                     get_datagrid_kh_lh();
 
 
@@ -809,23 +819,23 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_lh_errorout.Content = "Sĩ số tối đa không hợp lệ!!!";
-                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                            Kh_lh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_lh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                            Kh_lh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-2")
                         {
                             Kh_lh_errorout.Content = "Sĩ số hiện lớp hiện tại lớn hơn bạn nhập!!!";
-                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                            Kh_lh_errorout.Foreground = Brushes.IndianRed;
                         }
 
                         else
                         {
                             Kh_lh_errorout.Content = "Sửa thành công.";
-                            Kh_lh_errorout.Background = Brushes.LightGreen;
+                            Kh_lh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_lh();
                         }
 
@@ -833,7 +843,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_lh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_lh_errorout.Background = Brushes.IndianRed;
+                        Kh_lh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -859,18 +869,18 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_lh_errorout.Content = "Không thể xóa!!!";
-                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                            Kh_lh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_lh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_lh_errorout.Background = Brushes.IndianRed;
+                            Kh_lh_errorout.Foreground = Brushes.IndianRed;
                         }
 
                         else
                         {
                             Kh_lh_errorout.Content = "Xóa thành công.";
-                            Kh_lh_errorout.Background = Brushes.LightGreen;
+                            Kh_lh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_lh();
                         }
 
@@ -878,7 +888,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_lh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_lh_errorout.Background = Brushes.IndianRed;
+                        Kh_lh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -956,27 +966,27 @@ namespace NMCNPM
                 if (loi == "-1")
                 {
                     Kh_mh_errorout.Content = "Có trường thông tin bị trống!!!";
-                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                    Kh_mh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-10")
                 {
                     Kh_mh_errorout.Content = "Lỗi giao tác!!!";
-                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                    Kh_mh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-2")
                 {
                     Kh_mh_errorout.Content = "Môn học đã tồn tại!!!";
-                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                    Kh_mh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else if (loi == "-3")
                 {
                     Kh_mh_errorout.Content = "Điểm đạt bạn nhập không hợp lệ!!!";
-                    Kh_mh_errorout.Background = Brushes.IndianRed;
+                    Kh_mh_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
                     Kh_mh_errorout.Content = "Thêm môn học thành công.";
-                    Kh_mh_errorout.Background = Brushes.LightGreen;
+                    Kh_mh_errorout.Foreground = Brushes.MediumSeaGreen;
 
                     List<string> dshocsinh = new List<string>();
                     DataTable dt1 = db.sql_select("select MaHocSinh from DanhSachLopHoc where Nam='" + Kh_mh_cb_nam.Text+"'");
@@ -1011,18 +1021,18 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_mh_errorout.Content = "Điểm đạt không hợp lệ!!!";
-                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                            Kh_mh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_mh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                            Kh_mh_errorout.Foreground = Brushes.IndianRed;
                         }
 
                         else
                         {
                             Kh_mh_errorout.Content = "Sửa thành công.";
-                            Kh_mh_errorout.Background = Brushes.LightGreen;
+                            Kh_mh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_mh();
                         }
 
@@ -1030,7 +1040,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_mh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_mh_errorout.Background = Brushes.IndianRed;
+                        Kh_mh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -1056,18 +1066,18 @@ namespace NMCNPM
                         if (loi == "-1")
                         {
                             Kh_mh_errorout.Content = "Không thể xóa!!!";
-                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                            Kh_mh_errorout.Foreground = Brushes.IndianRed;
                         }
                         else if (loi == "-10")
                         {
                             Kh_mh_errorout.Content = "Lỗi giao tác!!!";
-                            Kh_mh_errorout.Background = Brushes.IndianRed;
+                            Kh_mh_errorout.Foreground = Brushes.IndianRed;
                         }
 
                         else
                         {
                             Kh_mh_errorout.Content = "Xóa thành công.";
-                            Kh_mh_errorout.Background = Brushes.LightGreen;
+                            Kh_mh_errorout.Foreground = Brushes.MediumSeaGreen;
                             get_datagrid_kh_mh();
                         }
 
@@ -1075,7 +1085,7 @@ namespace NMCNPM
                     else
                     {
                         Kh_mh_errorout.Content = "Vui lòng chọn user cần sửa!!!";
-                        Kh_mh_errorout.Background = Brushes.IndianRed;
+                        Kh_mh_errorout.Foreground = Brushes.IndianRed;
                     }
 
                 }
@@ -1215,7 +1225,7 @@ namespace NMCNPM
                 if (dt.Rows.Count == 0)
                 {
                     Bd_errorout.Content = "Bảng điểm rỗng!!!";
-                    Bd_errorout.Background = Brushes.IndianRed;
+                    Bd_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
@@ -1223,32 +1233,32 @@ namespace NMCNPM
                     if (loi == "-1")
                     {
                         Bd_errorout.Content = "Vui lòng chọn năm học!!!";
-                        Bd_errorout.Background = Brushes.IndianRed;
+                        Bd_errorout.Foreground = Brushes.IndianRed;
                     }
                     else if (loi == "-10")
                     {
                         Bd_errorout.Content = "Lỗi giao tác!!!";
-                        Bd_errorout.Background = Brushes.IndianRed;
+                        Bd_errorout.Foreground = Brushes.IndianRed;
                     }
                     else if (loi == "-2")
                     {
                         Bd_errorout.Content = "Vui lòng chọn lớp học!!!";
-                        Bd_errorout.Background = Brushes.IndianRed;
+                        Bd_errorout.Foreground = Brushes.IndianRed;
                     }
                     else if (loi == "-3")
                     {
                         Bd_errorout.Content = "Vui lòng chọn kì học!!!";
-                        Bd_errorout.Background = Brushes.IndianRed;
+                        Bd_errorout.Foreground = Brushes.IndianRed;
                     }
                     else if (loi == "-4")
                     {
                         Bd_errorout.Content = "Vui lòng chọn môn học!!!";
-                        Bd_errorout.Background = Brushes.IndianRed;
+                        Bd_errorout.Foreground = Brushes.IndianRed;
                     }
                     else
                     {
                         Bd_errorout.Content = "Tìm kiếm thành công.";
-                        Bd_errorout.Background = Brushes.LightGreen;
+                        Bd_errorout.Foreground = Brushes.MediumSeaGreen;
                         Bd_timkiem_datagird.ItemsSource = dt.DefaultView;
                         Bd_datagird_tonghop.Visibility = Visibility.Hidden;
                         Bd_timkiem_datagird.Visibility = Visibility.Visible;
@@ -1289,13 +1299,13 @@ namespace NMCNPM
                     ExportToCsv("Exec QTV_LayBangDiem '" + Bd_cb_namhoc.Text + "','" + Bd_cb_lop.Text + "'," +
                   "'" + Bd_cb_kihoc.Text + "',N'" + Bd_cb_mon.Text + "' ", Bd_timkiem_datagird, duongdan);
                     Bd_errorout.Content = "In thành công.";
-                    Bd_errorout.Background = Brushes.LightGreen;
+                    Bd_errorout.Foreground = Brushes.MediumSeaGreen;
                 }
             }
             catch
             {
                 Bd_errorout.Content = "In thất bại!!!";
-                Bd_errorout.Background = Brushes.IndianRed;
+                Bd_errorout.Foreground = Brushes.IndianRed;
             }
 
         }
@@ -1345,40 +1355,41 @@ namespace NMCNPM
             {
                 string query = "Exec QTV_TongKetMon '" + Tk_mon_cb_namhoc.Text + "','" + Tk_mon_cb_kihoc.Text + "'";
                 DataTable dt = db.sql_select(query);
+                string loi;
                 if (dt.Rows.Count == 0)
                 {
-                    Tk_mon_lb_errorout.Content = "Bảng tổng kết môn rỗng!!!";
-                    Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                    Tk_mon_lb_errorout.Content = "Bảng rỗng :(";
+                    Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
+                    Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
+                    return;
+                }
+                else
+                    loi = dt.Rows[0][0].ToString();
+                if (loi == "-1")
+                {
+                    Tk_mon_lb_errorout.Content = "Vui lòng chọn năm học!!!";
+                    Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Tk_mon_lb_errorout.Content = "Lỗi giao tác!!!";
+                    Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
+                }
+
+                else if (loi == "-2")
+                {
+                    Tk_mon_lb_errorout.Content = "Vui lòng chọn kì học!!!";
+                    Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
-                    string loi = dt.Rows[0][0].ToString();
-                    if (loi == "-1")
-                    {
-                        Tk_mon_lb_errorout.Content = "Vui lòng chọn năm học!!!";
-                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
-                    }
-                    else if (loi == "-10")
-                    {
-                        Tk_mon_lb_errorout.Content = "Lỗi giao tác!!!";
-                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
-                    }
+                    Tk_mon_lb_errorout.Content = "Tìm kiếm thành công.";
+                    Tk_mon_lb_errorout.Foreground = Brushes.LightGreen;
+                    Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
+                    Tk_mon_datagird.Visibility = Visibility.Hidden;
+                    Tk_mon_timkiem_datagird.Visibility = Visibility.Visible;
+                    Tk_mon_bt_in.Visibility = Visibility.Visible;
 
-                    else if (loi == "-2")
-                    {
-                        Tk_mon_lb_errorout.Content = "Vui lòng chọn kì học!!!";
-                        Tk_mon_lb_errorout.Background = Brushes.IndianRed;
-                    }
-                    else
-                    {
-                        Tk_mon_lb_errorout.Content = "Tìm kiếm thành công.";
-                        Tk_mon_lb_errorout.Background = Brushes.LightGreen;
-                        Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
-                        Tk_mon_datagird.Visibility = Visibility.Hidden;
-                        Tk_mon_timkiem_datagird.Visibility = Visibility.Visible;
-                        Tk_mon_bt_in.Visibility = Visibility.Visible;
-
-                    }
                 }
 
             }
@@ -1407,13 +1418,13 @@ namespace NMCNPM
                 {
                     ExportToCsv("Exec QTV_TongKetMon '" + Tk_mon_cb_namhoc.Text + "','" + Tk_mon_cb_kihoc.Text + "'", Tk_mon_timkiem_datagird, duongdan);
                     Tk_mon_lb_errorout.Content = "In thành công.";
-                    Tk_mon_lb_errorout.Background = Brushes.LightGreen;
+                    Tk_mon_lb_errorout.Foreground = Brushes.MediumSeaGreen;
                 }
             }
             catch
             {
                 Tk_mon_lb_errorout.Content = "In thất bại!!!";
-                Tk_mon_lb_errorout.Background = Brushes.IndianRed;
+                Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
             }
         }
 
@@ -1486,7 +1497,7 @@ namespace NMCNPM
                 if (Tk_lop_datagird.Items.Count == 0)
                 {
                     Tk_lop_lb_errorout.Content = "Bảng rỗng !!!";
-                    Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
                     return;
                 }
                 else
@@ -1501,7 +1512,7 @@ namespace NMCNPM
                     {
                         ExportToCsv("Exec QTV_LayBangTongKetLop '" + Tk_lop_cb_namhoc.Text + "','" + Tk_lop_cb_lop.Text + "',N'" + Tk_lop_cb_kihoc.Text + "'", Tk_lop_datagird, duongdan);
                         Tk_lop_lb_errorout.Content = "In thành công.";
-                        Tk_lop_lb_errorout.Background = Brushes.LightGreen;
+                        Tk_lop_lb_errorout.Foreground = Brushes.MediumSeaGreen;
                     }
                 }
 
@@ -1509,7 +1520,7 @@ namespace NMCNPM
             catch
             {
                 Tk_lop_lb_errorout.Content = "In thất bại!!!";
-                Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
             }
         }
         private void get_tk_lop_datagrid()
@@ -1517,73 +1528,170 @@ namespace NMCNPM
             try
             {
                 string query = "Exec QTV_LayBangTongKetLop '" + Tk_lop_cb_namhoc.Text + "','" + Tk_lop_cb_lop.Text + "',N'" + Tk_lop_cb_kihoc.Text + "'";
-                DataTable dt = db.sql_select(query);
+                DataTable dt = db.sql_select(query); 
+                string loi;
                 if (dt.Rows.Count == 0)
                 {
                     Tk_lop_lb_errorout.Content = "Bảng rỗng :(";
-                    Tk_lop_lb_errorout.Background = Brushes.IndianRed;
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
+                    Tk_lop_datagird.ItemsSource = dt.DefaultView;
+                    return;
+                }
+                else
+                    loi = dt.Rows[0][0].ToString();
+
+                if (loi == "-1")
+                {
+                    Tk_lop_lb_errorout.Content = "Vui lòng chọn năm học!!!";
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
+                }
+                else if (loi == "-10")
+                {
+                    Tk_lop_lb_errorout.Content = "Lỗi giao tác!!!";
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
+                }
+
+                else if (loi == "-2")
+                {
+                    Tk_lop_lb_errorout.Content = "Vui lòng chọn lớp học!!!";
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
+                }
+                else if (loi == "-3")
+                {
+                    Tk_lop_lb_errorout.Content = "Vui lòng chọn kì học!!!";
+                    Tk_lop_lb_errorout.Foreground = Brushes.IndianRed;
                 }
                 else
                 {
-                    string loi = dt.Rows[0][0].ToString();
-                    if (loi == "-1")
-                    {
-                        Tk_lop_lb_errorout.Content = "Vui lòng chọn năm học!!!";
-                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
-                    }
-                    else if (loi == "-10")
-                    {
-                        Tk_lop_lb_errorout.Content = "Lỗi giao tác!!!";
-                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
-                    }
-
-                    else if (loi == "-2")
-                    {
-                        Tk_lop_lb_errorout.Content = "Vui lòng chọn lớp học!!!";
-                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
-                    }
-                    else if (loi == "-2")
-                    {
-                        Tk_lop_lb_errorout.Content = "Vui lòng chọn kì học!!!";
-                        Tk_lop_lb_errorout.Background = Brushes.IndianRed;
-                    }
-                    else
-                    {
-                        Tk_lop_lb_errorout.Content = "Tìm kiếm thành công.";
-                        Tk_lop_lb_errorout.Background = Brushes.LightGreen;
-                        Tk_lop_datagird.ItemsSource = dt.DefaultView;
-
-                    }
+                    Tk_lop_lb_errorout.Content = "Tìm kiếm thành công.";
+                    Tk_lop_lb_errorout.Foreground = Brushes.MediumSeaGreen;
+                    Tk_lop_datagird.ItemsSource = dt.DefaultView;
                 }
             }
             catch
             { }
         }
-
-        private void Tt_doimatkhau_loaded(object sender, RoutedEventArgs e)
+        private void Tt_getThongTin()
         {
+            try
+            {
+                string query = "Exec QTV_LayThongTin '" + username + "'";
+                DataTable dt = db.sql_select(query);
+                TT_tb_maqt.Text = dt.Rows[0]["MaQT"].ToString();
+                TT_tb_hoten.Text = dt.Rows[0]["HoTen"].ToString();
+                TT_cb_gioitinh.Text = dt.Rows[0]["GioiTinh"].ToString();
+                TT_tb_email.Text = dt.Rows[0]["Email"].ToString();
+                TT_tb_ngaysinh.Text = dt.Rows[0]["NgaySinh"].ToString();
+                TT_tb_sodienthoai.Text = dt.Rows[0]["SDT"].ToString();
+                TT_tb_diachi.Text = dt.Rows[0]["DiaChi"].ToString();
+                maqt= dt.Rows[0]["MaQT"].ToString();
+            }
+            catch
+            {
+                Tt_lb_thongtincanhan_errorout.Content = "Không tìm được thông tin!!!";
+                Tt_lb_thongtincanhan_errorout.Foreground = Brushes.IndianRed;
+            }
 
+
+
+        }
+        private void Tt_loaded(object sender, RoutedEventArgs e)
+        {
+            Tt_getThongTin();
+        }
+        private void Tt_capnhatthongtincanhan_click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn cập nhật thông tin???", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                    return;
+                }
+                else
+                {
+
+                    //do yes stuff            
+                    string query = "Exec QTV_CapNhatThongTinCaNhan '" + maqt+ "',N'" + TT_tb_hoten.Text + "','" + TT_tb_ngaysinh.Text + "','" + TT_cb_gioitinh.Text + "'" +
+                        ",'" + TT_tb_email.Text + "','" + TT_tb_sodienthoai.Text + "','" + TT_tb_diachi.Text + "'";
+                    DataTable dt = db.sql_select(query);
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Thông tin bị trống!!!";
+                        Tt_lb_thongtincanhan_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Lỗi giao tác!!!";
+                        Tt_lb_thongtincanhan_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Tt_lb_thongtincanhan_errorout.Content = "Cập nhật thành công.";
+                        Tt_lb_thongtincanhan_errorout.Foreground = Brushes.MediumSeaGreen;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         private void Tt_capnhatmatkhau_click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn đổi mật khẩu???", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    //do no stuff
+                    return;
+                }
+                else
+                {
 
+                    //do yes stuff            
+                    string query = "Exec DoiMatKhau '" + username + "','" + TT_tb_matkhaucu.Password + "','" + TT_tb_matkhaumoi.Password + "' ,'" + TT_tb_matkhaumoi_2.Password + "'";
+                    DataTable dt = db.sql_select(query);
+                    string loi = dt.Rows[0][0].ToString();
+                    if (loi == "-1")
+                    {
+
+                        Tt_lb_doimatkhau_errorout.Content = "Sai mật khẩu cũ!!!";
+                        Tt_lb_doimatkhau_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else if (loi == "-2")
+                    {
+                        Tt_lb_doimatkhau_errorout.Content = "Mật khẩu mới bị trống!!!";
+                        Tt_lb_doimatkhau_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else if (loi == "-3")
+                    {
+                        Tt_lb_doimatkhau_errorout.Content = "Mật khẩu nhập lại không đúng!!!";
+                        Tt_lb_doimatkhau_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else if (loi == "-10")
+                    {
+                        Tt_lb_doimatkhau_errorout.Content = "Lỗi giao tác!!!";
+                        Tt_lb_doimatkhau_errorout.Foreground = Brushes.IndianRed;
+                    }
+                    else
+                    {
+                        Tt_lb_doimatkhau_errorout.Content = "Cập nhật thành công.";
+                        Tt_lb_doimatkhau_errorout.Foreground = Brushes.MediumSeaGreen;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
 
-        private void Tt_loaded(object sender, RoutedEventArgs e)
+        private void Tt_doimatkhau_loaded(object sender, RoutedEventArgs e)
         {
-            //TT_shortcut.Background = Brushes.Navy;
-
-        }
-
-        private void Tt_capnhatthongtincanhan_click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        private void TT_tabitem_Mousedown(object sender, MouseButtonEventArgs e)
-        {
+            TT_tb_taikhoan.Text = username;
         }
 
         private void TT_shortcut_Click(object sender, RoutedEventArgs e)
