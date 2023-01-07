@@ -142,7 +142,7 @@
                                     <DataGridTextColumn Header="Email" Binding="{Binding Email, Mode=OneWay}"  Width="4*"  />
                                     <DataGridTextColumn Header="SĐT" Binding="{Binding SDT, Mode=OneWay}"  Width="2*"  />
                                     <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi, Mode=OneWay}"  Width="4*"  />
-                                    <DataGridTextColumn x:Name="Tk_column_monday" Header="Môn dạy" Binding="{Binding MonDay, Mode=OneWay}"  Width="2*"  />
+                                    <DataGridTextColumn x:Name="Tk_column_monday" Header="Môn dạy" Binding="{Binding MonDay}"  Width="2*"  />
                                     <DataGridTextColumn Header="Username" Binding="{Binding username, Mode=OneWay}"  Width="2*"  />
                                     <DataGridCheckBoxColumn CanUserSort="False"/>
                                 </DataGrid.Columns>
