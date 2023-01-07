@@ -111,65 +111,145 @@ create table GiaoVien_LopHoc
 	Foreign key(TenLop,Nam) references Lop(TenLop,Nam),
 )
 ----------------------------------------
-insert into TaiKhoan values('admin02','123',1)
-insert into TaiKhoan values('admin01','123',1)
-insert into TaiKhoan values('admin','123',1)
 
-insert into TaiKhoan values('gv01','123',2)
-insert into TaiKhoan values('gv02','123',2)
-insert into TaiKhoan values('gv03','123',2)
-insert into TaiKhoan values('gv04','123',2)
+insert into TaiKhoan values('admin02','12345',1)
+insert into TaiKhoan values('admin01','12345',1)
+insert into TaiKhoan values('admin','12345',1)
 
+insert into TaiKhoan values('gv01','12345',2)
+insert into TaiKhoan values('gv02','12345',2)
+insert into TaiKhoan values('gv03','12345',2)
+insert into TaiKhoan values('gv04','12345',2)
+insert into TaiKhoan values('gv05','12345',2)
 
+insert into TaiKhoan values('gv06','12345',2)
 
+insert into TaiKhoan values('gv07','12345',2)
 
-insert into TaiKhoan values('hs01','123',3)
-insert into TaiKhoan values('hs02','123',3)
-insert into TaiKhoan values('hs03','123',3)
-insert into TaiKhoan values('hs04','123',3)
-insert into TaiKhoan values('hs05','123',3)
-
+insert into TaiKhoan values('gv08','12345',2)
 
 
-insert into GiaoVien values(1,N'Anh','1-1-1978',N'Nam','abc@gmail.com','0123856789',N'Phus Tho',N'Toán','gv01')
-insert into GiaoVien values(2,N'Anh Tú','1-1-1978',N'Nam','abd@gmail.com','0123756789',N'Phus Tho',N'Toán','gv02')
+
+
+
+insert into TaiKhoan values('hs01','12345',3)
+insert into TaiKhoan values('hs02','12345',3)
+insert into TaiKhoan values('hs03','12345',3)
+insert into TaiKhoan values('hs04','12345',3)
+insert into TaiKhoan values('hs05','12345',3)
+insert into TaiKhoan values('hs06','12345',3)
+
+insert into TaiKhoan values('hs07','12345',3)
+
+insert into TaiKhoan values('hs08','12345',3)
+insert into TaiKhoan values('hs09','12345',3)
+insert into TaiKhoan values('hs10','12345',3)
+insert into TaiKhoan values('hs11','12345',3)
+insert into TaiKhoan values('hs12','12345',3)
+insert into TaiKhoan values('hs13','12345',3)
+insert into TaiKhoan values('hs14','12345',3)
+insert into TaiKhoan values('hs15','12345',3)
+insert into TaiKhoan values('hs16','12345',3)
+insert into TaiKhoan values('hs17','12345',3)
+insert into TaiKhoan values('hs18','12345',3)
+insert into TaiKhoan values('hs19','12345',3)
+insert into TaiKhoan values('hs20','12345',3)
+
+
+
+
+insert into GiaoVien values(1,N'Hoàng Minh Anh','1-11-1978',N'Nữ','abc@gmail.com','0123856789',N'Phú Thọ',N'Toán','gv01')
+insert into GiaoVien values(2,N'Lê Thị Anh Tú','11-1-1980',N'Nữ','abd@gmail.com','0123756789',N'Hà Giang',N'Toán','gv02')
 insert into GiaoVien values(3,N'Anh Phạm','1-1-1978',N'Nam','abe@gmail.com','0123454789',N'Phus Tho',N'Văn','gv03')
-insert into GiaoVien values(4,N'Bao Thanh Quy','1-1-1978',N'Nam','baothanhquy@gmail.com','0123477789',N'Bình Dương',N'Văn','gv04')
+insert into GiaoVien values(4,N'Nguyễn Hữu Dũng','1-2-1978',N'Nam','nhd@gmail.com','0123477689',N'Tây Ninh',N'Hóa','gv04')
+insert into GiaoVien values(5,N'Lê Hoàng','3-1-1978',N'Nam','lh@gmail.com','0123477489',N'Bình Dương',N'Sinh','gv05')
+insert into GiaoVien values(6,N'Hoàng Vinh','1-4-1978',N'Nam','hv@gmail.com','0123477889',N'Bình Dương',N'Toán','gv06')
+insert into GiaoVien values(7,N'Nguyễn Thị Nguyệt','1-1-1970',N'Nữ','ntnguyet@gmail.com','0123477189',N'Vũng Tàu',N'Văn','gv07')
+insert into GiaoVien values(8,N'Trần Thị Hòa','1-1-1950',N'Nữ','tthoa@gmail.com','0123477989',N'Bình Phước',N'Văn','gv08')
 
 
-insert into QuanTri values(1,N'Anh Phạm','1-1-1978',N'Nam','abw@gmail.com','0123454789',N'Phus Tho','admin')
-insert into QuanTri values(2,N'Anh Phạm','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Phus Tho','admin01')
-insert into QuanTri values(3,N'Anh Phạm','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Phus Tho','admin02')
+insert into QuanTri values(1,N'Anh Phạm Dũng','1-1-1978',N'Nam','abw@gmail.com','0123454789',N'Bình Dương','admin')
+insert into QuanTri values(2,N'Trần Văn Tiến','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Bình Dương','admin01')
+insert into QuanTri values(3,N'Lý Văn Nam','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Bình Dương','admin02')
 
-insert into HocSinh values(1,N'Anh Phạm Quy','1-1-2000',N'Nam','hs01@gmail.com','0123454789',N'Phus Tho','hs01')
+insert into HocSinh values(1,N'Phạm Quy Vũ','1-1-2000',N'Nam','hs01@gmail.com','0123454789',N'DakLak','hs01')
 insert into HocSinh values(2,N'Mai Quyết ','1-1-2000',N'Nam','hs02@gmail.com','0123454789',N'Bình Dương','hs02')
-insert into HocSinh values(3,N'Trương Anh Ngọc','1-1-2000',N'Nam','hs03@gmail.com','0123454789',N'Bình Dương','hs03')
+insert into HocSinh values(3,N'Trương Anh Ngọc','1-1-2000',N'Nam','hs03@gmail.com','0123454789',N'Bình Phước','hs03')
 insert into HocSinh values(4,N'Lê Thị Vy','1-1-2000',N'Nữ','hs04@gmail.com','0123454789',N'Bình Dương','hs04')
-insert into HocSinh values(5,N'Lee Min Ho','1-1-2000',N'Nam','hs05@gmail.com','0369852741',N'Bình Dương','hs05')
+insert into HocSinh values(5,N'Lee Min Ho','1-6-2000',N'Nam','hs05@gmail.com','0369852741',N'Bình Dương','hs05')
+insert into HocSinh values(6,N'Nguyễn Tiến Đạt','7-1-2000',N'Nam','hs06@gmail.com','0369852741',N'Bình Dương','hs06')
+insert into HocSinh values(7,N'Đinh Văn Long','1-8-2000',N'Nam','hs07@gmail.com','0369852742',N'Bình Dương','hs07')
+insert into HocSinh values(8,N'Đinh ','1-9-2002',N'Nữ','hs08@gmail.com','0369852743',N'Bình Dương','hs08')
+insert into HocSinh values(9,N'Lee Min Ho','12-1-2000',N'Nam','hs09@gmail.com','0369852744',N'Bình Dương','hs09')
+insert into HocSinh values(10,N'Lee Min Hoan','1-1-2000',N'Nam','hs10@gmail.com','0369852745',N'Bình Phước','hs10')
+insert into HocSinh values(11,N'Đinh Thị Cúc','1-1-2002',N'Nữ','hs11@gmail.com','0369852746',N'Bình Dương','hs11')
 
-insert into NamHoc values('2021-2022',16,20)
-insert into NamHoc values('2020-2021',16,20)
-insert into NamHoc values('2019-2020',16,20)
+insert into HocSinh values(12,N'Đinh Hoài Phương','1-11-2002',N'Nữ','hs12@gmail.com','0369852747',N'Bình Dương','hs12')
+
+insert into HocSinh values(13,N'Đinh Thị Minh','11-1-2002',N'Nữ','hs13@gmail.com','0369852748',N'Bình Phước','hs13')
+
+insert into HocSinh values(14,N'Đinh Minh Phương','1-1-2003',N'Nữ','hs14@gmail.com','0369852749',N'Bình Dương','hs14')
+insert into HocSinh values(15,N'Lê Văn Nam','1-1-2000',N'Nam','hs15@gmail.com','0369852745',N'Bình Định','hs15')
+insert into HocSinh values(16,N'Lê Văn Chí','1-1-2002',N'Nam','hs16@gmail.com','0369852845',N'Bình Dương','hs16')
+insert into HocSinh values(17,N'Lê Hoàng Anh ','1-1-2002',N'Nam','hs17@gmail.com','0369852845',N'Bình Dương','hs17')
+insert into HocSinh values(18,N'Lê Văn Vũ','1-1-2002',N'Nam','hs18@gmail.com','0369852845',N'Bình Dương','hs18')
+insert into HocSinh values(19,N'Nguyễn Hoàng Hà','1-1-2002',N'Nam','hs19@gmail.com','0369852845',N'Bình Định','hs19')
+insert into HocSinh values(20,N'Lê ','1-1-2002',N'Nam','hs20@gmail.com','0369872845',N'Bình Định','hs20')
+
+
+
+insert into NamHoc values('2021-2022',15,20)
+insert into NamHoc values('2020-2021',15,20)
+insert into NamHoc values('2019-2020',15,20)
+
+insert into Lop values('10A1','2019-2020',40)
+insert into Lop values('10A2','2019-2020',40)
+insert into Lop values('11A1','2019-2020',40)
+insert into Lop values('11A2','2019-2020',40)
+insert into Lop values('12A1','2019-2020',40)
+insert into Lop values('12A2','2019-2020',40)
+
+insert into Lop values('10A1','2020-2021',40)
+insert into Lop values('11A1','2020-2021',40)
+insert into Lop values('12A1','2020-2021',40)
+
+insert into Lop values('10A1','2021-2022',40)
+insert into Lop values('11A1','2021-2022',40)
+insert into Lop values('12A1','2021-2022',40)
+
+
+
+
+
+
 
 insert into MonHoc values(N'Toán','2019-2020',5.0)
 insert into MonHoc values(N'Văn','2019-2020',5.0)
 insert into MonHoc values(N'Sinh','2019-2020',5.0)
 
-insert into Lop values('10A1','2019-2020',40)
-insert into Lop values('10A2','2019-2020',40)
-insert into Lop values('11A2','2019-2020',40)
-insert into Lop values('11A1','2019-2020',40)
 
 
-insert into Lop values('10A1','2021-2022',40)
-insert into Lop values('10A1','2020-2021',40)
-insert into Lop values('11A1','2021-2022',40)
-insert into Lop values('11A2','2021-2022',40)
+
+
 
 insert into DanhSachLopHoc values('10A1','2019-2020',1)
 insert into DanhSachLopHoc values('10A1','2019-2020',2)
 insert into DanhSachLopHoc values('10A1','2019-2020',3)
 insert into DanhSachLopHoc values('10A1','2019-2020',4)
+insert into DanhSachLopHoc values('10A1','2019-2020',5)
+insert into DanhSachLopHoc values('10A1','2019-2020',6)
+insert into DanhSachLopHoc values('10A1','2019-2020',7)
+
+insert into DanhSachLopHoc values('11A1','2019-2020',8)
+insert into DanhSachLopHoc values('11A1','2019-2020',9)
+insert into DanhSachLopHoc values('11A1','2019-2020',10)
+insert into DanhSachLopHoc values('11A1','2019-2020',11)
+insert into DanhSachLopHoc values('11A1','2019-2020',12)
+insert into DanhSachLopHoc values('11A1','2019-2020',13)
+insert into DanhSachLopHoc values('11A1','2019-2020',14)
+
+
+
 
 
 insert into Diem_HocSinh_MonHoc values(1,N'Toán','2019-2020',1,9,9,10)
@@ -199,6 +279,222 @@ insert into Diem_HocSinh_MonHoc values(4,N'Văn','2019-2020',1,10,10,10)
 insert into Diem_HocSinh_MonHoc values(4,N'Văn','2019-2020',2,9,9,9.5)
 insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',1,1,9,10)
 insert into Diem_HocSinh_MonHoc values(4,N'Sinh','2019-2020',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(5,N'Toán','2019-2020',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(5,N'Toán','2019-2020',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(5,N'Văn','2019-2020',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(5,N'Văn','2019-2020',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(5,N'Sinh','2019-2020',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(5,N'Sinh','2019-2020',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(6,N'Toán','2019-2020',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(6,N'Toán','2019-2020',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(6,N'Văn','2019-2020',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(6,N'Văn','2019-2020',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(6,N'Sinh','2019-2020',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(6,N'Sinh','2019-2020',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(7,N'Toán','2019-2020',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(7,N'Toán','2019-2020',2,7,7,6)
+insert into Diem_HocSinh_MonHoc values(7,N'Văn','2019-2020',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(7,N'Văn','2019-2020',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(7,N'Sinh','2019-2020',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(7,N'Sinh','2019-2020',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(8,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(8,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(8,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(8,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(8,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(8,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(9,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(9,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(9,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(9,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(9,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(9,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(10,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(10,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(10,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(10,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(10,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(10,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(11,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(11,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(11,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(11,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(11,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(11,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(12,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(12,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(12,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(12,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(12,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(12,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+
+insert into Diem_HocSinh_MonHoc values(13,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(13,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(13,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(13,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(13,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(13,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(14,N'Toán','2019-2020',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(14,N'Toán','2019-2020',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(14,N'Văn','2019-2020',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(14,N'Văn','2019-2020',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(14,N'Sinh','2019-2020',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(14,N'Sinh','2019-2020',2,7.5,9.5,9.3)
+
+
+insert into MonHoc values(N'Toán','2020-2021',5.0)
+insert into MonHoc values(N'Văn','2020-2021',5.0)
+insert into MonHoc values(N'Sử','2020-2021',5.0)
+
+
+
+
+
+
+insert into DanhSachLopHoc values('10A1','2020-2021',1)
+insert into DanhSachLopHoc values('10A1','2020-2021',2)
+insert into DanhSachLopHoc values('10A1','2020-2021',3)
+insert into DanhSachLopHoc values('10A1','2020-2021',4)
+insert into DanhSachLopHoc values('10A1','2020-2021',5)
+insert into DanhSachLopHoc values('10A1','2020-2021',6)
+insert into DanhSachLopHoc values('10A1','2020-2021',7)
+
+insert into DanhSachLopHoc values('11A1','2020-2021',8)
+insert into DanhSachLopHoc values('11A1','2020-2021',9)
+insert into DanhSachLopHoc values('11A1','2020-2021',10)
+insert into DanhSachLopHoc values('11A1','2020-2021',11)
+insert into DanhSachLopHoc values('11A1','2020-2021',12)
+insert into DanhSachLopHoc values('11A1','2020-2021',13)
+insert into DanhSachLopHoc values('11A1','2020-2021',14)
+
+
+
+
+
+insert into Diem_HocSinh_MonHoc values(1,N'Toán','2020-2021',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(1,N'Toán','2020-2021',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(1,N'Văn','2020-2021',1,9,8,8)
+insert into Diem_HocSinh_MonHoc values(1,N'Văn','2020-2021',2,9,9,7)
+insert into Diem_HocSinh_MonHoc values(1,N'Sử','2020-2021',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(1,N'Sử','2020-2021',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2020-2021',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(2,N'Toán','2020-2021',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2020-2021',1,9,8,8)
+insert into Diem_HocSinh_MonHoc values(2,N'Văn','2020-2021',2,9,9,7)
+insert into Diem_HocSinh_MonHoc values(2,N'Sử','2020-2021',1,1,3,5)
+insert into Diem_HocSinh_MonHoc values(2,N'Sử','2020-2021',2,4.99,4.9,4.8)
+
+insert into Diem_HocSinh_MonHoc values(3,N'Toán','2020-2021',1,9,9,10)
+insert into Diem_HocSinh_MonHoc values(3,N'Toán','2020-2021',2,9,9,10)
+insert into Diem_HocSinh_MonHoc values(3,N'Văn','2020-2021',1,1.5,1,4)
+insert into Diem_HocSinh_MonHoc values(3,N'Văn','2020-2021',2,3,5,4)
+insert into Diem_HocSinh_MonHoc values(3,N'Sử','2020-2021',1,1,9,6)
+insert into Diem_HocSinh_MonHoc values(3,N'Sử','2020-2021',2,7.5,9,5)
+
+insert into Diem_HocSinh_MonHoc values(4,N'Toán','2020-2021',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(4,N'Toán','2020-2021',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(4,N'Văn','2020-2021',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(4,N'Văn','2020-2021',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(4,N'Sử','2020-2021',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(4,N'Sử','2020-2021',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(5,N'Toán','2020-2021',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(5,N'Toán','2020-2021',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(5,N'Văn','2020-2021',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(5,N'Văn','2020-2021',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(5,N'Sử','2020-2021',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(5,N'Sử','2020-2021',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(6,N'Toán','2020-2021',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(6,N'Toán','2020-2021',2,7,4,6)
+insert into Diem_HocSinh_MonHoc values(6,N'Văn','2020-2021',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(6,N'Văn','2020-2021',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(6,N'Sử','2020-2021',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(6,N'Sử','2020-2021',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(7,N'Toán','2020-2021',1,3,5,6)
+insert into Diem_HocSinh_MonHoc values(7,N'Toán','2020-2021',2,7,7,6)
+insert into Diem_HocSinh_MonHoc values(7,N'Văn','2020-2021',1,10,10,10)
+insert into Diem_HocSinh_MonHoc values(7,N'Văn','2020-2021',2,9,9,9.5)
+insert into Diem_HocSinh_MonHoc values(7,N'Sử','2020-2021',1,1,9,10)
+insert into Diem_HocSinh_MonHoc values(7,N'Sử','2020-2021',2,7.5,9,10)
+
+insert into Diem_HocSinh_MonHoc values(8,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(8,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(8,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(8,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(8,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(8,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(9,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(9,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(9,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(9,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(9,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(9,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(10,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(10,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(10,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(10,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(10,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(10,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(11,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(11,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(11,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(11,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(11,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(11,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(12,N'Toán','2020-2021',1,6.5,7,7.7)
+insert into Diem_HocSinh_MonHoc values(12,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(12,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(12,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(12,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(12,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+
+insert into Diem_HocSinh_MonHoc values(13,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(13,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(13,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(13,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(13,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(13,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into Diem_HocSinh_MonHoc values(14,N'Toán','2020-2021',1,6.5,7,7)
+insert into Diem_HocSinh_MonHoc values(14,N'Toán','2020-2021',2,7,7.9,7.5)
+insert into Diem_HocSinh_MonHoc values(14,N'Văn','2020-2021',1,5.5,5.5,4.5)
+insert into Diem_HocSinh_MonHoc values(14,N'Văn','2020-2021',2,7,5,7)
+insert into Diem_HocSinh_MonHoc values(14,N'Sử','2020-2021',1,7,7.9,7.6)
+insert into Diem_HocSinh_MonHoc values(14,N'Sử','2020-2021',2,7.5,9.5,9.3)
+
+insert into GiaoVien_LopHoc values(1,'10A1','2019-2020')
+insert into GiaoVien_LopHoc values(3,'10A1','2019-2020')
+insert into GiaoVien_LopHoc values(5,'10A1','2019-2020')
+insert into GiaoVien_LopHoc values(1,'11A1','2019-2020')
+insert into GiaoVien_LopHoc values(3,'11A1','2019-2020')
+insert into GiaoVien_LopHoc values(5,'11A1','2019-2020')
+
+insert into GiaoVien_LopHoc values(1,'10A1','2020-2021')
+insert into GiaoVien_LopHoc values(3,'10A1','2020-2021')
+insert into GiaoVien_LopHoc values(5,'10A1','2020-2021')
+insert into GiaoVien_LopHoc values(1,'11A1','2020-2021')
+insert into GiaoVien_LopHoc values(3,'11A1','2020-2021')
+insert into GiaoVien_LopHoc values(5,'11A1','2020-2021')
+
+
 
 
 /*
@@ -274,7 +570,6 @@ begin tran
 	end catch
 commit tran
 go
-
 create -- alter 
 function qtv_CheckThemHSvaoLop (@Nam varchar(12),@TenLop varchar(10), @mahs int)
 returns tinyint
@@ -284,11 +579,8 @@ begin
 	if exists (select * from DanhSachLopHoc where MaHocSinh = @mahs and Nam = @Nam)
 		return 1
 	set @LopHienTai =  (select max(SUBSTRING(TenLop, 1, 2)) from DanhSachLopHoc where MaHocSinh = @mahs)
-	--if (@LopHienTai is null and (SUBSTRING(@tenlop, 1, 2) = 10))
-	--	return 1
-	--if @LopHienTai + 1 = (SUBSTRING(@tenlop, 1, 2))
-	--	return 1
-	if @LopHienTai < (SUBSTRING(@tenlop, 1, 2))
+	--return @LOphientai
+	if @LopHienTai > (SUBSTRING(@tenlop, 1, 2)) and @LopHienTai is not null
 		return 1
 	return 0
 end 
@@ -355,7 +647,7 @@ begin try
 		UNION
 		select MaQT,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,1 from dbo.QuanTri
 		UNION
-		select MaGV,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,2  from dbo.GiaoVien) a
+		select MaGV,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi, MonDay,username,2  from dbo.GiaoVien) a
 	where
 		(HoTen like '%'+ @keyword +'%' or
 		NgaySinh like '%'+  @keyword +'%' or
@@ -1484,9 +1776,6 @@ end try
 begin catch
 	select -10
 end catch
-go
-insert into GiaoVien_LopHoc values(1,'10A1','2019-2020')
-insert into GiaoVien_LopHoc values(1,'11A1','2019-2020')
 go
 create --alter
 proc GV_LayLopDay

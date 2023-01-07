@@ -92,7 +92,7 @@
         </Grid.RowDefinitions>
 
         <Image Source="icon/wallpaper_login.png"  Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Image Source="icon/logo_hcmus.png" Height="150" Grid.Column="1"/>
+        <Image Source="icon/logo_hcmus.png" Height="180" Margin="0,0,0,40" Grid.Column="1"/>
 
         <!--Nửa bên trái-->
         <Grid Grid.Row="0"/>
@@ -128,7 +128,7 @@
                                  Style="{StaticResource LoginStyle_PasswordBox}" />
 
                 </Grid>
-                <Label Content="@Copyright by Group 11" FontSize="12" Margin="0,0,10,10" Foreground="Navy"  Style="{StaticResource LoginStyle_TitleLabel}" 
+                <Label Content="Copyright 2023 by Group 11 - MNCNPM" FontSize="12" Margin="0,0,10,10" Foreground="Navy"  Style="{StaticResource LoginStyle_TitleLabel}" 
                            HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <!--Nút đăng nhập-->
                 <Grid Height="50" Width="150" Background="Transparent" Margin="0,10,0,0">

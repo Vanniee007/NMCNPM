@@ -652,7 +652,6 @@ namespace NMCNPM
                         Kh_nh_tb_namhoc.Text = rowview["Nam"].ToString();
                         Kh_nh_tb_tuoitoithieu.Text = rowview["TuoiToiThieu"].ToString();
                         Kh_nh_tb_tuoitoida.Text = rowview["TuoiToiDa"].ToString();
-
                     }
                 }
             }

@@ -9,7 +9,7 @@
         MinHeight="700" 
         MinWidth="1050"
         WindowStartupLocation="CenterScreen"
-        Icon="icon/window.png"
+        Icon="icon/logo_window.png"
         Height="354"                               
         Width="1103"
         WindowStyle="None"

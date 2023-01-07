@@ -9,7 +9,7 @@
         MinHeight="700" 
         MinWidth="1050"
         WindowStartupLocation="CenterScreen"
-        Icon="icon/window.png"
+        Icon="icon/logo_window.png"
         Height="354"                               
         Width="1103"
         WindowStyle="None"
@@ -482,8 +482,8 @@
                             <ComboBoxItem Content="1"/>
                             <ComboBoxItem Content="2" />
                         </ComboBox>
-                        <Button Content="Tìm kiếm" Width="110" Style="{StaticResource MyStyle_Button_Them}" Margin="620,-5,0,0" HorizontalAlignment="Left" Click="Bd_timkiem_click"/>
-                        <Button Content="Xem tất cả" Width="110" Style="{StaticResource MyStyle_Button_Sua}" Margin="780,-5,20,0" HorizontalAlignment="Left" Click="Bd_refresh_click"/>
+                        <Button Content="Tìm kiếm" Width="110" Style="{StaticResource MyStyle_Button_Them}" Margin="580,-5,0,0" HorizontalAlignment="Left" Click="Bd_timkiem_click"/>
+                        <Button Content="Xem tất cả" Width="110" Style="{StaticResource MyStyle_Button_Sua}" Margin="730,-5,20,0" HorizontalAlignment="Left" Click="Bd_refresh_click"/>
 
                        
                     </Grid>
