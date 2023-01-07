@@ -106,6 +106,7 @@
                     <Image Source="icon/home.png" Height="40" Width="40" Margin="0,-25,0,0"/>
                 </TabItem.Header>
                 <Grid  Style="{StaticResource MyStyle_GridBackground}" >
+                    <MediaElement x:Name="Dashboard_media" Source="../../icon/edtech_lower.gif" MediaEnded="Dashboard_media_MediaEnded" />
 
                 </Grid>
                 <!--Hết item Thông tin-->
@@ -241,7 +242,7 @@
                                   AllowDrop="True" SelectionChanged="Bd_cb_namhoc_changed"/>
 
                         <ComboBox x:Name="Bd_cb_lop" ItemsSource="{Binding}" Margin="205,25,0,0"  Width="140" Style="{StaticResource MyStyle_ComboBox_TT}"
-                                  AllowDrop="True"/>
+                                  AllowDrop="True" SelectionChanged="Bd_cb_lop_SelectionChanged"/>
                         <ComboBox x:Name="Bd_cb_kihoc"  Margin="390,25,0,0"  Width="140" Style="{StaticResource MyStyle_ComboBox_TT}"
                                   AllowDrop="True"
                                    SelectionChanged="Bd_cb_kihoc_changed">
@@ -436,7 +437,7 @@
                         <DataGrid x:Name="Tk_mon_datagird" 
                                   Margin="20,20,20,20"
                                   AutoGenerateColumns="False"
-                                
+                                                      Loaded="Tk_mon_datagird_Loaded"
                                   Background="White"
                                   IsReadOnly="True">
 
@@ -475,7 +476,7 @@
             <!--Kết thúc tổng kết-->
 
             <!--Bắt đầu thông tin-->
-            <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded">
+            <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded" Width="0">
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal"  ToolTip="Thông tin">
                         <!--<TextBlock Text="Thông tin"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->

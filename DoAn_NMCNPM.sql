@@ -347,7 +347,7 @@ begin
 end
 go
 create -- alter 
-proc qtv_danhsachtaikhoan @keyword nvarchar(20),@role tinyint
+proc qtv_danhsachtaikhoan @keyword nvarchar(20),@role tinyint,@username varchar(20)
 as
 begin try
 	select *
@@ -366,7 +366,8 @@ begin try
 		MonDay like '%'+  @keyword +'%' or
 		username like '%'+  @keyword+'%'  or
 		ChucDanh like '%'+  @keyword +'%') and
-		ChucDanh = @role
+		ChucDanh = @role and
+		username != @username
 end try
 begin catch
 end catch

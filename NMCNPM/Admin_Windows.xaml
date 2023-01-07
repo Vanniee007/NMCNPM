@@ -929,7 +929,7 @@
                     </TabControl>
                 </TabItem>
 
-                <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded" >
+                <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded" Width="0">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal"  ToolTip="Thông tin">
                             <!--<TextBlock Text="Thông tin"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->

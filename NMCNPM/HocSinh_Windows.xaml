@@ -345,7 +345,20 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            
+
+            <!--Bắt đầu trang chủ-->
+            <TabItem >
+                <TabItem.Header>
+                    <!--<TextBlock Text="Tang chủ"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->
+                    <Image Source="icon/home.png" Height="40" Width="40" Margin="0,-25,0,0"/>
+                </TabItem.Header>
+                <Grid  Style="{StaticResource MyStyle_GridBackground}" >
+                    <MediaElement x:Name="Dashboard_media" Source="../../icon/edtech_lower.gif" MediaEnded="Dashboard_media_MediaEnded" />
+
+                </Grid>
+                <!--Hết item Thông tin-->
+            </TabItem>
+            <!--Kết thúc trang chủ-->
             <TabItem Loaded="Dslop_loaded">
                 <TabItem.Header>
                     <TextBlock Text="Danh sách lớp"  FontSize="18" Foreground="White" FontWeight="Medium"    />
@@ -522,6 +535,7 @@
                         </Grid.ColumnDefinitions>
                         <Label x:Name="Bd_errorout"  
                                Content="" 
+                               FontWeight="Medium"
                                Margin="0,20,0,4.6"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
@@ -546,7 +560,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded">
+            <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded" Width="0">
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal"  ToolTip="Thông tin">
                         <!--<TextBlock Text="Thông tin"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->

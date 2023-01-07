@@ -697,46 +697,50 @@ namespace NMCNPM
 * ==================================================================================*/
         private void SaveDataGridToCsv(DataGrid dataGrid)
         {
-            // Tạo một StringBuilder để chứa dữ liệu CSV
-            StringBuilder csvContent = new StringBuilder();
-
-            // Lấy danh sách các cột trong DataGrid
-            List<string> columns = new List<string>();
-            DataTable dataTable = ((DataView)dataGrid.ItemsSource).Table;
-            foreach (DataColumn column in dataTable.Columns)
+            try
             {
-                columns.Add(column.ColumnName);
-            }
+                // Tạo một StringBuilder để chứa dữ liệu CSV
+                StringBuilder csvContent = new StringBuilder();
 
-            // Thêm tiêu đề cột vào chuỗi CSV
-            csvContent.AppendLine(string.Join(",", columns));
-
-            // Lấy dữ liệu từng dòng trong DataGrid và thêm vào chuỗi CSV
-            foreach (DataRowView row in dataGrid.Items)
-            {
-                List<string> cells = new List<string>();
-                foreach (string column in columns)
+                // Lấy danh sách các cột trong DataGrid
+                List<string> columns = new List<string>();
+                DataTable dataTable = ((DataView)dataGrid.ItemsSource).Table;
+                foreach (DataColumn column in dataTable.Columns)
                 {
-                    // Lấy giá trị từng ô trong dòng
-                    string cellValue = row[column].ToString();
-                    cells.Add(cellValue);
+                    columns.Add(column.ColumnName);
                 }
 
-                // Thêm dòng vào chuỗi CSV
-                csvContent.AppendLine(string.Join(",", cells));
-            }
+                // Thêm tiêu đề cột vào chuỗi CSV
+                csvContent.AppendLine(string.Join(",", columns));
 
-            // Tạo một hộp thoại SaveFileDialog để lấy đường dẫn tệp CSV
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                // Mở một StreamWriter để ghi chuỗi CSV vào tệp
-                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                // Lấy dữ liệu từng dòng trong DataGrid và thêm vào chuỗi CSV
+                foreach (DataRowView row in dataGrid.Items)
                 {
-                    writer.Write(csvContent.ToString());
+                    List<string> cells = new List<string>();
+                    foreach (string column in columns)
+                    {
+                        // Lấy giá trị từng ô trong dòng
+                        string cellValue = row[column].ToString();
+                        cells.Add(cellValue);
+                    }
+
+                    // Thêm dòng vào chuỗi CSV
+                    csvContent.AppendLine(string.Join(",", cells));
+                }
+
+                // Tạo một hộp thoại SaveFileDialog để lấy đường dẫn tệp CSV
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    // Mở một StreamWriter để ghi chuỗi CSV vào tệp
+                    using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                    {
+                        writer.Write(csvContent.ToString());
+                    }
                 }
             }
+            catch { }
         }
 
         private void Lh_cb_nam_get()
@@ -929,7 +933,7 @@ namespace NMCNPM
         }
         private void Bd_datagrid_get(string ki)
         {
-            string query = "Exec GV_LayBangDiem  '" + Bd_cb_namhoc.Text + "','" + Bd_cb_lop.Text + "',N'" + ki + "',N'" + mon + "'";
+            string query = "Exec GV_LayBangDiem  '" + Bd_cb_namhoc.SelectedItem.ToString() + "','" + Bd_cb_lop.SelectedItem.ToString() + "',N'" + ki + "',N'" + mon + "'";
             DataTable dt = db.sql_select(query);
             if (dt.Rows.Count == 0)
             {
@@ -1120,8 +1124,30 @@ namespace NMCNPM
 
         private void Bc_Loaded(object sender, RoutedEventArgs e)
         {
-
             TT_button_background();
+        }
+
+        private void Dashboard_media_MediaEnded(object sender, RoutedEventArgs e)
+        {
+
+            Dashboard_media.Position = new TimeSpan(0, 0, 1);
+        }
+
+        private void Bd_cb_lop_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Bd_datagrid_get(Bd_cb_kihoc.Text);
+            }
+            catch
+            {
+            }
+        }
+
+        private void Tk_mon_datagird_Loaded(object sender, RoutedEventArgs e)
+        {
+            TT_button_background(); 
+            Bc_get_datagrid();
         }
     }
 }

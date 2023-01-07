@@ -25,6 +25,7 @@ namespace NMCNPM
         {
             InitializeComponent();
             tb_username.Text = username;
+            tb_username.Focus();
         }
 
         //animation cửa số đăng nhập

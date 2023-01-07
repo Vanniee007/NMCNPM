@@ -141,7 +141,7 @@ namespace NMCNPM
                         break;
                 }
 
-                string query = "qtv_danhsachtaikhoan N'"+ Tk_tb_search.Text+"','"+ role+"'";
+                string query = "qtv_danhsachtaikhoan N'"+ Tk_tb_search.Text+"','"+ role+"','"+username+"'";
                 Tk_datagird.ItemsSource = db.sql_select(query).DefaultView;
                 //Lh_button_them.IsEnabled = false;
             }

@@ -226,6 +226,15 @@ namespace NMCNPM
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     return;
                 }
+                if (Tn_gv_pb_password.Password != "" && truyvan == "sua")
+                {
+                    if (!validation.ValidPassword(Tn_gv_pb_password.Password))
+                    {
+                        Lh_lb_errorout.Content = "Mật khẩu không hợp lệ.\nMật khẩu phải có từ 5 đến 50 ký tự, không chứa khoảng trắng";
+                        Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                        return;
+                    }
+                }
                 if (!validation.ValidUsername(Tn_gv_tb_username.Text))
                 {
                     Lh_lb_errorout.Content = "Tên đăng nhập không hợp lệ.\nTên đăng nhập phải có từ 3 đến 20 ký tự, không chứa ký tự đặc biệt";

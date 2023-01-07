@@ -311,7 +311,8 @@ namespace NMCNPM
         private void Bd_refresh_click(object sender, RoutedEventArgs e)
         {
             get_Bd_datagrid_tonghop();
-            Bd_diemtongket.Content = "";
+            Bd_diemtongket.Content = ""; Bd_cb_namhoc.Text ="";
+            Bd_cb_kihoc.Text="";
         }
 
         /*======================================DANH SÁCH LỚP========================================
@@ -426,6 +427,12 @@ namespace NMCNPM
         private void Tabcontrol_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TT_button_background();
+        }
+
+        private void Dashboard_media_MediaEnded(object sender, RoutedEventArgs e)
+        {
+
+            Dashboard_media.Position = new TimeSpan(0, 0, 1);
         }
     }
 }
