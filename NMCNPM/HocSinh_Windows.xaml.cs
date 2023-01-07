@@ -21,12 +21,32 @@ namespace NMCNPM
     public partial class HocSinh_Windows : Window
     {
         
-        public string username = "hs01";
+        public string username = "";
         public string mahs;
         DBConnect db = new DBConnect();
-        public HocSinh_Windows()
+        public HocSinh_Windows(string username_)
         {
             InitializeComponent();
+            username = username_;  
+            mahs = TT_layMa(username);
+            if (mahs == null)
+            {
+                MessageBox.Show("Học sinh không tồn tại");
+                this.Close();
+            }
+        }
+        private string TT_layMa(string username)
+        {
+            try
+            {
+                string str;
+                str = db.sql_select("select MaHS from HocSinh where username = '"+username+"'").Rows[0][0].ToString();
+                return str;
+            }
+            catch
+            {
+                return null;
+            }
         }
         private void bt_mini_click(object sender, RoutedEventArgs e)
         {
@@ -47,6 +67,9 @@ namespace NMCNPM
         private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
         {
 
+            LoginWindows lg = new LoginWindows(username);
+            this.Close();
+            lg.Show();
         }
         private void bt_close_click(object sender, RoutedEventArgs e)
         {
@@ -364,7 +387,45 @@ namespace NMCNPM
 
         private void TT_shortcut_Click(object sender, RoutedEventArgs e)
         {
-            TT_tab.Focus();
+            TT_tabitem.Focus();
+        }
+
+        private void Windows_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void Windows_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (this.WindowState == System.Windows.WindowState.Normal)
+                {
+                    this.WindowState = System.Windows.WindowState.Maximized;
+                }
+                else
+                {
+                    this.WindowState = System.Windows.WindowState.Normal;
+                }
+            }
+        }
+
+        private void TT_button_background()
+        {
+            if (Tabcontrol.SelectedItem == TT_tabitem)
+            {
+                TT_shortcut.Background =Brushes.Navy;
+            }
+            else
+                TT_shortcut.Background =Brushes.Transparent;
+        }
+        private void Tabcontrol_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TT_button_background();
         }
     }
 }

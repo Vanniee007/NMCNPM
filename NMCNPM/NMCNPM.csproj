@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LoginWindows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,13 +86,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBConnect.cs" />
-    <Compile Include="GiaoVien_Windows.xaml.cs">
-      <DependentUpon>GiaoVien_Windows.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="FolderPickerClass.cs" />
+    <Compile Include="GiaoVien_Windows.xaml.cs" />
     <Compile Include="HocSinh_Windows.xaml.cs">
       <DependentUpon>HocSinh_Windows.xaml</DependentUpon>
     </Compile>
     <Compile Include="InputValidation.cs" />
+    <Compile Include="LoginWindows.xaml.cs">
+      <DependentUpon>LoginWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -141,6 +147,15 @@
     <Resource Include="icon\print.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="icon\door-key.png" />
+    <Resource Include="icon\lock.png" />
+    <Resource Include="icon\nguoilun.gif" />
+    <Resource Include="icon\nguoilun.png" />
+    <Resource Include="icon\oe.jpg" />
+    <Resource Include="icon\Logo_HCMUS.png" />
+    <Resource Include="icon\wallpaper_login.png" />
+    <Resource Include="icon\logo_window.png" />
+    <Content Include="icon\chulun.mp4" />
     <Content Include="Vang querry mới.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

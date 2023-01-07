@@ -316,8 +316,8 @@
             <Setter Property="Control.HorizontalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
-    <Grid>
-        <TabControl Margin="0,0,0,0" BorderBrush ="Gainsboro" TabStripPlacement="Top"  FontSize="16">
+    <Grid  MouseDown="Windows_MouseDown" MouseLeftButtonDown="Windows_MouseLeftButtonDown">
+        <TabControl x:Name="Tabcontrol" Margin="0,0,0,0" BorderBrush ="Gainsboro" TabStripPlacement="Top"  FontSize="16" SelectionChanged="Tabcontrol_SelectionChanged">
             <!--Định dạng memu-->
             <TabControl.Resources >
                 <Style TargetType="TabItem" >
@@ -353,18 +353,18 @@
                 </TabItem.Header>
                 <Grid Background="WhiteSmoke">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="800"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Background="White">
 
@@ -409,7 +409,7 @@
                         </DataGrid>
                     </Grid>
                    
-                    <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="39*"/>
                             <ColumnDefinition Width="5*"/>
@@ -417,11 +417,11 @@
                         </Grid.ColumnDefinitions>
                         <Label x:Name="Dslop_errorout"  
                                Content="" 
-                               Margin="0,0,0,4.6"
+                               Margin="0,20,0,4.6"
                                FontWeight="Medium"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
-                               VerticalAlignment="Bottom" Grid.Column="2"/>
+                               VerticalAlignment="top" Grid.Column="2"/>
                     </Grid>
 
                 </Grid>
@@ -434,19 +434,19 @@
                 </TabItem.Header>
                 <Grid Background="WhiteSmoke">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="800"/>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="3" Background="White">
 
@@ -514,7 +514,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="39*"/>
                             <ColumnDefinition Width="5*"/>
@@ -522,10 +522,10 @@
                         </Grid.ColumnDefinitions>
                         <Label x:Name="Bd_errorout"  
                                Content="" 
-                               Margin="0,0,0,4.6"
+                               Margin="0,20,0,4.6"
                                Style="{StaticResource MyStyle_Label}" 
                                HorizontalAlignment="Right" 
-                               VerticalAlignment="Bottom" Grid.Column="2"/>
+                               VerticalAlignment="Top" Grid.Column="2"/>
                     </Grid>
                     <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
                         <Grid.ColumnDefinitions>
@@ -546,7 +546,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="TT_tab" Loaded="Tt_loaded">
+            <TabItem x:Name="TT_tabitem" Loaded="Tt_loaded">
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal"  ToolTip="Thông tin">
                         <!--<TextBlock Text="Thông tin"  FontSize="18" Foreground="White" FontWeight="Medium"    />-->

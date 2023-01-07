@@ -1452,5 +1452,295 @@ GO
 
 		
 
+--------------------------------------ROLE: GIAOVIEN-----------------------------------
+------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
+create --alter
+proc GV_LayThongTin
+	@username varchar(20)
+as
+begin
+	select* from GiaoVien where username=@username
+end
+go
+
+create -- alter 
+proc GV_danhsachhslop @Nam varchar(12),@TenLop varchar(10)
+as
+begin try
+	select MaHS,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi
+	from HocSinh
+	where MaHS in (select MaHocSinh from DanhSachLopHoc where TenLop = @TenLop and @Nam = Nam)
+	
+end try
+begin catch
+	select -10
+end catch
+go
+insert into GiaoVien_LopHoc values(1,'10A1','2019-2020')
+insert into GiaoVien_LopHoc values(1,'11A1','2019-2020')
+
+create --alter
+proc GV_LayLopDay
+	@MaGV int
+as
+begin 
+	select (Nam+' / '+TenLop) as 'Lop'
+	from GiaoVien_LopHoc
+	where MaGV=@MaGV
+	order by Nam ASC,TenLop ASC
+end
+go
 
 
+
+create --alter
+proc GV_CapNhatThongTinCaNhan
+	@MaGV int,
+	@HoTen nvarchar(50),
+	@NgaySinh date,
+	@GioiTinh nvarchar(10),
+	@Email varchar(50), 
+	@SDT bigint, 
+	@DiaChi nvarchar(50)
+as
+begin tran
+	begin try
+		if @HoTen='' or  @NgaySinh='' or @GioiTinh='' or @Email='' or @SDT='' or @DiaChi=''
+		begin
+			print N'Có trường thông tin trống'
+			rollback tran
+			select -1
+			return
+		end
+		update GiaoVien
+		set HoTen=@HoTen,NgaySinh=@NgaySinh,GioiTinh=@GioiTinh,Email=@Email,SDT=@SDT,DiaChi=@DiaChi
+		where MaGV=@MaGV
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+
+		
+create --alter
+proc GV_LayBangDiem
+	@Nam varchar(12),
+	@TenLop varchar(10),
+	@Ki nvarchar(20),
+	@TenMon nvarchar(30)
+as
+begin tran
+	begin try
+		if @Nam=''
+		begin
+			print N'Chưa chọn năm'
+			rollback tran
+			select -1
+			return
+		end
+		if @TenLop=''
+		begin
+			print N'Chưa chọn lớp'
+			rollback tran
+			select -2
+			return
+		end
+		if @Ki='1' or @Ki='2'
+		begin
+			select H.MaHS,H.HoTen,D.KiHoc,D.Diem15,D.Diem1Tiet,D.DiemCuoiKi
+			from (select * from Diem_HocSinh_MonHoc where Nam=@Nam and TenMon=@TenMon and KiHoc=@Ki) D,
+				(select* from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop) L,
+				HocSinh H
+			where H.MaHS=L.MaHocSinh and D.MaHocSinh=L.MaHocSinh
+		end
+		else
+		begin
+			select H.MaHS,H.HoTen,D.KiHoc,D.Diem15,D.Diem1Tiet,D.DiemCuoiKi
+			from (select * from Diem_HocSinh_MonHoc where Nam=@Nam and TenMon=@TenMon) D,
+				(select* from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop) L,
+				HocSinh H
+			where H.MaHS=L.MaHocSinh and D.MaHocSinh=L.MaHocSinh
+		end
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+
+create --alter
+proc GV_CapNhatDiem
+	@Nam varchar(12),
+	@Ki nvarchar(20),
+	@TenMon nvarchar(30),
+	@MaHS int,
+	@Diem15 float,
+	@Diem1Tiet float,
+	@DiemCuoiKi float
+as
+begin tran
+	begin try
+		if @Diem15>10 or @Diem15<0 or @Diem1Tiet>10 or @Diem1Tiet<0 or @DiemCuoiKi>10 or @DiemCuoiKi<0 
+		begin
+			print N'Điểm không hợp lệ'
+			rollback tran
+			select -1
+			return
+		end
+		update Diem_HocSinh_MonHoc
+		set Diem15=@Diem15,Diem1Tiet=@Diem1Tiet,DiemCuoiKi=@DiemCuoiKi
+		where Nam=@Nam and KiHoc=@Ki and MaHocSinh=@MaHS and TenMon=@TenMon
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+
+
+
+create -- alter
+proc GV_DiemTrungBinh
+@Nam varchar(12),
+@TenLop varchar(10),
+@Ki nvarchar(10),
+@TenMon nvarchar(20)
+as
+begin tran
+	begin try
+		if @Nam=''
+		begin
+			print N'Năm rỗng'
+			rollback tran
+			select -1
+			return
+		end
+		if @TenLop=''
+		begin
+			print N'Tên lớp rỗng'
+			rollback tran
+			select -2
+			return
+		end
+		if @Ki=''
+		begin
+			print N'Kì rỗng'
+			rollback tran
+			select -3
+			return
+		end
+		if @TenMon=''
+		begin
+			print N'Tên môn rỗng'
+			rollback tran
+			select -4
+			return
+		end
+		if (@Ki='1' or @Ki='2')
+			select MaHS as 'MaHocSinh',HoTen,hs.NgaySinh,dbo.lamtron(Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6) as 'DTB'
+			from (select* from Diem_HocSinh_MonHoc where Nam=@Nam and TenMon=@TenMon and @Ki=KiHoc) as D,
+			(select MaHocSinh from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop) as M,HocSinh hs
+			where D.MaHocSinh=M.MaHocSinh and hs.MaHS=M.MaHocSinh
+		else
+			--select MaHS as 'MaHocSinh',HoTen,hs.NgaySinh,dbo.lamtron(avg(Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
+			--from (select* from Diem_HocSinh_MonHoc where Nam=@Nam and TenMon=@TenMon) as D,
+			--(select MaHocSinh from DanhSachLopHoc where Nam=@Nam and TenLop=@TenLop) as M,HocSinh hs
+			--where D.MaHocSinh=M.MaHocSinh and hs.MaHS=M.MaHocSinh
+			select Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh, dbo.lamtron(avg(D.Diem15*0.1+D.Diem1Tiet*0.3+DiemCuoiKi*0.6)) as 'DTB'
+			from 
+				(select* from DanhSachLopHoc  where TenLop=@TenLop and  Nam=@nam) Ds ,
+				(select* from Diem_HocSinh_MonHoc where Nam=@nam and TenMon=@TenMon) D,HocSinh Hs
+			where Ds.MaHocSinh=D.MaHocSinh and Hs.MaHS=Ds.MaHocSinh
+			group by Ds.MaHocSinh,Hs.HoTen,Hs.NgaySinh
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+
+
+
+
+create -- alter
+proc GV_TongKetMon
+	@TenMon nvarchar(12)
+as
+begin tran 
+	begin try
+		select Nam,KiHoc,TenMon,count(MaHocSinh) as 'SiSo',
+			(select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) ) as 'SoNguoiDat'
+			,dbo.lamtron(((select count(D.MaHocSinh)
+			from Diem_HocSinh_MonHoc D
+			where D.TenMon =a.TenMon  and a.Nam=d.Nam and d.KiHoc =a.KiHoc  and (D.Diem15*0.1+D.Diem1Tiet*0.3+D.DiemCuoiKi*0.6)>(select DiemDat from MonHoc where TenMon=a.TenMon and Nam=a.Nam ) )*1.0 /count(MaHocSinh)*1.0)*100) as 'TiLeDat'
+			,dbo.lamtron(avg((Diem15*0.1+Diem1Tiet*0.3+DiemCuoiKi*0.6))) as 'DTB'
+		from Diem_HocSinh_MonHoc a
+		where @TenMon =TenMon
+		group by Nam,KiHoc,TenMon
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+GO
+
+
+
+create -- alter 
+proc DangNhap @username varchar(20),@password varchar(50)
+as
+begin try
+	if @username = '' or @password = ''
+	begin
+		select -1
+		return
+	end
+	if CHARINDEX(' ',trim(' ' from @username)) != 0 
+	begin
+		select -2
+		return
+	end
+	if CHARINDEX(' ',trim(' ' from @password)) != 0 
+	begin
+		select -3
+		return
+	end
+	declare @loai int
+	set @loai = (select Loai from TaiKhoan where @username = username and @password = pass)
+	if @loai is null
+	begin
+		select -4
+		return
+	end
+	select @loai
+	return
+end try
+begin catch
+	--Lỗi hệ thông
+	select 0
+	return
+end catch
+go
