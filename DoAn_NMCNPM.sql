@@ -1118,7 +1118,6 @@ begin tran
 COMMIT TRAN
 select 0
 GO
-
 create --alter
 proc QTV_XoaMonHoc
 	@TenMon nvarchar(20),
@@ -1142,7 +1141,7 @@ begin tran
 		return
 	END CATCH
 COMMIT TRAN
-select 0
+		select 0
 GO
 
 create --alter
