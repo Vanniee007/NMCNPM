@@ -377,4 +377,6 @@ begin tran
 	end catch
 commit tran
 go
-qtv_xoataikhoan 'quantrithemlan3'
+
+
+select distinct Nam from GiaoVien_LopHoc where MaGV = ''

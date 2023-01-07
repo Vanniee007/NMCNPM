@@ -211,10 +211,16 @@ namespace NMCNPM
                 }
 
                 //Check điều kiện trước khi thêm      
-                if (Tn_gv_tb_username.Text== "" || Tn_gv_pb_password.Password == "" || Tn_gv_tb_hoten.Text == "" ||
+                if (Tn_gv_tb_username.Text== "" ||  Tn_gv_tb_hoten.Text == "" ||
                    Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy") == "" || Tn_gv_cb_gioitinh.Text== "" ||
                    Tn_gv_tb_email.Text == "" || Tn_gv_tb_sodienthoai.Text == "" ||
                    Tn_gv_tb_diachi.Text == "")
+                {
+                    Lh_lb_errorout.Content = "Có trường rỗng";
+                    Lh_lb_errorout.Foreground=Brushes.IndianRed;
+                    return;
+                }
+                if (Tn_gv_pb_password.Password == "" && truyvan != "sua")
                 {
                     Lh_lb_errorout.Content = "Có trường rỗng";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
@@ -226,7 +232,7 @@ namespace NMCNPM
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
                     return;
                 }
-                if (!validation.ValidPassword(Tn_gv_pb_password.Password))
+                if (!validation.ValidPassword(Tn_gv_pb_password.Password) && truyvan != "sua")
                 {
                     Lh_lb_errorout.Content = "Mật khẩu không hợp lệ.\nMật khẩu phải có từ 5 đến 50 ký tự, không chứa khoảng trắng";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
@@ -234,7 +240,7 @@ namespace NMCNPM
                 }
                 int birthday = Int32.Parse(Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("yyyy"));
                 int thisyear = Int32.Parse(DateTime.Now.ToString("yyyy"));
-                if (thisyear - birthday < 15 || 20 < thisyear - birthday )
+                if ((thisyear - birthday < 15 || 20 < thisyear - birthday) && Role == "học sinh")
                 {
                     Lh_lb_errorout.Content = "Độ tuổi phải từ 15 đến 20";
                     Lh_lb_errorout.Foreground=Brushes.IndianRed;
@@ -257,7 +263,7 @@ namespace NMCNPM
 
                 querry = "qtv_"+truyvan+"taikhoan '"+ MaRole  +"','"  +Tn_gv_tb_username.Text +"','"+
                     Tn_gv_pb_password.Password  +"',N'"+ Tn_gv_tb_hoten.Text +"','"+
-                    Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy") +"','"+Tn_gv_cb_gioitinh.Text         +"','"+
+                    Convert.ToDateTime(Tn_gv_tb_ngaysinh.Text).ToString("MM/dd/yyyy") +"',N'"+Tn_gv_cb_gioitinh.Text         +"','"+
                     Tn_gv_tb_email.Text +"','"+Tn_gv_tb_sodienthoai.Text +"',N'"+
                     Tn_gv_tb_diachi.Text +"',N'"+Tn_gv_tb_daymon.Text +"'";
                 int maloi = (int)db.sql_select(querry).Rows[0][0];
@@ -304,6 +310,12 @@ namespace NMCNPM
             {
                 this.DragMove();
             }
+        }
+
+
+        private void Grid_MouseDown_errorremove(object sender, MouseButtonEventArgs e)
+        {
+            Lh_lb_errorout.Content="";
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

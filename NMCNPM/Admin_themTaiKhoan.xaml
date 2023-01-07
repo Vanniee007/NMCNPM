@@ -290,8 +290,8 @@
             <Setter Property="Control.HorizontalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
-    
-    <Grid >
+
+    <Grid MouseDown="Grid_MouseDown_errorremove">
         <Grid Style="{StaticResource MyStyle_GridBackground}" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>

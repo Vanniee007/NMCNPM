@@ -23,6 +23,9 @@ namespace NMCNPM
         public MainWindow()
         {
             InitializeComponent();
+            LoginWindows lg = new LoginWindows("");
+            this.Close();
+            lg.Show();
         }
     }
 }

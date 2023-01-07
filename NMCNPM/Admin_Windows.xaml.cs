@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
+//       16:17:15
+
 namespace NMCNPM
 {
     /// <summary>
@@ -22,14 +24,34 @@ namespace NMCNPM
     /// </summary>
     public partial class Admin_Windows : Window
     {
-        public string username = "admin";
+        public string username = "";
         public string maqt;
         DBConnect db = new DBConnect();
 
         //public  { get; set; }
-        public Admin_Windows()
+        public Admin_Windows(string username_)
         {
             InitializeComponent();
+            username = username_;   
+            maqt = TT_layMa(username);
+            if (maqt == null)
+            {
+                MessageBox.Show("Admin không tồn tại");
+                this.Close();
+            }
+        }
+        private string TT_layMa(string username)
+        {
+            try
+            {
+                string str;
+                str = db.sql_select("select MaQT from QuanTri where username = '"+username+"'").Rows[0][0].ToString();
+                return str;
+            }
+            catch
+            {
+                return null;
+            }
         }
         /*_________________________________________________________________________ 
          __________________________________________________________________________
@@ -44,10 +66,9 @@ namespace NMCNPM
             {
                 this.DragMove();
             }
-        }
-        private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            Dashboard_media.LoadedBehavior = MediaState.Manual;
+            Dashboard_media.UnloadedBehavior = MediaState.Manual;
+            Dashboard_media.Play();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -65,6 +86,12 @@ namespace NMCNPM
             }
         }
 
+        private void Btn_dangxuat_Click_1(object sender, RoutedEventArgs e)
+        {
+            LoginWindows lg = new LoginWindows(username);
+            this.Close();
+            lg.Show();
+        }
 
         private void bt_mini_click(object sender, RoutedEventArgs e)
         {
@@ -1356,9 +1383,10 @@ namespace NMCNPM
                 string loi;
                 if (dt.Rows.Count == 0)
                 {
-                    Tk_mon_lb_errorout.Content = "Bảng rỗng :(";
+                    Tk_mon_lb_errorout.Content = "Bảng rỗng :("; 
                     Tk_mon_lb_errorout.Foreground = Brushes.IndianRed;
                     Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
+                    Tk_mon_timkiem_datagird.Visibility=Visibility.Visible;
                     return;
                 }
                 else
@@ -1382,7 +1410,7 @@ namespace NMCNPM
                 else
                 {
                     Tk_mon_lb_errorout.Content = "Tìm kiếm thành công.";
-                    Tk_mon_lb_errorout.Foreground = Brushes.LightGreen;
+                    Tk_mon_lb_errorout.Foreground = Brushes.MediumSeaGreen;
                     Tk_mon_timkiem_datagird.ItemsSource = dt.DefaultView;
                     Tk_mon_datagird.Visibility = Visibility.Hidden;
                     Tk_mon_timkiem_datagird.Visibility = Visibility.Visible;
@@ -1402,11 +1430,24 @@ namespace NMCNPM
             get_Tk_mon_datagrid();
         }
 
+        private string ChonFolder()
+        {
+            var dlg = new FolderPicker();
+            dlg.InputPath = @"c:\windows\system32";
+            if (dlg.ShowDialog() == true)
+            {
+                return dlg.ResultPath;
+            }
+            return null;
+        }
         private void Tk_mon_in_click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string duongdan = "D:/BangTongKetMon_" + Tk_mon_cb_namhoc.Text + "_" + Tk_mon_cb_kihoc.Text + ".csv";
+                string folderPath = ChonFolder();
+                if (folderPath ==null)
+                    return;
+                string duongdan = folderPath+"\\BangTongKetMon_" + Tk_mon_cb_namhoc.Text + "_" + Tk_mon_cb_kihoc.Text + ".csv";
                 if (MessageBox.Show("Bạn có muốn in vào "+duongdan+ "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
                     //do no stuff
@@ -1500,7 +1541,10 @@ namespace NMCNPM
                 }
                 else
                 {
-                    string duongdan = "D:/BangTongKetLop_" + Tk_lop_cb_namhoc.Text + "_" + Tk_lop_cb_lop.Text + "_"+Tk_lop_cb_kihoc.Text+ ".csv";
+                    string folderPath = ChonFolder();
+                    if (folderPath ==null)
+                        return;
+                    string duongdan = folderPath+"\\BangTongKetLop_" + Tk_lop_cb_namhoc.Text + "_" + Tk_lop_cb_lop.Text + "_"+Tk_lop_cb_kihoc.Text+ ".csv";
                     if (MessageBox.Show("Bạn có muốn in vào " + duongdan + "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                     {
                         //do no stuff
@@ -1700,7 +1744,7 @@ namespace NMCNPM
 
         private void TT_button_background()
         {
-            if (TT_tabitem.IsFocused)
+            if (Tabcontrol.SelectedItem == TT_tabitem)
             {
                 TT_shortcut.Background =Brushes.Navy;
             }
