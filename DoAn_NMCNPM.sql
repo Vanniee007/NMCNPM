@@ -265,6 +265,8 @@ begin tran
 			return
 		end
 		delete DanhSachLopHoc where TenLop =@TenLop and Nam = @Nam and MaHocSinh = @mahs
+		delete from DanhSachLopHoc where MaHocSinh=@MaHS and Nam = @Nam
+		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS and Nam = @Nam
 		select 0
 	end try
 	begin catch
@@ -1485,7 +1487,7 @@ end catch
 go
 insert into GiaoVien_LopHoc values(1,'10A1','2019-2020')
 insert into GiaoVien_LopHoc values(1,'11A1','2019-2020')
-
+go
 create --alter
 proc GV_LayLopDay
 	@MaGV int
@@ -1775,12 +1777,13 @@ GO
 
 create --alter
 proc QTV_XoaHocSinhDayDu
-	@MaHS int
+	@MaHS int,
+	@Nam varchar(12)
 as
 begin tran
 	begin try
-		delete from DanhSachLopHoc where MaHocSinh=@MaHS
-		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS
+		delete from DanhSachLopHoc where MaHocSinh=@MaHS and Nam = @Nam
+		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS and Nam = @Nam
 		delete from HocSinh where MaHS=@MaHS
 	end try
 	begin catch

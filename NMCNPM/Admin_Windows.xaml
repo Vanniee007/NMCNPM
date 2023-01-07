@@ -61,7 +61,7 @@
                         <Image Source="icon/home.png" Height="40" Width="40" Margin="0,-25,0,0"/>
                     </TabItem.Header>
                     <Grid  Style="{StaticResource MyStyle_GridBackground}" >
-                        <MediaElement x:Name="Dashboard_media" Source="../../icon/nguoilun.gif" MediaEnded="Dashboard_media_MediaEnded" />
+                        <MediaElement x:Name="Dashboard_media" Source="../../icon/edtech_lower.gif" MediaEnded="Dashboard_media_MediaEnded" />
 
                     </Grid>
                     <!--Hết item Thông tin-->
@@ -200,10 +200,10 @@
                                   AllowDrop="True" SelectionChanged="Lh_Combobox_dsnam_SelectionChanged" />
                             <ComboBox x:Name="Lh_Combobox_dslop" ItemsSource="{Binding}" Margin="200,0,0,0"  Width="120" Style="{StaticResource MyStyle_ComboBox_TT}"
                                 AllowDrop="True" SelectionChanged="Lh_Combobox_dslop_SelectionChanged" />
-                            <Button x:Name="Lh_button_xoa" Content="Xoá" Style="{StaticResource MyStyle_Button_Xoa}" Margin="90,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                Click="Lh_button_xoa_Click"/>
                             <Button x:Name="Lh_button_them" Content="Thêm" Style="{StaticResource MyStyle_Button_Them}" Margin="90,0" HorizontalAlignment="Right" VerticalAlignment="Top"
                                 Click="Lh_button_them_Click"/>
+                            <Button x:Name="Lh_button_xoa" Content="Xoá" Style="{StaticResource MyStyle_Button_Xoa}" Margin="90,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Click="Lh_button_xoa_Click"/>
                             <Button Content="Refresh" Style="{StaticResource MyStyle_Button_Sua}" HorizontalAlignment="Right"  VerticalAlignment="Top" 
                                 Click="Lh_button_refresh_Click"/>
                         </Grid>
