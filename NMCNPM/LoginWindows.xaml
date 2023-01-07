@@ -9,6 +9,8 @@
         ResizeMode="NoResize"    
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        BorderThickness="2"
+               BorderBrush="LightGray"
         Title="Nai Teen .Inc" 
         Height="600" Width="900" MinHeight="500" MinWidth="700">
     <Window.Resources>

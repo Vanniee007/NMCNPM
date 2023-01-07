@@ -86,7 +86,7 @@ namespace NMCNPM
                 TT_cb_gioitinh.Text = dt.Rows[0]["GioiTinh"].ToString();
                 TT_tb_email.Text = dt.Rows[0]["Email"].ToString();
                 TT_tb_ngaysinh.Text = dt.Rows[0]["NgaySinh"].ToString();
-                TT_tb_sodienthoai.Text = dt.Rows[0]["SDT"].ToString();
+                TT_tb_sodienthoai.Text = "0"+dt.Rows[0]["SDT"].ToString();
                 TT_tb_diachi.Text = dt.Rows[0]["DiaChi"].ToString();
                 mahs = dt.Rows[0]["MaHS"].ToString();
             }

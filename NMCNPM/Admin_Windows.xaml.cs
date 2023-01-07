@@ -66,9 +66,6 @@ namespace NMCNPM
             {
                 this.DragMove();
             }
-            Dashboard_media.LoadedBehavior = MediaState.Manual;
-            Dashboard_media.UnloadedBehavior = MediaState.Manual;
-            Dashboard_media.Play();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -312,6 +309,9 @@ namespace NMCNPM
                 string query = "qtv_danhsachhslop '"+ Lh_Combobox_dsnam.SelectedItem.ToString()+"','"+ Lh_Combobox_dslop.SelectedItem.ToString()+"'";
                 Lh_datagird_dshocsinh.ItemsSource = db.sql_select(query).DefaultView;
                 Lh_button_them.IsEnabled = false;
+            Lh_button_them.Visibility = Visibility.Hidden;
+                Lh_button_xoa.IsEnabled = true;
+            Lh_button_xoa.Visibility = Visibility.Visible;
             }
             catch { }
         }
@@ -319,7 +319,13 @@ namespace NMCNPM
         {
             try
             {
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("select * from HocSinh").DefaultView;
+                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,username from HocSinh").DefaultView;
+
+                Lh_button_them.IsEnabled = true;
+                Lh_button_them.Visibility = Visibility.Visible;
+
+                Lh_button_xoa.IsEnabled = false;
+                Lh_button_xoa.Visibility = Visibility.Hidden;
             }
             catch { }
         }
@@ -332,7 +338,6 @@ namespace NMCNPM
         {
             Lh_load_datagrid_refresh();
             //Lh_Combobox_dslop.Text = "";
-            Lh_button_them.IsEnabled = true;
 
         }
 
@@ -380,6 +385,25 @@ namespace NMCNPM
         {
 
         }
+        private void Lh_themDiemHocSinh(string MaHS)
+        {
+            var ds = new List<string>();
+            ds.Add("Toán");
+            ds.Add("Lí");
+            ds.Add("Hóa");
+            ds.Add("Sinh");
+            ds.Add("Sử");
+            ds.Add("Địa");
+            ds.Add("Văn");
+            ds.Add("Đạo đức");
+            ds.Add("Thể dục"); 
+            foreach (string TenMon in ds)
+            {
+                db.sql_select("QTV_ThemDiemHocSinh '"+MaHS+"',N'"+TenMon+"','"+Lh_Combobox_dsnam.SelectedItem.ToString()+"'");
+
+            }
+
+        }
         private void Lh_button_them_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -395,6 +419,13 @@ namespace NMCNPM
                         if (ketqua ==0)
                         {
                             success++;
+                            Lh_themDiemHocSinh(MaHS);
+                            /*
+                            QTV_ThemDiemHocSinh
+                            @MaHS int,
+                            @TenMon nvarchar(30),
+                            @Nam varchar(12)
+                            */
                         }
                         else
                         {
@@ -431,6 +462,7 @@ namespace NMCNPM
                         if (ketqua ==0)
                         {
                             success++;
+
                         }
                         else
                         {
@@ -1251,6 +1283,10 @@ namespace NMCNPM
                 {
                     Bd_errorout.Content = "Bảng điểm rỗng!!!";
                     Bd_errorout.Foreground = Brushes.IndianRed;
+                    Bd_timkiem_datagird.ItemsSource = dt.DefaultView;
+                    Bd_datagird_tonghop.Visibility = Visibility.Hidden;
+                    Bd_timkiem_datagird.Visibility = Visibility.Visible;
+                    Bd_bt_in.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -1624,7 +1660,7 @@ namespace NMCNPM
                 TT_cb_gioitinh.Text = dt.Rows[0]["GioiTinh"].ToString();
                 TT_tb_email.Text = dt.Rows[0]["Email"].ToString();
                 TT_tb_ngaysinh.Text = dt.Rows[0]["NgaySinh"].ToString();
-                TT_tb_sodienthoai.Text = dt.Rows[0]["SDT"].ToString();
+                TT_tb_sodienthoai.Text = "0"+ dt.Rows[0]["SDT"].ToString();
                 TT_tb_diachi.Text = dt.Rows[0]["DiaChi"].ToString();
                 maqt= dt.Rows[0]["MaQT"].ToString();
             }
@@ -1754,6 +1790,11 @@ namespace NMCNPM
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TT_button_background();
+        }
+
+        private void Dashboard_media_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            Dashboard_media.Position = new TimeSpan(0, 0, 1);
         }
     }
 }

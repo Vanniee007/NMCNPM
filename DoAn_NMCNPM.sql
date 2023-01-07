@@ -218,7 +218,7 @@ create -- alter
 proc qtv_danhsachhslop @Nam varchar(12),@TenLop varchar(10)
 as
 begin try
-	select * from HocSinh where MaHS in (select MaHocSinh from DanhSachLopHoc where TenLop = @TenLop and @Nam = Nam)
+	select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,username from HocSinh where MaHS in (select MaHocSinh from DanhSachLopHoc where TenLop = @TenLop and @Nam = Nam)
 	select 0
 end try
 begin catch
@@ -296,7 +296,7 @@ create -- alter
 proc qtv_tracuudanhsachlop @keyword nvarchar(20),@Nam varchar(12),@TenLop varchar(10)
 as
 begin try
-	select *
+	select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,username
 	from HocSinh
 	where
 		(HoTen like '%'+ @keyword +'%' or
@@ -317,11 +317,11 @@ proc qtv_tracuu @keyword nvarchar(20)
 as
 begin try
 	select *
-	from (select MaHS,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi,null MonDay,username,N'Học sinh' as 'ChucDanh' from dbo.HocSinh
+	from (select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,N'Học sinh' as 'ChucDanh' from dbo.HocSinh
 		UNION
-		select MaQT,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi,null MonDay,username,N'Quản trị' as 'ChucDanh' from dbo.QuanTri
+		select MaQT,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,N'Quản trị' as 'ChucDanh' from dbo.QuanTri
 		UNION
-		select *,N'Giáo viên' as 'Role' from dbo.GiaoVien) a
+		select MaGV,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi, MonDay,username,N'Giáo viên' as 'Role' from dbo.GiaoVien) a
 	where
 		HoTen like '%'+ @keyword +'%' or
 		NgaySinh like '%'+  @keyword +'%' or
@@ -337,17 +337,23 @@ begin catch
 end catch
 go
 
-
+create function SDT_To_Char(@sdt bigint)
+returns varchar(10)
+as
+begin
+	return '0'+cast(@sdt as varchar(9))
+end
+go
 create -- alter 
 proc qtv_danhsachtaikhoan @keyword nvarchar(20),@role tinyint
 as
 begin try
 	select *
-	from (select MaHS,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi,null MonDay,username,3 as 'ChucDanh' from dbo.HocSinh
+	from (select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,3 as 'ChucDanh' from dbo.HocSinh
 		UNION
-		select MaQT,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi,null MonDay,username,1 from dbo.QuanTri
+		select MaQT,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,1 from dbo.QuanTri
 		UNION
-		select *,2  from dbo.GiaoVien) a
+		select MaGV,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,null MonDay,username,2  from dbo.GiaoVien) a
 	where
 		(HoTen like '%'+ @keyword +'%' or
 		NgaySinh like '%'+  @keyword +'%' or
@@ -1436,7 +1442,7 @@ begin tran
 			select -1
 			return
 		end
-		select Nam,TenLop,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi from 
+		select Nam,TenLop,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi from 
 		DanhSachLopHoc,HocSinh
 		where Nam=@Nam and
 		TenLop=(select TenLop from DanhSachLopHoc where MaHocSinh=@mahs and Nam=@Nam) and MaHocSinh=MaHS
@@ -1468,7 +1474,7 @@ create -- alter
 proc GV_danhsachhslop @Nam varchar(12),@TenLop varchar(10)
 as
 begin try
-	select MaHS,HoTen,NgaySinh,GioiTinh,Email,SDT,DiaChi
+	select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi
 	from HocSinh
 	where MaHS in (select MaHocSinh from DanhSachLopHoc where TenLop = @TenLop and @Nam = Nam)
 	
@@ -1744,3 +1750,45 @@ begin catch
 	return
 end catch
 go
+
+create --alter
+proc QTV_ThemDiemHocSinh
+@MaHS int,
+@TenMon nvarchar(30),
+@Nam varchar(12)
+as
+begin tran
+	begin try
+		insert into Diem_HocSinh_MonHoc values(@MaHS,@TenMon,@Nam,1,0,0,0)
+		insert into Diem_HocSinh_MonHoc values(@MaHS,@TenMon,@Nam,2,0,0,0)
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO
+
+
+create --alter
+proc QTV_XoaHocSinhDayDu
+	@MaHS int
+as
+begin tran
+	begin try
+		delete from DanhSachLopHoc where MaHocSinh=@MaHS
+		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS
+		delete from HocSinh where MaHS=@MaHS
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		select -10
+		return
+	END CATCH
+COMMIT TRAN
+select 0
+GO

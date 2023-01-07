@@ -150,7 +150,7 @@ namespace NMCNPM
                 Tn_gv_tb_ngaysinh.Text = r["NgaySinh"].ToString();
                 Tn_gv_cb_gioitinh.Text = r["GioiTinh"].ToString();
                 Tn_gv_tb_email.Text = r["Email"].ToString();
-                Tn_gv_tb_sodienthoai.Text = r["SDT"].ToString();
+                Tn_gv_tb_sodienthoai.Text ="0"+ r["SDT"].ToString();
                 Tn_gv_tb_diachi.Text = r["DiaChi"].ToString();
                 Tn_gv_tb_daymon.Text = r["MonDay"].ToString();
             }

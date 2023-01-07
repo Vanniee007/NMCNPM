@@ -54,7 +54,6 @@ namespace NMCNPM
         }
         private void Tt_loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ádasdsad");
             Tt_getThongTin();
             TT_button_background();
         }
@@ -583,7 +582,7 @@ namespace NMCNPM
                 TT_cb_gioitinh.Text = dt.Rows[0]["GioiTinh"].ToString();
                 TT_tb_email.Text = dt.Rows[0]["Email"].ToString();
                 TT_tb_ngaysinh.Text = dt.Rows[0]["NgaySinh"].ToString();
-                TT_tb_sodienthoai.Text = dt.Rows[0]["SDT"].ToString();
+                TT_tb_sodienthoai.Text = "0" + dt.Rows[0]["SDT"].ToString();
                 TT_tb_diachi.Text = dt.Rows[0]["DiaChi"].ToString();
                 TT_tb_mon.Text = dt.Rows[0]["MonDay"].ToString();
                 magv = dt.Rows[0]["MaGV"].ToString();

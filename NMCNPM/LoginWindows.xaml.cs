@@ -162,17 +162,6 @@ namespace NMCNPM
 
         private void Windows_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ClickCount == 2)
-            {
-                if (this.WindowState == System.Windows.WindowState.Normal)
-                {
-                    this.WindowState = System.Windows.WindowState.Maximized;
-                }
-                else
-                {
-                    this.WindowState = System.Windows.WindowState.Normal;
-                }
-            }
         }
 
     }
