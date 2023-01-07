@@ -708,7 +708,7 @@
                                 <Grid Grid.Row="2" Grid.Column="1">
                                     <Label Content="Năm học"  Margin="20,50,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
                                     <Label Content="Tuổi tối thiểu"  Margin="20,120,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
-                                    <Label Content="Thiểu tối đa" Margin="20,190,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
+                                    <Label Content="Tuổi tối đa" Margin="20,190,0,0" Style="{StaticResource MyStyle_Label_TT}"/>
 
                                 </Grid>
                                 <Grid Grid.Row="2" Grid.Column="2">
