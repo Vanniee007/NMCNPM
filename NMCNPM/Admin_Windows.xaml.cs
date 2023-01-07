@@ -1072,7 +1072,7 @@ namespace NMCNPM
                     DataRowView rowview = (DataRowView)Kh_mh_datagrid.SelectedItem;
                     if (rowview != null)
                     {
-                        string query = "Exec QTV_SuaMonHoc  '" + rowview["TenMon"].ToString() + "','" + rowview["Nam"].ToString() + "', '" + Kh_mh_tb_diemdat.Text + "'";
+                        string query = "Exec QTV_SuaMonHoc  N'" + rowview["TenMon"].ToString() + "','" + rowview["Nam"].ToString() + "', '" + Kh_mh_tb_diemdat.Text + "'";
                         DataTable dt = db.sql_select(query);
                         string loi = dt.Rows[0][0].ToString();
                         if (loi == "-1")
