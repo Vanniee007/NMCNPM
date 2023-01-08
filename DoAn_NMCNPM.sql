@@ -2078,3 +2078,13 @@ begin tran
 COMMIT TRAN
 --select 0
 GO
+create -- alter
+proc qtv_dshs @nam varchar(10)
+as
+begin
+
+	select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,username 
+	from hocsinh 
+	where MaHS not in (select MaHocSinh from DanhSachLopHoc where @nam =@nam)
+end
+go

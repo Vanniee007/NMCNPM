@@ -319,13 +319,13 @@ namespace NMCNPM
         {
             try
             {
-                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("select MaHS,HoTen,NgaySinh,GioiTinh,Email,dbo.SDT_To_Char(SDT) SDT,DiaChi,username from HocSinh").DefaultView;
 
                 Lh_button_them.IsEnabled = true;
                 Lh_button_them.Visibility = Visibility.Visible;
 
                 Lh_button_xoa.IsEnabled = false;
                 Lh_button_xoa.Visibility = Visibility.Hidden;
+                Lh_datagird_dshocsinh.ItemsSource = db.sql_select("qtv_dshs '"+Lh_Combobox_dsnam.SelectedItem.ToString()+"'").DefaultView;
             }
             catch { }
         }
@@ -1348,7 +1348,10 @@ namespace NMCNPM
         {
             try
             {
-                string duongdan = "D:/BangDiem_" + Bd_cb_namhoc.Text + "_" + Bd_cb_lop.Text + "_" + Bd_cb_kihoc.Text + "_" + Bd_cb_mon.Text + ".csv";
+                string folderPath = ChonFolder();
+                if (folderPath ==null)
+                    return;
+                string duongdan = folderPath+"\\BangDiem_" + Bd_cb_namhoc.Text + "_" + Bd_cb_lop.Text + "_" + Bd_cb_kihoc.Text + "_" + Bd_cb_mon.Text + ".csv";
                 if (MessageBox.Show("Bạn có muốn in vào " + duongdan + "?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
                     //do no stuff
