@@ -182,4 +182,4 @@ Xóa học sinh:
 
 ## V. LINK VIDEO DEMO
 <!-- link video -->
-[![Watch the video](./images/youtube.png)](https://youtu.be/1Q2Q3Q4Q5Q6)
+[![Watch the video](./images/youtube.png)](https://www.youtube.com/watch?v=JSlaXFlS4HM)
