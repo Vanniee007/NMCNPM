@@ -163,6 +163,7 @@
     <Resource Include="icon\wallpaper_login.png" />
     <Resource Include="icon\logo_window.png" />
     <Content Include="icon\chulun.mp4" />
+    <Resource Include="icon\mortarboard.ico" />
     <Content Include="Vang querry mới.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -158,24 +158,24 @@ insert into TaiKhoan values('hs20','12345',3)
 
 
 
-insert into GiaoVien values(1,N'Hoàng Minh Anh','1-11-1978',N'Nữ','abc@gmail.com','0123856789',N'Phú Thọ',N'Toán','gv01')
-insert into GiaoVien values(2,N'Lê Thị Anh Tú','11-1-1980',N'Nữ','abd@gmail.com','0123756789',N'Hà Giang',N'Toán','gv02')
-insert into GiaoVien values(3,N'Anh Phạm','1-1-1978',N'Nam','abe@gmail.com','0123454789',N'Phus Tho',N'Văn','gv03')
-insert into GiaoVien values(4,N'Nguyễn Hữu Dũng','1-2-1978',N'Nam','nhd@gmail.com','0123477689',N'Tây Ninh',N'Hóa','gv04')
-insert into GiaoVien values(5,N'Lê Hoàng','3-1-1978',N'Nam','lh@gmail.com','0123477489',N'Bình Dương',N'Sinh','gv05')
-insert into GiaoVien values(6,N'Hoàng Vinh','1-4-1978',N'Nam','hv@gmail.com','0123477889',N'Bình Dương',N'Toán','gv06')
-insert into GiaoVien values(7,N'Nguyễn Thị Nguyệt','1-1-1970',N'Nữ','ntnguyet@gmail.com','0123477189',N'Vũng Tàu',N'Văn','gv07')
-insert into GiaoVien values(8,N'Trần Thị Hòa','1-1-1950',N'Nữ','tthoa@gmail.com','0123477989',N'Bình Phước',N'Văn','gv08')
+insert into GiaoVien values(1,N'Hoàng Minh Anh','1-11-1978',N'Nữ','abc@gmail.com','0925856789',N'Phú Thọ',N'Toán','gv01')
+insert into GiaoVien values(2,N'Lê Thị Anh Tú','11-1-1980',N'Nữ','abd@gmail.com','0925756789',N'Hà Giang',N'Toán','gv02')
+insert into GiaoVien values(3,N'Anh Phạm','1-1-1978',N'Nam','abe@gmail.com','0925454789',N'Phus Tho',N'Văn','gv03')
+insert into GiaoVien values(4,N'Nguyễn Hữu Dũng','1-2-1978',N'Nam','nhd@gmail.com','0925477689',N'Tây Ninh',N'Hóa','gv04')
+insert into GiaoVien values(5,N'Lê Hoàng','3-1-1978',N'Nam','lh@gmail.com','0925477489',N'Bình Dương',N'Sinh','gv05')
+insert into GiaoVien values(6,N'Hoàng Vinh','1-4-1978',N'Nam','hv@gmail.com','0925477889',N'Bình Dương',N'Toán','gv06')
+insert into GiaoVien values(7,N'Nguyễn Thị Nguyệt','1-1-1970',N'Nữ','ntnguyet@gmail.com','0925477189',N'Vũng Tàu',N'Văn','gv07')
+insert into GiaoVien values(8,N'Trần Thị Hòa','1-1-1950',N'Nữ','tthoa@gmail.com','0925477989',N'Bình Phước',N'Văn','gv08')
 
 
-insert into QuanTri values(1,N'Anh Phạm Dũng','1-1-1978',N'Nam','abw@gmail.com','0123454789',N'Bình Dương','admin')
-insert into QuanTri values(2,N'Trần Văn Tiến','1-1-1978',N'Nam','abq@gmail.com','0123454789',N'Bình Dương','admin01')
-insert into QuanTri values(3,N'Lý Văn Nam','1-1-1978',N'Nam','adc@gmail.com','0123454789',N'Bình Dương','admin02')
+insert into QuanTri values(1,N'Anh Phạm Dũng','1-1-1978',N'Nam','abw@gmail.com','0925454789',N'Bình Dương','admin')
+insert into QuanTri values(2,N'Trần Văn Tiến','1-1-1978',N'Nam','abq@gmail.com','0925454789',N'Bình Dương','admin01')
+insert into QuanTri values(3,N'Lý Văn Nam','1-1-1978',N'Nam','adc@gmail.com','0925454789',N'Bình Dương','admin02')
 
-insert into HocSinh values(1,N'Phạm Quy Vũ','1-1-2000',N'Nam','hs01@gmail.com','0123454789',N'DakLak','hs01')
-insert into HocSinh values(2,N'Mai Quyết ','1-1-2000',N'Nam','hs02@gmail.com','0123454789',N'Bình Dương','hs02')
-insert into HocSinh values(3,N'Trương Anh Ngọc','1-1-2000',N'Nam','hs03@gmail.com','0123454789',N'Bình Phước','hs03')
-insert into HocSinh values(4,N'Lê Thị Vy','1-1-2000',N'Nữ','hs04@gmail.com','0123454789',N'Bình Dương','hs04')
+insert into HocSinh values(1,N'Phạm Quy Vũ','1-1-2000',N'Nam','hs01@gmail.com','0925454789',N'DakLak','hs01')
+insert into HocSinh values(2,N'Mai Quyết ','1-1-2000',N'Nam','hs02@gmail.com','0925454789',N'Bình Dương','hs02')
+insert into HocSinh values(3,N'Trương Anh Ngọc','1-1-2000',N'Nam','hs03@gmail.com','0925454789',N'Bình Phước','hs03')
+insert into HocSinh values(4,N'Lê Thị Vy','1-1-2000',N'Nữ','hs04@gmail.com','0925454789',N'Bình Dương','hs04')
 insert into HocSinh values(5,N'Lee Min Ho','1-6-2000',N'Nam','hs05@gmail.com','0369852741',N'Bình Dương','hs05')
 insert into HocSinh values(6,N'Nguyễn Tiến Đạt','7-1-2000',N'Nam','hs06@gmail.com','0369852741',N'Bình Dương','hs06')
 insert into HocSinh values(7,N'Đinh Văn Long','1-8-2000',N'Nam','hs07@gmail.com','0369852742',N'Bình Dương','hs07')
@@ -840,6 +840,26 @@ begin
 	select *,(select 'X' from GiaoVien_LopHoc where l.TenLop = TenLop and l.Nam = Nam and MaGV = @magv)TinhTrang from Lop l
 end
 go
+
+create --alter
+proc QTV_XoaHocSinhDayDu
+	@MaHS int
+as
+begin tran
+	begin try
+		delete from DanhSachLopHoc where MaHocSinh=@MaHS
+		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS
+		delete from HocSinh where MaHS=@MaHS
+	end try
+	begin catch
+		print N'Lỗi hệ thống!'
+		ROLLBACK TRAN
+		--select -10
+		return
+	END CATCH
+COMMIT TRAN
+--select 0
+GO
 create -- alter
 proc qtv_xoataikhoan
 	@username varchar(20)
@@ -2059,25 +2079,6 @@ select 0
 GO
 
 
-create --alter
-proc QTV_XoaHocSinhDayDu
-	@MaHS int
-as
-begin tran
-	begin try
-		delete from DanhSachLopHoc where MaHocSinh=@MaHS
-		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS
-		delete from HocSinh where MaHS=@MaHS
-	end try
-	begin catch
-		print N'Lỗi hệ thống!'
-		ROLLBACK TRAN
-		--select -10
-		return
-	END CATCH
-COMMIT TRAN
---select 0
-GO
 create -- alter
 proc qtv_dshs @nam varchar(10)
 as

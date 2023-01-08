@@ -11,8 +11,8 @@
         WindowStyle="None"
         BorderThickness="2"
                BorderBrush="LightGray"
-        Title="Nai Teen .Inc" 
-        Height="600" Width="900" MinHeight="500" MinWidth="700">
+        Title="Eleven Study" 
+        Height="600" Width="900">
     <Window.Resources>
         <Style x:Key="Login_Button"  TargetType="Button">
             <Setter Property="Background" Value="#2596c0"/>

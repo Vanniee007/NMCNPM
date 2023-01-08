@@ -371,7 +371,6 @@ namespace NMCNPM
             for (int i = 0; i < Tk_datagird.Items.Count; i++)
             {
                 var item = Tk_datagird.Items[i];
-                //var mycheckbox_ = Lh_datagird_dshocsinh.Columns[0].S
                 var mycheckbox = Tk_datagird.Columns[9].GetCellContent(item) as CheckBox;
                 if ((bool)mycheckbox.IsChecked)
                 {
