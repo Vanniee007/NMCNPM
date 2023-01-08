@@ -35,10 +35,12 @@ SQL Server 2019
 
 - Đăng nhập (Admin, Giáo viên, Học sinh)
 - Thêm, sửa, xóa, tìm kiếm (Admin, Giáo viên, Học sinh)
-- Thêm học sinh vào lớp
-- Tổng hợp điểm theo môn học, lớp, ...
-- Tổng hợp điểm theo học kỳ, năm học, ...
-- Xuất báo cáo điểm theo môn học, lớp, ... ra file excel
+- Lập danh sách lớp
+- Tra cứu thông tin
+- Quản lý bảng điểm
+- Lập bảng tổng kết (môn, lớp)
+- Quản lý khóa học (quy định)
+- In bảng điểm, tổng kết ra file csv
 
 ## II. CÀI ĐẶT VÀ CẤU HÌNH
 
@@ -61,6 +63,8 @@ Thư mục sau khi tải project
 
 Mở ứng dụng bằng phần mềm Visual Studio (Trong ảnh là Visual Studio 2022)
 ![Hình minh họa](./images/project_visual_studio.png)
+Nhấn F5 để chạy ứng dụng
+![Hình minh họa](./images/run.png)
 
 ## III. CHI TIẾT ỨNG DỤNG
 
@@ -90,21 +94,38 @@ Mở ứng dụng bằng phần mềm Visual Studio (Trong ảnh là Visual Stud
 │   ├───App.xaml
 │   ├───App.xaml.cs
 │   ├───DBconnect.cs
+│   ├───FolderPickerClass.cs
 │   ├───GiaoVien_Windows.xaml
 │   ├───GiaoVien_Windows.xaml.cs
 │   ├───HocSinh_Windows.xaml
 │   ├───HocSinh_Windows.xaml.cs
 │   ├───InputValidation.cs
+│   ├───LoginWindows.xaml
+│   ├───LoginWindows.xaml.cs
 │   ├───MainWindow.xaml
 │   ├───MainWindow.xaml.cs
 │   ├───NMCPNPM.csproj
+│   ├───Windows1.xaml
+│   ├───Windows1.xaml.cs
 │   └───Vang query mới.sql
 ├───images
+│   ├───add_student.png
+│   ├───delete_student.png
 │   ├───demo_folder.png
 │   ├───home.png
+│   ├───in_bang_tong_ket.png
+│   ├───in_ra_file_csv.png
+│   ├───lap_bang_tong_ket.png
+│   ├───lap_danh_sach_lop.png
 │   ├───login.png
 │   ├───project_folder.png
-│   └───project_visual_studio.png
+│   ├───project_visual_studio.png
+│   ├───quan_ly_bang_diem.png
+│   ├───quan_ly_khoa_hoc.png
+│   ├───run.png
+│   ├───tra_cuu_thong_tin.png
+│   ├───update_student.png
+│   └───youtube.png
 ├───.gitattributes
 ├───.gitignore
 ├───DoAn_NMCNPM.sql
@@ -129,15 +150,36 @@ Sửa học sinh:
 Xóa học sinh:
 ![Hình minh họa](./images/delete_student.png)
 
-#### 2.3 Quản lý điểm
+#### 2.3 Lập danh sách lớp
 
-#### 2.4 Quản lý lớp
+![Hình minh họa](./images/lap_danh_sach_lop.png)
 
-### 3. Các tính năng phát triển trong tương lai
+#### 2.4 Tra cứu thông tin
+
+![Hình minh họa](./images/tra_cuu_thong_tin.png)
+
+#### 2.5 Quản lý bảng điểm
+
+![Hình minh họa](./images/quan_ly_bang_diem.png)
+
+#### 2.6 Lập bảng tổng kết (môn, lớp)
+
+![Hình minh họa](./images/lap_bang_tong_ket.png)
+
+#### 2.7 Quản lý khóa học (quy định)
+
+![Hình minh họa](./images/quan_ly_khoa_hoc.png)
+
+#### 2.8 In bảng điểm, tổng kết ra file csv
+
+![Hình minh họa](./images/in_bang_tong_ket.png)
+![Hình minh họa](./images/in_ra_file_csv.png)
+
+## IV. CÁC TÍNH NĂNG PHÁT TRIỂN TRONG TƯƠNG LAI
 
 - Thống kê trực quan bằng biểu đồ
 - Hệ thống phản hồi cho người dùng
 
-### 4. Link video demo
+## V. LINK VIDEO DEMO
 <!-- link video -->
-[![Watch the video](https://img.youtube.com/vi/1Q2Q3Q4Q5Q6/0.jpg)](https://youtu.be/1Q2Q3Q4Q5Q6)
+[![Watch the video](./images/youtube.png)](https://www.youtube.com/watch?v=JSlaXFlS4HM)
