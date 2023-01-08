@@ -840,7 +840,6 @@ begin
 	select *,(select 'X' from GiaoVien_LopHoc where l.TenLop = TenLop and l.Nam = Nam and MaGV = @magv)TinhTrang from Lop l
 end
 go
-
 create -- alter
 proc qtv_xoataikhoan
 	@username varchar(20)
@@ -858,6 +857,7 @@ begin tran
 		set @role = (select Loai from TaiKhoan where username = @username)
 
 		declare @ma int
+
 		if (@role = 1)
 		begin
 			set @ma = (select MaQT from QuanTri where username = @username)
@@ -877,12 +877,7 @@ begin tran
 		else if (@role = 3)
 		begin
 			set @ma = (select MaHS from HocSinh where username = @username)
-			if  exists (select * from DanhSachLopHoc where MaHocSinh = @ma)
-			begin
-				rollback tran
-				select 2
-				return 
-			end
+			exec QTV_XoaHocSinhDayDu @ma
 			delete HocSinh where username = @username
 		end
 		delete TaiKhoan where username = @username
@@ -2066,21 +2061,20 @@ GO
 
 create --alter
 proc QTV_XoaHocSinhDayDu
-	@MaHS int,
-	@Nam varchar(12)
+	@MaHS int
 as
 begin tran
 	begin try
-		delete from DanhSachLopHoc where MaHocSinh=@MaHS and Nam = @Nam
-		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS and Nam = @Nam
+		delete from DanhSachLopHoc where MaHocSinh=@MaHS
+		delete from Diem_HocSinh_MonHoc where MaHocSinh=@MaHS
 		delete from HocSinh where MaHS=@MaHS
 	end try
 	begin catch
 		print N'Lỗi hệ thống!'
 		ROLLBACK TRAN
-		select -10
+		--select -10
 		return
 	END CATCH
 COMMIT TRAN
-select 0
+--select 0
 GO
